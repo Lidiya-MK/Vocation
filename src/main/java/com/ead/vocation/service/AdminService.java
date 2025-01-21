@@ -9,12 +9,10 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @Transactional
 public class AdminService {
-
     @Autowired
     private AdminRepository adminRepository;
 
     public Admin registerAdmin(Admin admin) {
-
         if (adminRepository.findByEmail(admin.getEmail()).isPresent()) {
             throw new IllegalArgumentException("Email is already registered");
         }
