@@ -4,9 +4,9 @@ import jakarta.persistence.*;
 import lombok.Data;
 import java.time.LocalDateTime;
 
-@Entity
+@MappedSuperclass
 @Data
-public class Admin {
+public abstract class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -14,11 +14,26 @@ public class Admin {
     @Column(nullable = false)
     private String name;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String email;
 
     @Column(nullable = false)
     private String password;
+
+    @Column(nullable = false)
+    private String description;
+
+    @Column(nullable = false)
+    private String location;
+
+    @Column(nullable = false)
+    private String phoneNumber;
+
+    @Column(nullable = true)
+    private String profilePicture;
+
+    @Column(nullable = false)
+    private String role;
 
     @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt;

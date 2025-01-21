@@ -4,21 +4,29 @@ import jakarta.persistence.*;
 import lombok.Data;
 import java.time.LocalDateTime;
 
+import com.ead.vocation.shared.enums.ApplicationStatus;
+
 @Entity
 @Data
-public class Admin {
+public class Application {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(nullable = false)
-    private String name;
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "job_id", nullable = false)
+    private Job job;
+
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "freelancer_id", nullable = false)
+    private Freelancer freelancer;
 
     @Column(nullable = false)
-    private String email;
+    private LocalDateTime submittedAt;
 
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private String password;
+    private ApplicationStatus status;
 
     @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt;
@@ -30,6 +38,7 @@ public class Admin {
     protected void onCreate() {
         createdAt = LocalDateTime.now();
         updatedAt = LocalDateTime.now();
+        submittedAt = LocalDateTime.now();
     }
 
     @PreUpdate
