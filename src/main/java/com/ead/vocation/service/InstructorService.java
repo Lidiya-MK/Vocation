@@ -1,7 +1,7 @@
-package com.example.studyspot.service;
+package com.ead.vocation.service;
 
-import com.example.studyspot.model.Instructor;
-import com.example.studyspot.repository.InstructorRepository;
+import com.ead.vocation.model.Instructor;
+import com.ead.vocation.repository.InstructorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,7 +18,6 @@ public class InstructorService {
         if (instructorRepository.findByEmail(instructor.getEmail()).isPresent()) {
             throw new IllegalArgumentException("Email is already registered");
         }
-
 
         return instructorRepository.save(instructor);
     }

@@ -1,7 +1,7 @@
-package com.example.studyspot.service;
+package com.ead.vocation.service;
 
-import com.example.studyspot.model.Student;
-import com.example.studyspot.repository.StudentRepository;
+import com.ead.vocation.model.Student;
+import com.ead.vocation.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,11 +19,9 @@ public class StudentService {
             throw new IllegalArgumentException("Username is already taken");
         }
 
-
         if (studentRepository.findByEmail(student.getEmail()).isPresent()) {
             throw new IllegalArgumentException("Email is already registered");
         }
-
 
         return studentRepository.save(student);
     }

@@ -1,11 +1,11 @@
-package com.example.studyspot.model;
+package com.ead.vocation.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
 import java.util.List;
 
 @Entity
-@Data 
+@Data
 public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,5 +35,5 @@ public class Student {
     private List<Integer> comments;
 
     @Column(nullable = false)
-    private String password; 
+    private String password;
 }

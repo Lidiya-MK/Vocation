@@ -1,5 +1,6 @@
-package com.example.studyspot.repository;
-import com.example.studyspot.model.Instructor;
+package com.ead.vocation.repository;
+
+import com.ead.vocation.model.Instructor;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,4 +1,4 @@
-package com.example.studyspot.model;
+package com.ead.vocation.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
@@ -7,7 +7,7 @@ import lombok.ToString;
 import java.util.List;
 
 @Entity
-@Data 
+@Data
 public class Tutorial {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,6 +36,6 @@ public class Tutorial {
 
     @ManyToOne
     @JoinColumn(name = "student_id", nullable = false)
-    @ToString.Exclude 
+    @ToString.Exclude
     private Student student;
 }

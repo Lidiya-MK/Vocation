@@ -1,9 +1,7 @@
+package com.ead.vocation.controller;
 
-
-package com.example.studyspot.controller;
-
-import com.example.studyspot.model.Instructor;
-import com.example.studyspot.service.InstructorService;
+import com.ead.vocation.model.Instructor;
+import com.ead.vocation.service.InstructorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

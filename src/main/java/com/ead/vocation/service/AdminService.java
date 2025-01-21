@@ -1,7 +1,7 @@
-package com.example.studyspot.service;
+package com.ead.vocation.service;
 
-import com.example.studyspot.model.Admin;
-import com.example.studyspot.repository.AdminRepository;
+import com.ead.vocation.model.Admin;
+import com.ead.vocation.repository.AdminRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,7 +18,6 @@ public class AdminService {
         if (adminRepository.findByEmail(admin.getEmail()).isPresent()) {
             throw new IllegalArgumentException("Email is already registered");
         }
-
 
         return adminRepository.save(admin);
     }
