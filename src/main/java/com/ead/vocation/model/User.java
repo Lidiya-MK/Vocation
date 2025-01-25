@@ -1,12 +1,22 @@
 package com.ead.vocation.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.time.LocalDateTime;
 
-@MappedSuperclass
+import com.ead.vocation.shared.enums.Role;
+
+@Entity
+@Table(name = "users")
+@NoArgsConstructor
+@AllArgsConstructor
 @Data
-public abstract class User {
+@Builder
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -21,19 +31,7 @@ public abstract class User {
     private String password;
 
     @Column(nullable = false)
-    private String description;
-
-    @Column(nullable = false)
-    private String location;
-
-    @Column(nullable = false)
-    private String phoneNumber;
-
-    @Column(nullable = true)
-    private String profilePicture;
-
-    @Column(nullable = false)
-    private String role;
+    private Role role;
 
     @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt;
