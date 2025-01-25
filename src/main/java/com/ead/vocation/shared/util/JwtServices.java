@@ -17,9 +17,9 @@ public class JwtServices {
     @Value("${JWT_SECRET}")
     private String SECRET_KEY;
 
-    public String generateToken(String username, Role role) {
+    public String generateToken(String id, Role role) {
         return Jwts.builder()
-                .setSubject(username)
+                .setSubject(id)
                 .claim("role", role)
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 10))
@@ -34,7 +34,7 @@ public class JwtServices {
                 .getBody();
     }
 
-    public String extractUsername(String token) {
+    public String extractSubject(String token) {
         return extractClaims(token).getSubject();
     }
 
@@ -42,8 +42,8 @@ public class JwtServices {
         return extractClaims(token).get("role", String.class);
     }
 
-    public boolean validateToken(String token, String username) {
-        return extractUsername(token).equals(username) && !isTokenExpired(token);
+    public boolean validateToken(String token, String id) {
+        return extractSubject(token).equals(id) && !isTokenExpired(token);
     }
 
     private boolean isTokenExpired(String token) {

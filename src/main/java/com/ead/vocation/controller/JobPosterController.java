@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/jobposters")
+@RequestMapping("/job-posters")
 public class JobPosterController {
     @GetMapping("/dashboard")
     public String getDashboard() {

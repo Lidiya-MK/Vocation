@@ -3,6 +3,7 @@ package com.ead.vocation.controller;
 import com.ead.vocation.dtos.FreelancerResponse;
 import com.ead.vocation.dtos.JobPosterResponse;
 import com.ead.vocation.dtos.LoginRequest;
+import com.ead.vocation.dtos.LoginResponse;
 import com.ead.vocation.dtos.SignupFreelancerRequest;
 import com.ead.vocation.dtos.SignupJobPosterRequest;
 import com.ead.vocation.model.Freelancer;
@@ -35,7 +36,7 @@ public class AuthController {
     @PostMapping("/login")
     public ResponseEntity<?> loginFreelancers(@Valid @RequestBody LoginRequest loginRequest) {
         String token = authService.login(loginRequest.getEmail(), loginRequest.getPassword());
-        return ResponseEntity.ok(token);
+        return ResponseEntity.ok(new LoginResponse(token));
     }
 
     @PostMapping("/freelancers/signup")
@@ -73,7 +74,7 @@ public class AuthController {
         return ResponseEntity.ok(freelancerResponse);
     }
 
-    @PostMapping("/jobposters/signup")
+    @PostMapping("/job-posters/signup")
     public ResponseEntity<?> signup(@Valid @RequestBody SignupJobPosterRequest jobPosterRequest) {
         User registeredUser;
         JobPoster registeredJobPoster;
@@ -81,7 +82,7 @@ public class AuthController {
             User user = new User();
             user.setEmail(jobPosterRequest.getEmail());
             user.setPassword(jobPosterRequest.getPassword());
-            user.setRole(Role.FREELANCER);
+            user.setRole(Role.JOB_POSTER);
             user.setName(jobPosterRequest.getName());
             registeredUser = authService.register(user);
 
