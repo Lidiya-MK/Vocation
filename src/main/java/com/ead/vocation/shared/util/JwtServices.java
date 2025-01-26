@@ -34,6 +34,11 @@ public class JwtServices {
                 .getBody();
     }
 
+    public Integer extractIdFromHeader(String header) {
+        String token = header.substring(7);
+        return Integer.parseInt(extractClaims(token).getSubject());
+    }
+
     public String extractSubject(String token) {
         return extractClaims(token).getSubject();
     }
