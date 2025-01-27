@@ -2,70 +2,53 @@
 @tailwind components;
 @tailwind utilities;
 
-
-
-h1{
-
-        font-family: "Mansalva", serif;
-        font-weight: 400;
-        font-style: normal;
-      
+h1 {
+  font-family: "Mansalva", serif;
+  font-weight: 400;
+  font-style: normal;
 }
 
-.company-name{
-
-    font-family: "Mansalva", serif;
-    font-weight: 400;
-    font-style: normal;
-  
+.company-name {
+  font-family: "Mansalva", serif;
+  font-weight: 400;
+  font-style: normal;
 }
-
-
 
 .text-60px {
-    font-size: 60px;
-  }
-  
-  .text-30px {
-    font-size: 30px;
-  }
+  font-size: 60px;
+}
 
-  
+.text-30px {
+  font-size: 30px;
+}
 
-  
-
-Body{
-    font-family: "Montserrat", serif;
-    font-optical-sizing: auto;
-    font-weight: 400;
-    font-style: normal;
-
+Body {
+  font-family: "Montserrat", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
 }
 .gradient-border-btn {
-    background: transparent;
-    border: 2px solid; 
-    border-image: linear-gradient(to right, #84DAFF, #F0823E); 
-    border-image-slice: 1; 
-    cursor: pointer; 
-    transition: all 0.3s ease; 
+  background: transparent;
+  border: 2px solid;
+  border-image: linear-gradient(to right, #84daff, #f0823e);
+  border-image-slice: 1;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 .gradient-border-btn:hover {
-    opacity: 0.8; 
+  opacity: 0.8;
 }
 
-.job-card-remote{
-    background-color: #97f28d34;
-
+.job-card-remote {
+  background-color: #97f28d34;
 }
 
-.job-card-onsite{
-    background-color: #f0823e1f;
-
+.job-card-onsite {
+  background-color: #f0823e1f;
 }
 
-.job-card-hybrid{
-    background-color: #6a36b727;
-
+.job-card-hybrid {
+  background-color: #6a36b727;
 }
-

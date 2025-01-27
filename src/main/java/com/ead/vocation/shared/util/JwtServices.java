@@ -14,7 +14,7 @@ import java.util.Date;
 @Service
 public class JwtServices {
 
-    @Value("${JWT_SECRET}")
+    @Value("${JWT_SECRET:dev_secret_sample}")
     private String SECRET_KEY;
 
     public String generateToken(String id, Role role) {
