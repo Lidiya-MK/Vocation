@@ -13,7 +13,10 @@
       href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="../public/styles/style.css" />
+    <link rel="stylesheet" href="/styles/style.css" />
+    <script src="/scripts/toast.js"></script>
+    <script src="/scripts/tokens.js"></script>
+    <script src="/scripts/logout.js"></script>
 
     <title>Employer Profile</title>
   </head>
@@ -31,30 +34,21 @@
 
         <div class="flex space-x-8">
           <!-- Home -->
-          <a href="#" class="flex flex-col items-center">
-            <img
-              src="../public/assets/homeIcon.png"
-              alt="Home"
-              class="h-6 w-6"
-            />
+          <a href="/" class="flex flex-col items-center">
+            <img src="/assets/homeIcon.png" alt="Home" class="h-6 w-6" />
             <span class="text-sm text-black mt-1">Home</span>
           </a>
           <!-- Profile -->
-          <a href="#" class="flex flex-col items-center">
-            <img
-              src="../public/assets/userIcon.png"
-              alt="Profile"
-              class="h-6 w-6"
-            />
+          <a class="flex flex-col items-center">
+            <img src="/assets/userIcon.png" alt="Profile" class="h-6 w-6" />
             <span class="text-sm text-gray-500 mt-1">Profile</span>
           </a>
           <!-- Logout -->
-          <a href="#" class="flex flex-col items-center">
-            <img
-              src="../public/assets/logoutIcon.png"
-              alt="Logout"
-              class="h-6 w-6"
-            />
+          <a
+            class="flex flex-col items-center cursor-pointer"
+            id="logout-button"
+          >
+            <img src="/assets/logoutIcon.png" alt="Logout" class="h-6 w-6" />
             <span class="text-sm text-gray-500 mt-1">Logout</span>
           </a>
         </div>
@@ -64,7 +58,7 @@
     <main>
       <section class="relative w-full h-[250px]">
         <img
-          src="../public/assets/companyBanner.png"
+          src="/assets/companyBanner.png"
           alt="Cover Image"
           class="w-full h-full object-cover"
         />
@@ -78,7 +72,7 @@
             <!-- Circular Image and Company Name -->
             <div class="flex items-center space-x-4">
               <img
-                src="../public/assets/companyLogo.png"
+                src="/assets/companyLogo.png"
                 alt="Circular Image"
                 class="w-[140px] h-[140px] rounded-full object-cover"
               />
@@ -95,7 +89,7 @@
             <div class="flex flex-col space-y-2 mt-[-80px]">
               <div class="flex items-center space-x-2">
                 <img
-                  src="../public/assets/onsite-employer.png"
+                  src="/assets/onsite-employer.png"
                   alt="Industry Icon"
                   class="w-6 h-6"
                 />
@@ -105,7 +99,7 @@
               </div>
               <div class="flex items-center space-x-2">
                 <img
-                  src="../public/assets/mailIcon.png"
+                  src="/assets/mailIcon.png"
                   alt="Industry Icon"
                   class="w-6 h-6"
                 />
@@ -115,7 +109,7 @@
               </div>
               <div class="flex items-center space-x-2">
                 <img
-                  src="../public/assets/LocationIcon.png"
+                  src="/assets/LocationIcon.png"
                   alt="Location Icon"
                   class="w-6 h-6"
                 />

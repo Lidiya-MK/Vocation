@@ -59,6 +59,11 @@ public class JobPosterController {
         return "job-poster-home";
     }
 
+    @GetMapping("/job-details/{jobId}")
+    public String getMethodName(@PathVariable Integer jobId, Model model) {
+        return "job-poster-job-details";
+    }
+
     @GetMapping("/jobs")
     public ResponseEntity<?> getAllJobs(@RequestHeader("Authorization") String token) {
         try {

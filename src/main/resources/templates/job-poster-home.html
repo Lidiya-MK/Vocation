@@ -17,6 +17,7 @@
     <script src="/scripts/toast.js"></script>
     <script src="/scripts/tokens.js"></script>
     <script src="/scripts/job-poster.js"></script>
+    <script src="/scripts/logout.js"></script>
 
     <title>Job Poster Home</title>
   </head>
@@ -34,7 +35,7 @@
 
         <div class="flex space-x-8">
           <!-- Home -->
-          <a href="#" class="flex flex-col items-center">
+          <a href="/" class="flex flex-col items-center">
             <img src="/assets/homeIcon.png" alt="Home" class="h-6 w-6" />
             <span class="text-sm text-black mt-1">Home</span>
           </a>
@@ -44,7 +45,10 @@
             <span class="text-sm text-gray-500 mt-1">Profile</span>
           </a>
           <!-- Logout -->
-          <a href="#" class="flex flex-col items-center">
+          <a
+            class="flex flex-col items-center cursor-pointer"
+            id="logout-button"
+          >
             <img src="/assets/logoutIcon.png" alt="Logout" class="h-6 w-6" />
             <span class="text-sm text-gray-500 mt-1">Logout</span>
           </a>
@@ -431,9 +435,11 @@
               <!-- Divider and View Job -->
               <div class="flex flex-col items-center mt-4">
                 <div class="w-[160px] h-[1px] bg-[#57DD70]"></div>
-                <a href="#" class="mt-2 text-sm font-medium text-black">
+                <span
+                  class="mt-2 text-sm font-medium text-black job-details-link-button cursor-pointer"
+                >
                   VIEW DETAILS
-                </a>
+                </span>
               </div>
             </div>
 
@@ -489,9 +495,11 @@
               <!-- Divider and View Job -->
               <div class="flex flex-col items-center mt-4">
                 <div class="w-[160px] h-[1px] bg-[#F0823E]"></div>
-                <a href="#" class="mt-2 text-sm font-medium text-black">
+                <span
+                  class="mt-2 text-sm font-medium text-black job-details-link-button cursor-pointer"
+                >
                   VIEW DETAILS
-                </a>
+                </span>
               </div>
             </div>
 
@@ -549,9 +557,11 @@
               <!-- Divider and View Job -->
               <div class="flex flex-col items-center mt-4">
                 <div class="w-[160px] h-[1px] bg-[#6936B7]"></div>
-                <a href="#" class="mt-2 text-sm font-medium text-black">
+                <span
+                  class="mt-2 text-sm font-medium text-black job-details-link-button cursor-pointer"
+                >
                   VIEW DETAILS
-                </a>
+                </span>
               </div>
             </div>
           </div>
@@ -817,6 +827,9 @@
 
       document.addEventListener("DOMContentLoaded", () => {
         const buttons = document.querySelectorAll(".delete-job-button");
+        const detailsLink = document.querySelectorAll(
+          ".job-details-link-button"
+        );
 
         buttons.forEach((button) => {
           button.addEventListener("click", async (event) => {
@@ -834,6 +847,19 @@
               } catch (error) {
                 showToast(error.message, "error");
               }
+            } else {
+              showToast("Job ID not found", "error");
+            }
+          });
+        });
+
+        detailsLink.forEach((link) => {
+          link.addEventListener("click", (event) => {
+            const jobCard = event.target.parentElement.parentElement;
+            const jobId = jobCard.getAttribute("data-job-id");
+            console.log(jobCard, jobId);
+            if (jobId) {
+              window.location.href = `/job-posters/job-details/${jobId}`;
             } else {
               showToast("Job ID not found", "error");
             }

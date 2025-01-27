@@ -13,9 +13,12 @@
       href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="../styles/style.css" />
+    <link rel="stylesheet" href="/styles/style.css" />
+    <script src="/scripts/toast.js"></script>
+    <script src="/scripts/tokens.js"></script>
+    <script src="/scripts/logout.js"></script>
 
-    <title>Employer Job details</title>
+    <title>Job Details</title>
   </head>
   <body class="bg-white">
     <!-- Top Navigation Bar -->
@@ -29,18 +32,21 @@
 
         <div class="flex space-x-8">
           <!-- Home -->
-          <a href="#" class="flex flex-col items-center">
-            <img src="../assets/homeIcon.png" alt="Home" class="h-6 w-6" />
+          <a href="/" class="flex flex-col items-center">
+            <img src="/assets/homeIcon.png" alt="Home" class="h-6 w-6" />
             <span class="text-sm text-black mt-1">Home</span>
           </a>
           <!-- Profile -->
-          <a href="#" class="flex flex-col items-center">
-            <img src="../assets/userIcon.png" alt="Profile" class="h-6 w-6" />
+          <a class="flex flex-col items-center">
+            <img src="/assets/userIcon.png" alt="Profile" class="h-6 w-6" />
             <span class="text-sm text-gray-500 mt-1">Profile</span>
           </a>
           <!-- Logout -->
-          <a href="#" class="flex flex-col items-center">
-            <img src="../assets/logoutIcon.png" alt="Logout" class="h-6 w-6" />
+          <a
+            class="flex flex-col items-center cursor-pointer"
+            id="logout-button"
+          >
+            <img src="/assets/logoutIcon.png" alt="Logout" class="h-6 w-6" />
             <span class="text-sm text-gray-500 mt-1">Logout</span>
           </a>
         </div>
@@ -50,7 +56,7 @@
     <main>
       <div class="mx-auto">
         <img
-          src="../assets/companyLogo.png"
+          src="/assets/companyLogo.png"
           alt="Company Logo"
           class="w-[160px] h-[160px] rounded-full mx-auto mt-3 mb-4"
         />
@@ -64,7 +70,7 @@
             class="flex items-center border border-[#F0823E] rounded-full px-4 py-2 mr-4 text-[#F0823E] text-[16px] font-medium hover:bg-[#F0823E]/10 transition"
           >
             <img
-              src="../assets/editIcon.png"
+              src="/assets/editIcon.png"
               alt="Plus Icon"
               class="w-6 h-6 mr-2"
             />
@@ -82,7 +88,7 @@
           <!-- Modal Header -->
           <div class="flex items-center justify-center space-x-2 mb-3">
             <img
-              src="../assets/editIcon.png"
+              src="/assets/editIcon.png"
               alt="Plus Icon"
               class="w-[20px] h-[20px]"
             />
@@ -340,7 +346,7 @@
           >
             <!-- Circular Image -->
             <img
-              src="../assets/applicant.png"
+              src="/assets/applicant.png"
               alt="Profile"
               class="w-[100px] h-[100px] rounded-full hidden lg:block"
             />
@@ -355,7 +361,7 @@
               <!-- Company Name -->
               <div class="flex items-center mt-1">
                 <img
-                  src="../assets/suitcaseIcon.png"
+                  src="/assets/suitcaseIcon.png"
                   alt="Company Icon"
                   class="w-4 h-4 mr-2"
                 />
@@ -367,7 +373,7 @@
               <!-- Email -->
               <div class="flex items-center mt-1">
                 <img
-                  src="../assets/mailIcon.png"
+                  src="/assets/mailIcon.png"
                   alt="Mail Icon"
                   class="w-4 h-4 mr-2"
                 />
@@ -379,7 +385,7 @@
               <!-- Location -->
               <div class="flex items-center mt-1">
                 <img
-                  src="../assets/LocationIcon.png"
+                  src="/assets/LocationIcon.png"
                   alt="Mail Icon"
                   class="w-4 h-4 mr-2"
                 />
@@ -414,7 +420,7 @@
           >
             <!-- Circular Image -->
             <img
-              src="../assets/hibu.png"
+              src="/assets/hibu.png"
               alt="Profile"
               class="w-[100px] h-[100px] rounded-full hidden lg:block"
             />
@@ -429,7 +435,7 @@
               <!-- Company Name -->
               <div class="flex items-center mt-1">
                 <img
-                  src="../assets/suitcaseIcon.png"
+                  src="/assets/suitcaseIcon.png"
                   alt="Company Icon"
                   class="w-4 h-4 mr-2"
                 />
@@ -441,7 +447,7 @@
               <!-- Email -->
               <div class="flex items-center mt-1">
                 <img
-                  src="../assets/mailIcon.png"
+                  src="/assets/mailIcon.png"
                   alt="Mail Icon"
                   class="w-4 h-4 mr-2"
                 />
@@ -453,7 +459,7 @@
               <!-- Location -->
               <div class="flex items-center mt-1">
                 <img
-                  src="../assets/LocationIcon.png"
+                  src="/assets/LocationIcon.png"
                   alt="Mail Icon"
                   class="w-4 h-4 mr-2"
                 />
@@ -493,7 +499,7 @@
         <!-- First Column -->
         <div class="flex flex-col gap-4">
           <a
-            href="#"
+            href="/"
             class="hover:text-[#6EB0B6] text-white text-sm sm:text-base"
             >Home</a
           >
