@@ -37,7 +37,7 @@
             <span class="text-sm text-black mt-1">Home</span>
           </a>
           <!-- Profile -->
-          <a class="flex flex-col items-center">
+          <a href="/job-posters/profile" class="flex flex-col items-center">
             <img src="/assets/userIcon.png" alt="Profile" class="h-6 w-6" />
             <span class="text-sm text-gray-500 mt-1">Profile</span>
           </a>
@@ -62,276 +62,50 @@
         />
       </div>
 
-      <section class="bg-white">
-        <!-- Right Content -->
-        <div class="flex justify-end items-center space-x-4">
-          <button
-            onclick="openModal()"
-            class="flex items-center border border-[#F0823E] rounded-full px-4 py-2 mr-4 text-[#F0823E] text-[16px] font-medium hover:bg-[#F0823E]/10 transition"
-          >
-            <img
-              src="/assets/editIcon.png"
-              alt="Plus Icon"
-              class="w-6 h-6 mr-2"
-            />
-            Edit Post
-          </button>
-        </div>
-      </section>
-
-      <!-- Modal Content -->
-      <div
-        id="modal"
-        class="fixed inset-0 bg-gray-500 bg-opacity-50 flex justify-center items-center z-50 hidden"
-      >
-        <div class="bg-white w-[80%] md:w-[320px] p-3 rounded-lg shadow-lg">
-          <!-- Modal Header -->
-          <div class="flex items-center justify-center space-x-2 mb-3">
-            <img
-              src="/assets/editIcon.png"
-              alt="Plus Icon"
-              class="w-[20px] h-[20px]"
-            />
-            <h2 class="text-[16px] font-bold text-[#F0823E]">Edit Post</h2>
-          </div>
-
-          <!-- Form -->
-          <form>
-            <!-- Job Title and Type -->
-            <div class="flex space-x-2 mb-3">
-              <!-- Job Title -->
-              <div class="w-full">
-                <label
-                  for="jobTitle"
-                  class="block text-black font-bold text-[12px] mb-1"
-                  >Job Title</label
-                >
-                <input
-                  type="text"
-                  id="jobTitle"
-                  placeholder="Enter new Title"
-                  class="w-full border border-gray-300 rounded-lg px-3 py-1 text-xs"
-                />
-              </div>
-
-              <!-- Type -->
-              <div class="w-full">
-                <label
-                  for="jobType"
-                  class="block text-black font-bold text-[12px] mb-1"
-                  >Type</label
-                >
-                <select
-                  id="jobType"
-                  class="w-full border border-gray-300 rounded-lg px-3 py-1 text-xs"
-                >
-                  <option value="onsite">Onsite</option>
-                  <option value="hybrid">Hybrid</option>
-                  <option value="remote">Remote</option>
-                </select>
-              </div>
-            </div>
-
-            <!-- Job Description -->
-            <div class="mb-3">
-              <label
-                for="jobDescription"
-                class="block text-black font-bold text-[12px] mb-1"
-                >Description</label
-              >
-              <textarea
-                id="jobDescription"
-                placeholder="Enter new job description"
-                class="w-full border border-gray-300 rounded-lg px-3 py-1 text-xs h-24"
-              ></textarea>
-            </div>
-
-            <!-- Skills -->
-            <div class="mb-3">
-              <label
-                for="skills"
-                class="block text-black font-bold text-[12px] mb-1"
-                >Skills</label
-              >
-              <div class="relative">
-                <div
-                  class="border border-gray-300 rounded-lg px-3 py-1 text-xs cursor-pointer flex justify-between items-center"
-                  id="skillsDropdown"
-                >
-                  <span>Select Skills</span>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="h-4 w-4 text-gray-500"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                      clip-rule="evenodd"
-                    />
-                  </svg>
-                </div>
-                <div
-                  id="skillsList"
-                  class="absolute left-0 w-full mt-1 bg-white border border-gray-300 rounded-lg shadow-lg hidden z-10 max-h-40 overflow-y-auto"
-                >
-                  <div
-                    class="skill-item p-2 cursor-pointer hover:bg-[#F0823E] hover:text-white"
-                  >
-                    HTML
-                  </div>
-                  <div
-                    class="skill-item p-2 cursor-pointer hover:bg-[#F0823E] hover:text-white"
-                  >
-                    CSS
-                  </div>
-                  <div
-                    class="skill-item p-2 cursor-pointer hover:bg-[#F0823E] hover:text-white"
-                  >
-                    JavaScript
-                  </div>
-                  <div
-                    class="skill-item p-2 cursor-pointer hover:bg-[#F0823E] hover:text-white"
-                  >
-                    Python
-                  </div>
-                  <div
-                    class="skill-item p-2 cursor-pointer hover:bg-[#F0823E] hover:text-white"
-                  >
-                    Figma
-                  </div>
-                  <div
-                    class="skill-item p-2 cursor-pointer hover:bg-[#F0823E] hover:text-white"
-                  >
-                    Blender
-                  </div>
-                  <div
-                    class="skill-item p-2 cursor-pointer hover:bg-[#F0823E] hover:text-white"
-                  >
-                    React
-                  </div>
-                  <div
-                    class="skill-item p-2 cursor-pointer hover:bg-[#F0823E] hover:text-white"
-                  >
-                    Protoyping
-                  </div>
-                  <div
-                    class="skill-item p-2 cursor-pointer hover:bg-[#F0823E] hover:text-white"
-                  >
-                    Graphics Design
-                  </div>
-                  <div
-                    class="skill-item p-2 cursor-pointer hover:bg-[#F0823E] hover:text-white"
-                  >
-                    UX/UI design
-                  </div>
-                  <div
-                    class="skill-item p-2 cursor-pointer hover:bg-[#F0823E] hover:text-white"
-                  >
-                    Accounting
-                  </div>
-                  <div
-                    class="skill-item p-2 cursor-pointer hover:bg-[#F0823E] hover:text-white"
-                  >
-                    Book Keeping
-                  </div>
-                </div>
-              </div>
-              <div
-                id="selectedSkillsContainer"
-                class="mt-2 flex flex-wrap gap-2"
-              ></div>
-            </div>
-
-            <!-- Pay -->
-            <div class="mb-3">
-              <label
-                for="pay"
-                class="block text-black font-bold text-[12px] mb-1"
-                >Pay</label
-              >
-              <input
-                type="text"
-                id="pay"
-                placeholder="Enter Pay"
-                class="w-full border border-gray-300 rounded-lg px-3 py-1 text-xs"
-              />
-            </div>
-
-            <!-- Application Deadline -->
-            <div class="mb-3">
-              <label
-                for="deadline"
-                class="block text-black font-bold text-[12px] mb-1"
-                >Application Deadline</label
-              >
-              <input
-                type="date"
-                id="deadline"
-                class="w-full border border-gray-300 rounded-lg px-3 py-1 text-xs"
-              />
-            </div>
-
-            <!-- Submit Button -->
-            <div class="text-center">
-              <button
-                onclick="closeModal()"
-                type="submit"
-                class="w-[150px] bg-[#F0823E] text-white font-bold text-[14px] py-2 rounded-full hover:bg-[#F0823E]/90 transition"
-              >
-                Submit
-              </button>
-            </div>
-          </form>
-        </div>
-      </div>
-
       <section
         class="bg-white pt-1 py-8 mx-auto max-w-[950px] text-center px-4"
       >
         <!-- Job Title -->
         <div class="mb-6">
-          <h2 class="text-[80px] font-bold">Graphics Designer</h2>
+          <h2 class="text-[80px] font-bold" th:text="${jobTitle}"></h2>
         </div>
 
         <!-- Job Details -->
         <div class="text-left">
           <!-- Date and Onsite -->
           <div class="flex justify-start space-x-4 mb-4">
-            <p class="text-[#F0823E] text-[16px] font-bold">Date: 02/01/2025</p>
-            <p class="text-[#F0823E] text-[16px] font-bold">Onsite</p>
+            <p
+              class="text-[#F0823E] text-[16px] font-bold"
+              th:text="'Date: ' + ${startDate}"
+            ></p>
+            <p
+              class="text-[#F0823E] text-[16px] font-bold"
+              th:text="${jobType.name()}"
+            ></p>
           </div>
 
           <!-- Job Description -->
-          <p class="text-[16px] text-black font-light mb-4">
-            We are looking for a creative graphics designer to work on our
-            project for 3 days. He/she will be: Responsible for creating
-            high-quality visual content that aligns with our brand guidelines
-            and project objectives. Working closely with the project team to
-            understand the creative brief and translate it into compelling
-            visual designs. Producing a variety of creative materials, which may
-            include: [List specific deliverables, e.g., Social media graphics,
-            Website banners, Infographics, Presentation slides, Brochures,
-            Flyers, Logo variations] Ensuring all deliverables are delivered on
-            time, within budget, and to the highest professional standards.
-            Participating in brainstorming sessions and providing creative input
-            on design concepts. Possessing excellent communication and
-            interpersonal skills to effectively collaborate with the project
-            team.
-          </p>
+          <p
+            class="text-[16px] text-black font-light mb-4"
+            th:text="${jobDescription}"
+          ></p>
         </div>
         <!-- Pay, Skills -->
         <div class="flex flex-col justify-start mb-4">
-          <p class="text-[#F0823E] text-[16px] font-bold">Pay: $12/hr</p>
-          <p class="text-[#F0823E] text-[16px] font-bold">
-            Skills: Figma, Adobe Illustrator, Blender
-          </p>
+          <p
+            class="text-[#F0823E] text-[16px] font-bold"
+            th:text="'Pay: ' + ${budget} + ' Birr/hr'"
+          ></p>
+          <p
+            class="text-[#F0823E] text-[16px] font-bold"
+            th:text="'Skills: ' + ${skills}"
+          ></p>
 
           <!-- Deadline -->
-          <p class="text-[#F0443E] text-[16px] font-bold">
-            Deadline: 28/05/2025
-          </p>
+          <p
+            class="text-[#F0443E] text-[16px] font-bold"
+            th:text="'Deadline: ' + ${deadline}"
+          ></p>
         </div>
       </section>
 

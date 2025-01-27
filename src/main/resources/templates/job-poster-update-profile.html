@@ -18,9 +18,9 @@
     <script src="/scripts/tokens.js"></script>
     <script src="/scripts/logout.js"></script>
 
-    <title>Employer Profile</title>
+    <title>Job Poster Profile</title>
   </head>
-  <body class="bg-white">
+  <body class="bg-white flex flex-col justify-between min-h-screen">
     <!-- Top Navigation Bar -->
     <header>
       <nav
@@ -56,89 +56,6 @@
     </header>
 
     <main>
-      <section class="relative w-full h-[250px]">
-        <img
-          src="/assets/companyBanner.png"
-          alt="Cover Image"
-          class="w-full h-full object-cover"
-        />
-
-        <!-- Content Overlay -->
-        <div
-          class="absolute inset-0 flex justify-between items-center px-10 py-8"
-        >
-          <!-- Left Content -->
-          <div class="flex flex-col space-y-4">
-            <!-- Circular Image and Company Name -->
-            <div class="flex items-center space-x-4">
-              <img
-                src="/assets/companyLogo.png"
-                alt="Circular Image"
-                class="w-[140px] h-[140px] rounded-full object-cover"
-              />
-
-              <!-- Company Name -->
-              <div>
-                <h2 class="text-black font-bold text-[40px] leading-none">
-                  Company Name
-                </h2>
-              </div>
-            </div>
-
-            <!-- Industry and Location -->
-            <div class="flex flex-col space-y-2 mt-[-80px]">
-              <div class="flex items-center space-x-2">
-                <img
-                  src="/assets/onsite-employer.png"
-                  alt="Industry Icon"
-                  class="w-6 h-6"
-                />
-                <span class="text-[#C95A15] font-bold text-[16px]"
-                  >Company Industry Name</span
-                >
-              </div>
-              <div class="flex items-center space-x-2">
-                <img
-                  src="/assets/mailIcon.png"
-                  alt="Industry Icon"
-                  class="w-6 h-6"
-                />
-                <span class="text-[#716D6D] font-bold text-[16px]"
-                  >office@gmail.com</span
-                >
-              </div>
-              <div class="flex items-center space-x-2">
-                <img
-                  src="/assets/LocationIcon.png"
-                  alt="Location Icon"
-                  class="w-6 h-6"
-                />
-                <span class="text-[#716D6D] font-bold text-[16px]"
-                  >Addis Ababa, Ethiopia</span
-                >
-              </div>
-            </div>
-          </div>
-
-          <!-- Right Content -->
-          <div class="text-left">
-            <h2 class="text-[#716D6D] font-bold text-[16px] hidden lg:block">
-              About
-            </h2>
-            <p
-              class="text-[#4b4b4b] text-[16px] font-light w-[500px] mt-2 hidden lg:block"
-            >
-              Founded as a dedicated video production company, Venmo has always
-              been driven by creativity and storytelling. Over time, our passion
-              for design and innovation inspired us to expand our horizons
-              beyond video production. Today, we are evolving into a
-              full-service creative agency, offering expert services in UI
-              design and graphic design.
-            </p>
-          </div>
-        </div>
-      </section>
-
       <form class="px-6 py-8 max-w-[400px] mx-auto">
         <!-- Modal Header -->
         <div class="flex items-center justify-center space-x-2 mb-4">
@@ -217,20 +134,12 @@
             class="block text-black font-bold text-[12px] mb-1"
             >Location</label
           >
-          <div class="flex space-x-2">
-            <input
-              type="text"
-              id="city"
-              placeholder="Enter city"
-              class="w-1/2 border border-gray-300 rounded-lg px-2 py-2 text-[12px]"
-            />
-            <input
-              type="text"
-              id="country"
-              placeholder="Enter country"
-              class="w-1/2 border border-gray-300 rounded-lg px-2 py-2 text-[12px]"
-            />
-          </div>
+          <input
+            type="text"
+            id="location"
+            placeholder="Enter location"
+            class="w-1/2 border border-gray-300 rounded-lg px-2 py-2 text-[12px]"
+          />
         </div>
 
         <!-- Banner Image Upload and Profile Image Upload -->
@@ -278,202 +187,6 @@
       </form>
     </main>
 
-    <footer class="bg-black py-8">
-      <div
-        class="grid grid-cols-5 gap-6 text-center text-[16px] font-bold text-white"
-      >
-        <!-- First Column -->
-        <div class="flex flex-col gap-4">
-          <a
-            href="#"
-            class="hover:text-[#6EB0B6] text-white text-sm sm:text-base"
-            >Home</a
-          >
-          <a
-            href="#"
-            class="hover:text-[#F0823E] text-white text-sm sm:text-base"
-            >About Us</a
-          >
-          <a
-            href="#"
-            class="hover:text-[#6EB0B6] text-white text-sm sm:text-base"
-            >Contact Us</a
-          >
-          <a
-            href="#"
-            class="hover:text-[#F0823E] text-white text-sm sm:text-base"
-            >Privacy Policy</a
-          >
-          <a
-            href="#"
-            class="hover:text-[#6EB0B6] text-white text-sm sm:text-base"
-            >Terms & Conditions</a
-          >
-          <a
-            href="#"
-            class="hover:text-[#F0823E] text-white text-sm sm:text-base"
-            >FAQs</a
-          >
-          <a
-            href="#"
-            class="hover:text-[#6EB0B6] text-white text-sm sm:text-base"
-            >Blog</a
-          >
-          <a
-            href="#"
-            class="hover:text-[#F0823E] text-white text-sm sm:text-base"
-            >Careers</a
-          >
-          <a
-            href="#"
-            class="hover:text-[#6EB0B6] text-white text-sm sm:text-base"
-            >Support Center</a
-          >
-        </div>
-
-        <!-- Second Column -->
-        <div class="flex flex-col gap-4">
-          <a
-            href="#"
-            class="hover:text-[#F0823E] text-white text-sm sm:text-base"
-            >Create a Profile</a
-          >
-          <a
-            href="#"
-            class="hover:text-[#6EB0B6] text-white text-sm sm:text-base"
-            >Browse Jobs</a
-          >
-          <a
-            href="#"
-            class="hover:text-[#F0823E] text-white text-sm sm:text-base"
-            >Apply for Jobs</a
-          >
-          <a
-            href="#"
-            class="hover:text-[#6EB0B6] text-white text-sm sm:text-base"
-            >Update Availability</a
-          >
-          <a
-            href="#"
-            class="hover:text-[#F0823E] text-white text-sm sm:text-base"
-            >View Job Offers</a
-          >
-          <a
-            href="#"
-            class="hover:text-[#6EB0B6] text-white text-sm sm:text-base"
-            >Search by Skills</a
-          >
-          <a
-            href="#"
-            class="hover:text-[#F0823E] text-white text-sm sm:text-base"
-            >Job Seeker Dashboard</a
-          >
-          <a
-            href="#"
-            class="hover:text-[#6EB0B6] text-white text-sm sm:text-base"
-            >How It Works</a
-          >
-        </div>
-
-        <!-- Third Column -->
-        <div class="flex flex-col gap-4">
-          <a
-            href="#"
-            class="hover:text-[#6EB0B6] text-white text-sm sm:text-base"
-            >Our Mission</a
-          >
-          <a
-            href="#"
-            class="hover:text-[#F0823E] text-white text-sm sm:text-base"
-            >Our Vision</a
-          >
-          <a
-            href="#"
-            class="hover:text-[#6EB0B6] text-white text-sm sm:text-base"
-            >Team</a
-          >
-          <a
-            href="#"
-            class="hover:text-[#F0823E] text-white text-sm sm:text-base"
-            >Partners</a
-          >
-          <a
-            href="#"
-            class="hover:text-[#6EB0B6] text-white text-sm sm:text-base"
-            >Media Kit</a
-          >
-          <a
-            href="#"
-            class="hover:text-[#F0823E] text-white text-sm sm:text-base"
-            >Press Releases</a
-          >
-          <a
-            href="#"
-            class="hover:text-[#6EB0B6] text-white text-sm sm:text-base"
-            >Investor Relations</a
-          >
-        </div>
-
-        <!-- Fourth Column -->
-        <div class="flex flex-col gap-4">
-          <a
-            href="#"
-            class="hover:text-[#F0823E] text-white text-sm sm:text-base"
-            >Facebook</a
-          >
-          <a
-            href="#"
-            class="hover:text-[#6EB0B6] text-white text-sm sm:text-base"
-            >Twitter</a
-          >
-          <a
-            href="#"
-            class="hover:text-[#F0823E] text-white text-sm sm:text-base"
-            >LinkedIn</a
-          >
-          <a
-            href="#"
-            class="hover:text-[#6EB0B6] text-white text-sm sm:text-base"
-            >Instagram</a
-          >
-          <a
-            href="#"
-            class="hover:text-[#F0823E] text-white text-sm sm:text-base"
-            >YouTube</a
-          >
-        </div>
-
-        <!-- Fifth Column -->
-        <div class="flex flex-col gap-4">
-          <a
-            href="#"
-            class="hover:text-[#6EB0B6] text-white text-sm sm:text-base"
-            >Contact Support</a
-          >
-          <a
-            href="#"
-            class="hover:text-[#F0823E] text-white text-sm sm:text-base"
-            >Troubleshooting Guides</a
-          >
-          <a
-            href="#"
-            class="hover:text-[#6EB0B6] text-white text-sm sm:text-base"
-            >Live Chat</a
-          >
-          <a
-            href="#"
-            class="hover:text-[#F0823E] text-white text-sm sm:text-base"
-            >Community Forum</a
-          >
-          <a
-            href="#"
-            class="hover:text-[#6EB0B6] text-white text-sm sm:text-base"
-            >Knowledge Base</a
-          >
-        </div>
-      </div>
-    </footer>
-    <!-- Copyright Section -->
     <div class="mt-6 text-center pb-3 bg-white">
       <p class="text-black text-[16px] font-bold sm:text-sm">
         © 2025 Vocation. All Rights Reserved.

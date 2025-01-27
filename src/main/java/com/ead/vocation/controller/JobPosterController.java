@@ -46,7 +46,6 @@ public class JobPosterController {
     @GetMapping("/dashboard")
     public String getDashboard(HttpServletRequest request, Model model) {
         String token = (String) request.getAttribute("Authorization");
-        System.out.println(token);
         Integer id = jwtServices.extractIdFromHeader(token);
         JobPoster jobPoster = jobPosterService.getJobPoster(id);
         List<Job> jobs = jobPosterService.getAllJobsByPosterId(id);
@@ -60,8 +59,37 @@ public class JobPosterController {
     }
 
     @GetMapping("/job-details/{jobId}")
-    public String getMethodName(@PathVariable Integer jobId, Model model) {
+    public String getJobDetails(@PathVariable Integer jobId, HttpServletRequest request, Model model) {
+        String token = (String) request.getAttribute("Authorization");
+        Integer jobPosterId = jwtServices.extractIdFromHeader(token);
+        Job job = jobPosterService.getJobByIdAndPosterId(jobId, jobPosterId);
+
+        StringBuilder skills = new StringBuilder();
+        for (String skill : job.getSkillsRequired()) {
+            skills.append(skill + ", ");
+        }
+
+        if (skills.length() > 0) {
+            skills.setLength(skills.length() - 2);
+        }
+
+        model.addAttribute("skillsRequired", skills.toString());
+        model.addAttribute("jobTitle", job.getTitle());
+        model.addAttribute("startDate", job.getStartDate());
+        model.addAttribute("jobType", job.getType());
+        model.addAttribute("jobDescription", job.getDescription());
+        model.addAttribute("budget", job.getBudget());
+        model.addAttribute("deadline", job.getApplicationDeadline());
+        model.addAttribute("skills", skills.toString());
         return "job-poster-job-details";
+    }
+
+    @GetMapping("/profile")
+    public String getJobPosterProfile(HttpServletRequest request, Model model) {
+        String token = (String) request.getAttribute("Authorization");
+        Integer jobPosterId = jwtServices.extractIdFromHeader(token);
+        JobPoster jobPoster = jobPosterService.getJobPoster(jobPosterId);
+        return "job-poster-update-profile";
     }
 
     @GetMapping("/jobs")
