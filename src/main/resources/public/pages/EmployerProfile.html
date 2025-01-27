@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mansalva&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/style.css">
+   
+    <title>Employer Profile</title>
+</head>
+<body class="bg-white">
+
+    <!-- Top Navigation Bar -->
+    <header >
+        <nav class="bg-white py-2 px-4 flex items-center justify-between shadow-md">
+            <!-- Company Name -->
+            <div class="text-[#F0823E] flex items-center company-name">
+              <span class="text-60px font-bold">V</span>
+              <span class="text-30px font-medium">ocation</span>
+            </div>
+    
+        
+            <div class="flex space-x-8">
+                <!-- Home -->
+                <a href="#" class="flex flex-col items-center">
+                  <img src="../assets/homeIcon.png" alt="Home" class="h-6 w-6">
+                  <span class="text-sm text-black mt-1">Home</span>
+                </a>
+                <!-- Profile -->
+                <a href="#" class="flex flex-col items-center">
+                  <img src="../assets/userIcon.png" alt="Profile" class="h-6 w-6">
+                  <span class="text-sm text-gray-500 mt-1">Profile</span>
+                </a>
+                <!-- Logout -->
+                <a href="#" class="flex flex-col items-center">
+                  <img src="../assets/logoutIcon.png" alt="Logout" class="h-6 w-6">
+                  <span class="text-sm text-gray-500 mt-1">Logout</span>
+                </a>
+              </div>
+              
+          </nav>
+          
+           
+    </header>
+
+    <main>
+        <section class="relative w-full h-[250px]">
+            <img src="../assets/companyBanner.png" alt="Cover Image" class="w-full h-full object-cover">
+          
+            <!-- Content Overlay -->
+            <div class="absolute inset-0 flex justify-between items-center px-10 py-8">
+              <!-- Left Content -->
+              <div class="flex flex-col space-y-4">
+                <!-- Circular Image and Company Name -->
+                <div class="flex items-center space-x-4">
+                  <img src="../assets/companyLogo.png" alt="Circular Image" class="w-[140px] h-[140px] rounded-full object-cover">
+          
+                  <!-- Company Name -->
+                  <div>
+                    <h2 class="text-black font-bold text-[40px] leading-none">Company Name</h2>
+                  </div>
+                </div>
+          
+                <!-- Industry and Location -->
+                <div class="flex flex-col space-y-2 mt-[-80px]">
+                  <div class="flex items-center space-x-2">
+                    <img src="../assets/onsite-employer.png" alt="Industry Icon" class="w-6 h-6">
+                    <span class="text-[#C95A15] font-bold text-[16px]">Company Industry Name</span>
+                  </div>
+                  <div class="flex items-center space-x-2">
+                    <img src="../assets/mailIcon.png" alt="Industry Icon" class="w-6 h-6">
+                    <span class="text-[#716D6D] font-bold text-[16px]">office@gmail.com</span>
+                  </div>
+                  <div class="flex items-center space-x-2">
+                    <img src="../assets/LocationIcon.png" alt="Location Icon" class="w-6 h-6">
+                    <span class="text-[#716D6D] font-bold text-[16px]">Addis Ababa, Ethiopia</span>
+                  </div>
+                </div>
+              </div>
+          
+              <!-- Right Content -->
+              <div class="text-left">
+                <h2 class="text-[#716D6D] font-bold text-[16px] hidden lg:block">About</h2>
+                <p class="text-[#4b4b4b] text-[16px] font-light w-[500px] mt-2 hidden lg:block">
+                  Founded as a dedicated video production company, Venmo has always been driven by creativity and storytelling. 
+                  Over time, our passion for design and innovation inspired us to expand our horizons beyond video production. 
+                  Today, we are evolving into a full-service creative agency, offering expert services in UI design and graphic design.
+                </p>
+              </div>
+            </div>
+          </section>
+          
+         
+          <form class="px-6 py-8 max-w-[400px] mx-auto">  
+            <!-- Modal Header -->
+            <div class="flex items-center justify-center space-x-2 mb-4">
+              <h2 class="text-[40px] font-light text-black">Update Profile</h2>
+            </div>
+          
+            <!-- Name and Industry -->
+            <div class="flex flex-col space-y-4 mb-4">
+              <!-- Company Name -->
+              <div class="w-full">
+                <label for="name" class="block text-black font-bold text-[12px] mb-1"> Company Name</label>
+                <input type="text" id="name" placeholder="Enter name" class="w-full border border-gray-300 rounded-lg px-2 py-2 text-[12px]">
+              </div>
+          
+              <!-- Industry -->
+              <div class="w-full">
+                <label for="industry" class="block text-black font-bold text-[12px] mb-1">Industry</label>
+                <select id="industry" class="w-full border border-gray-300 rounded-lg px-2 py-2 text-[12px]">
+                  <option value="Design">Design</option>
+                  <option value="Software Engineering">Software Engineering</option>
+                  <option value="Marketing">Marketing</option>
+                  <option value="Healthcare">Healthcare</option>
+                  <option value="Finance">Finance</option>
+                  <option value="Education">Education</option>
+                  <option value="Construction">Construction</option>
+                </select>
+              </div>
+            </div>
+          
+            <!-- About -->
+            <div class="mb-4">
+              <label for="about" class="block text-black font-bold text-[12px] mb-1">About</label>
+              <textarea id="about" placeholder="Tell us about yourself" class="w-full border border-gray-300 rounded-lg px-2 py-2 text-[12px] h-[100px]"></textarea>
+            </div>
+          
+            <!-- Email -->
+            <div class="mb-4">
+              <label for="email" class="block text-black font-bold text-[12px] mb-1">Email</label>
+              <input type="email" id="email" placeholder="Enter company email" class="w-full border border-gray-300 rounded-lg px-2 py-2 text-[12px]">
+            </div>
+          
+            <!-- Location (City & Country) -->
+            <div class="mb-4">
+              <label for="location" class="block text-black font-bold text-[12px] mb-1">Location</label>
+              <div class="flex space-x-2">
+                <input type="text" id="city" placeholder="Enter city" class="w-1/2 border border-gray-300 rounded-lg px-2 py-2 text-[12px]">
+                <input type="text" id="country" placeholder="Enter country" class="w-1/2 border border-gray-300 rounded-lg px-2 py-2 text-[12px]">
+              </div>
+            </div>
+          
+            <!-- Banner Image Upload and Profile Image Upload -->
+            <div class="mb-4 flex flex-col space-y-4">
+              <!-- Banner Image Upload -->
+              <div class="w-full">
+                <label for="bannerImage" class="block text-black font-bold text-[12px] mb-1">Banner Image</label>
+                <input type="file" id="bannerImage" accept="image/*" class="w-full border border-gray-300 rounded-lg px-2 py-2 text-[12px]">
+              </div>
+          
+              <!-- Profile Image Upload -->
+              <div class="w-full">
+                <label for="profileImage" class="block text-black font-bold text-[12px] mb-1">Profile Image</label>
+                <input type="file" id="profileImage" accept="image/*" class="w-full border border-gray-300 rounded-lg px-2 py-2 text-[12px]">
+              </div>
+            </div>
+          
+            <!-- Submit Button -->
+            <div class="text-center py-6">
+              <button type="submit" class="w-[120px] bg-[#57DD70] text-white font-bold text-[14px] py-2 rounded-full hover:bg-[#57DD70]/90 transition">
+                Submit
+              </button>
+            </div>
+          </form>
+          
+  
+  
+
+    </main>
+
+  
+    <footer class="bg-black py-8">
+        <div class="grid grid-cols-5 gap-6 text-center text-[16px] font-bold text-white">
+            <!-- First Column -->
+            <div class="flex flex-col gap-4">
+                <a href="#" class="hover:text-[#6EB0B6] text-white text-sm sm:text-base">Home</a>
+                <a href="#" class="hover:text-[#F0823E] text-white text-sm sm:text-base">About Us</a>
+                <a href="#" class="hover:text-[#6EB0B6] text-white text-sm sm:text-base">Contact Us</a>
+                <a href="#" class="hover:text-[#F0823E] text-white text-sm sm:text-base">Privacy Policy</a>
+                <a href="#" class="hover:text-[#6EB0B6] text-white text-sm sm:text-base">Terms & Conditions</a>
+                <a href="#" class="hover:text-[#F0823E] text-white text-sm sm:text-base">FAQs</a>
+                <a href="#" class="hover:text-[#6EB0B6] text-white text-sm sm:text-base">Blog</a>
+                <a href="#" class="hover:text-[#F0823E] text-white text-sm sm:text-base">Careers</a>
+                <a href="#" class="hover:text-[#6EB0B6] text-white text-sm sm:text-base">Support Center</a>
+            </div>
+    
+            <!-- Second Column -->
+            <div class="flex flex-col gap-4">
+                <a href="#" class="hover:text-[#F0823E] text-white text-sm sm:text-base">Create a Profile</a>
+                <a href="#" class="hover:text-[#6EB0B6] text-white text-sm sm:text-base">Browse Jobs</a>
+                <a href="#" class="hover:text-[#F0823E] text-white text-sm sm:text-base">Apply for Jobs</a>
+                <a href="#" class="hover:text-[#6EB0B6] text-white text-sm sm:text-base">Update Availability</a>
+                <a href="#" class="hover:text-[#F0823E] text-white text-sm sm:text-base">View Job Offers</a>
+                <a href="#" class="hover:text-[#6EB0B6] text-white text-sm sm:text-base">Search by Skills</a>
+                <a href="#" class="hover:text-[#F0823E] text-white text-sm sm:text-base">Job Seeker Dashboard</a>
+                <a href="#" class="hover:text-[#6EB0B6] text-white text-sm sm:text-base">How It Works</a>
+            </div>
+    
+            <!-- Third Column -->
+            <div class="flex flex-col gap-4">
+                <a href="#" class="hover:text-[#6EB0B6] text-white text-sm sm:text-base">Our Mission</a>
+                <a href="#" class="hover:text-[#F0823E] text-white text-sm sm:text-base">Our Vision</a>
+                <a href="#" class="hover:text-[#6EB0B6] text-white text-sm sm:text-base">Team</a>
+                <a href="#" class="hover:text-[#F0823E] text-white text-sm sm:text-base">Partners</a>
+                <a href="#" class="hover:text-[#6EB0B6] text-white text-sm sm:text-base">Media Kit</a>
+                <a href="#" class="hover:text-[#F0823E] text-white text-sm sm:text-base">Press Releases</a>
+                <a href="#" class="hover:text-[#6EB0B6] text-white text-sm sm:text-base">Investor Relations</a>
+            </div>
+    
+            <!-- Fourth Column -->
+            <div class="flex flex-col gap-4">
+                <a href="#" class="hover:text-[#F0823E] text-white text-sm sm:text-base">Facebook</a>
+                <a href="#" class="hover:text-[#6EB0B6] text-white text-sm sm:text-base">Twitter</a>
+                <a href="#" class="hover:text-[#F0823E] text-white text-sm sm:text-base">LinkedIn</a>
+                <a href="#" class="hover:text-[#6EB0B6] text-white text-sm sm:text-base">Instagram</a>
+                <a href="#" class="hover:text-[#F0823E] text-white text-sm sm:text-base">YouTube</a>
+            </div>
+    
+            <!-- Fifth Column -->
+            <div class="flex flex-col gap-4">
+                <a href="#" class="hover:text-[#6EB0B6] text-white text-sm sm:text-base">Contact Support</a>
+                <a href="#" class="hover:text-[#F0823E] text-white text-sm sm:text-base">Troubleshooting Guides</a>
+                <a href="#" class="hover:text-[#6EB0B6] text-white text-sm sm:text-base">Live Chat</a>
+                <a href="#" class="hover:text-[#F0823E] text-white text-sm sm:text-base">Community Forum</a>
+                <a href="#" class="hover:text-[#6EB0B6] text-white text-sm sm:text-base">Knowledge Base</a>
+            </div>
+        </div>
+    
+   
+    </footer>
+         <!-- Copyright Section -->
+         <div class="mt-6 text-center pb-3 bg-white">
+            <p class="text-black text-[16px] font-bold sm:text-sm">© 2025 Vocation. All Rights Reserved.</p>
+        </div>
+
+
+
+
+
+
+</body>
+</html>

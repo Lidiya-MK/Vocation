@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mansalva&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/style.css">
+   
+    <title>Vocation</title>
+</head>
+<body class="bg-white">
+
+    <!-- Top Navigation Bar -->
+    <header class="px-6 py-4">
+        <!-- Company Name and Menu Button -->
+        <div class="flex items-center justify-between mb-4">
+            <h1 class="font-bold">
+                <span class="text-[60px] leading-none">V</span>
+                <span class="text-[32px] leading-none">ocation</span>
+            </h1>
+            <!-- Hamburger Icon for small screens -->
+            <button id="menu-toggle" class="text-2xl sm-md:hidden focus:outline-none">
+                ☰
+            </button>
+        </div>
+  
+        <!-- Navigation Bar -->
+        <div id="navbar" class="sm-md:flex hidden w-full sm-md:w-[80%] h-auto sm-md:h-[50px] rounded-[50px] bg-[#6699A7]/[22%] flex-col sm-md:flex-row items-start sm-md:items-center justify-between px-6 py-8 mx-auto sm-md:transition-none transition-all duration-300">
+            <!-- Links -->
+            <nav class="flex flex-col sm-md:flex-row sm-md:space-x-20 text-[#6F6C6C] text-[16px] space-y-4 sm-md:space-y-0 mt-4 sm-md:mt-0">
+                <a href="#" class="hover:underline">Home</a>
+                <a href="#" class="hover:underline">About Us</a>
+                <a href="#" class="hover:underline">Contact</a>
+            </nav>
+  
+            <!-- Buttons -->
+            <div class="flex flex-col sm-md:flex-row sm-md:space-x-4 mt-4 sm-md:mt-0 space-y-4 sm-md:space-y-0">
+                <!-- Login Button -->
+                <button class="border-2 border-[#6EB0B6] text-black text-[15px] px-8 py-2 rounded-[25px] hover:bg-[#6EB0B6]/[10%]">
+                    Login
+                </button>
+                <!-- Signup Button -->
+                <button class="bg-[#F0823E] text-white text-[15px] px-8 py-2 rounded-[25px] hover:bg-[#F0823E]/[80%]">
+                    Signup
+                </button>
+            </div>
+        </div>
+    </header>
+
+
+
+    <main class="flex justify-center items-center min-h-screen">
+        <div class="flex justify-center items-center w-full max-w-screen-lg px-3 py-8">
+          
+       
+            <div class="w-full sm:w-[40%] bg-[#000000]/[22%] rounded-3xl p-8 shadow-lg">
+                <!-- Sign Up Title -->
+                <h2 class="text-center text-3xl  font-semibold mb-6">Admin Login</h2>
+    
+                <!-- Form -->
+                <form id="signup-form">
+                    <!-- Username -->
+                    <input type="text" id="username" placeholder="Username" class="w-full p-3 mb-4 bg-white rounded-[20px] placeholder-[#9C9C9C]" />
+    
+                    <!-- Email -->
+                    <input type="email" id="email" placeholder="Email" class="w-full p-3 mb-4 bg-white rounded-[20px] placeholder-[#9C9C9C]" />
+    
+                    <!-- Password -->
+                    <input type="password" id="password" placeholder="Password" class="w-full p-3 mb-4 bg-white rounded-[20px] placeholder-[#9C9C9C]" />
+    
+                    <!-- Confirm Password -->
+                    <input type="password" id="confirm-password" placeholder="Confirm Password" class="w-full p-3 mb-4 bg-white rounded-[20px] placeholder-[#9C9C9C]" />
+    
+                   
+                  
+    
+                    <!-- Sign Up Button -->
+                    <button type="submit" class="w-full py-3 mb-4 text-white bg-[#000000] font-bold text-lg rounded-[25px] hover:bg-[#000000]/[80%]">Login</button>
+    
+           
+                </form>
+            </div>
+        </div>
+    </main>
+    
+   
+
+
+    <footer class="bg-black py-8">
+        <div class="grid grid-cols-5 gap-6 text-center text-[16px] font-bold text-white">
+            <!-- First Column -->
+            <div class="flex flex-col gap-4">
+                <a href="#" class="hover:text-[#6EB0B6] text-white text-sm sm:text-base">Home</a>
+                <a href="#" class="hover:text-[#F0823E] text-white text-sm sm:text-base">About Us</a>
+                <a href="#" class="hover:text-[#6EB0B6] text-white text-sm sm:text-base">Contact Us</a>
+                <a href="#" class="hover:text-[#F0823E] text-white text-sm sm:text-base">Privacy Policy</a>
+                <a href="#" class="hover:text-[#6EB0B6] text-white text-sm sm:text-base">Terms & Conditions</a>
+                <a href="#" class="hover:text-[#F0823E] text-white text-sm sm:text-base">FAQs</a>
+                <a href="#" class="hover:text-[#6EB0B6] text-white text-sm sm:text-base">Blog</a>
+                <a href="#" class="hover:text-[#F0823E] text-white text-sm sm:text-base">Careers</a>
+                <a href="#" class="hover:text-[#6EB0B6] text-white text-sm sm:text-base">Support Center</a>
+            </div>
+    
+            <!-- Second Column -->
+            <div class="flex flex-col gap-4">
+                <a href="#" class="hover:text-[#F0823E] text-white text-sm sm:text-base">Create a Profile</a>
+                <a href="#" class="hover:text-[#6EB0B6] text-white text-sm sm:text-base">Browse Jobs</a>
+                <a href="#" class="hover:text-[#F0823E] text-white text-sm sm:text-base">Apply for Jobs</a>
+                <a href="#" class="hover:text-[#6EB0B6] text-white text-sm sm:text-base">Update Availability</a>
+                <a href="#" class="hover:text-[#F0823E] text-white text-sm sm:text-base">View Job Offers</a>
+                <a href="#" class="hover:text-[#6EB0B6] text-white text-sm sm:text-base">Search by Skills</a>
+                <a href="#" class="hover:text-[#F0823E] text-white text-sm sm:text-base">Job Seeker Dashboard</a>
+                <a href="#" class="hover:text-[#6EB0B6] text-white text-sm sm:text-base">How It Works</a>
+            </div>
+    
+            <!-- Third Column -->
+            <div class="flex flex-col gap-4">
+                <a href="#" class="hover:text-[#6EB0B6] text-white text-sm sm:text-base">Our Mission</a>
+                <a href="#" class="hover:text-[#F0823E] text-white text-sm sm:text-base">Our Vision</a>
+                <a href="#" class="hover:text-[#6EB0B6] text-white text-sm sm:text-base">Team</a>
+                <a href="#" class="hover:text-[#F0823E] text-white text-sm sm:text-base">Partners</a>
+                <a href="#" class="hover:text-[#6EB0B6] text-white text-sm sm:text-base">Media Kit</a>
+                <a href="#" class="hover:text-[#F0823E] text-white text-sm sm:text-base">Press Releases</a>
+                <a href="#" class="hover:text-[#6EB0B6] text-white text-sm sm:text-base">Investor Relations</a>
+            </div>
+    
+            <!-- Fourth Column -->
+            <div class="flex flex-col gap-4">
+                <a href="#" class="hover:text-[#F0823E] text-white text-sm sm:text-base">Facebook</a>
+                <a href="#" class="hover:text-[#6EB0B6] text-white text-sm sm:text-base">Twitter</a>
+                <a href="#" class="hover:text-[#F0823E] text-white text-sm sm:text-base">LinkedIn</a>
+                <a href="#" class="hover:text-[#6EB0B6] text-white text-sm sm:text-base">Instagram</a>
+                <a href="#" class="hover:text-[#F0823E] text-white text-sm sm:text-base">YouTube</a>
+            </div>
+    
+            <!-- Fifth Column -->
+            <div class="flex flex-col gap-4">
+                <a href="#" class="hover:text-[#6EB0B6] text-white text-sm sm:text-base">Contact Support</a>
+                <a href="#" class="hover:text-[#F0823E] text-white text-sm sm:text-base">Troubleshooting Guides</a>
+                <a href="#" class="hover:text-[#6EB0B6] text-white text-sm sm:text-base">Live Chat</a>
+                <a href="#" class="hover:text-[#F0823E] text-white text-sm sm:text-base">Community Forum</a>
+                <a href="#" class="hover:text-[#6EB0B6] text-white text-sm sm:text-base">Knowledge Base</a>
+            </div>
+        </div>
+    
+   
+    </footer>
+         <!-- Copyright Section -->
+         <div class="mt-6 text-center pb-3 bg-white">
+            <p class="text-black text-[16px] font-bold sm:text-sm">© 2025 Vocation. All Rights Reserved.</p>
+        </div>
+    
+
+    <script>
+        // Toggle menu visibility on smaller screens
+        const menuToggle = document.getElementById('menu-toggle');
+        const navbar = document.getElementById('navbar');
+
+        menuToggle.addEventListener('click', () => {
+            navbar.classList.toggle('hidden');
+
+        });
+
+   
+    </script>
+
+</body>
+</html>

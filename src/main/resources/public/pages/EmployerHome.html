@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mansalva&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/style.css">
+   
+    <title>Employer Home</title>
+</head>
+<body class="bg-white">
+
+    <!-- Top Navigation Bar -->
+    <header >
+        <nav class="bg-white py-2 px-4 flex items-center justify-between shadow-md">
+            <!-- Company Name -->
+            <div class="text-[#F0823E] flex items-center company-name">
+              <span class="text-60px font-bold">V</span>
+              <span class="text-30px font-medium">ocation</span>
+            </div>
+        
+            <!-- Search Bar -->
+            <div class="hidden md:flex items-center w-1/2">
+              <div class="flex items-center w-full border border-[#F0823E] rounded-full px-4 py-2">
+                <img src="../assets/searchIcon.png" alt="Search Icon" class="h-5 w-5 text-[#9C9C9C]">
+                <input type="text" placeholder="Search" class="w-full bg-transparent text-[#9C9C9C] ml-2 focus:outline-none">
+              </div>
+            </div>
+        
+            <div class="flex space-x-8">
+                <!-- Home -->
+                <a href="#" class="flex flex-col items-center">
+                  <img src="../assets/homeIcon.png" alt="Home" class="h-6 w-6">
+                  <span class="text-sm text-black mt-1">Home</span>
+                </a>
+                <!-- Profile -->
+                <a href="#" class="flex flex-col items-center">
+                  <img src="../assets/userIcon.png" alt="Profile" class="h-6 w-6">
+                  <span class="text-sm text-gray-500 mt-1">Profile</span>
+                </a>
+                <!-- Logout -->
+                <a href="#" class="flex flex-col items-center">
+                  <img src="../assets/logoutIcon.png" alt="Logout" class="h-6 w-6">
+                  <span class="text-sm text-gray-500 mt-1">Logout</span>
+                </a>
+              </div>
+              
+          </nav>
+          
+           
+    </header>
+
+    <main>
+        <section class="relative w-full h-[250px]">
+            <img src="../assets/companyBanner.png" alt="Cover Image" class="w-full h-full object-cover">
+          
+            <!-- Content Overlay -->
+            <div class="absolute inset-0 flex justify-between items-center px-10 py-8">
+              <!-- Left Content -->
+              <div class="flex flex-col space-y-4">
+                <!-- Circular Image and Company Name -->
+                <div class="flex items-center space-x-4">
+                  <img src="../assets/companyLogo.png" alt="Circular Image" class="w-[140px] h-[140px] rounded-full object-cover">
+          
+                  <!-- Company Name -->
+                  <div>
+                    <h2 class="text-black font-bold text-[40px] leading-none">Company Name</h2>
+                  </div>
+                </div>
+          
+                <!-- Industry and Location -->
+                <div class="flex flex-col space-y-2 mt-[-80px]">
+                  <div class="flex items-center space-x-2">
+                    <img src="../assets/onsite-employer.png" alt="Industry Icon" class="w-6 h-6">
+                    <span class="text-[#C95A15] font-bold text-[16px]">Company Industry Name</span>
+                  </div>
+
+                  <div class="flex items-center space-x-2">
+                    <img src="../assets/mailIcon.png" alt="Industry Icon" class="w-6 h-6">
+                    <span class="text-[#716D6D] font-bold text-[16px]">office@gmail.com</span>
+                  </div>
+
+                  <div class="flex items-center space-x-2">
+                    <img src="../assets/LocationIcon.png" alt="Location Icon" class="w-6 h-6">
+                    <span class="text-[#716D6D] font-bold text-[16px]">Addis Ababa, Ethiopia</span>
+                  </div>
+                </div>
+              </div>
+          
+              <!-- Right Content -->
+              <div class="text-left">
+                <h2 class="text-[#716D6D] font-bold text-[16px] hidden lg:block">About</h2>
+                <p class="text-[#4b4b4b] text-[16px] font-light w-[500px] mt-2 hidden lg:block">
+                  Founded as a dedicated video production company, Venmo has always been driven by creativity and storytelling. 
+                  Over time, our passion for design and innovation inspired us to expand our horizons beyond video production. 
+                  Today, we are evolving into a full-service creative agency, offering expert services in UI design and graphic design.
+                </p>
+              </div>
+            </div>
+          </section>
+          
+          <section class="bg-white py-6">
+            <div class="container mx-auto flex justify-between items-center px-10">
+              <!-- Left Content -->
+              <div class="flex items-center space-x-4 text-center md:text-left">
+                <img src="../assets/announIcon.png" alt="Announcement Icon" class="w-8 h-8">
+                <span class="text-[#F0823E] text-[16px]">Your company's job posting</span>
+              </div>
+          
+              <!-- Right Content -->
+              <div class="flex items-center space-x-4">
+                <button onclick="openModal()" class="flex items-center border border-[#F0823E] rounded-full px-4 py-2 text-[#F0823E] text-[16px] font-medium hover:bg-[#F0823E]/10 transition">
+                  <img src="../assets/addIcon.png" alt="Plus Icon" class="w-6 h-6 mr-2">
+                  Create a post
+                </button>
+              </div>
+            </div>
+          </section>
+          
+<!-- Modal Content -->
+<div id="modal" class="fixed inset-0 bg-gray-500 bg-opacity-50 flex justify-center items-center z-50 hidden">
+    <div class="bg-white w-[80%] md:w-[320px] p-3 rounded-lg shadow-lg">
+      
+      <!-- Modal Header -->
+      <div class="flex items-center justify-center space-x-2 mb-3">
+        <img src="../assets/addIcon.png" alt="Plus Icon" class="w-[20px] h-[20px]">
+        <h2 class="text-[16px] font-bold text-[#F0823E]">Create a Post</h2>
+      </div>
+  
+      <!-- Form -->
+      <form>
+        <!-- Job Title and Type -->
+        <div class="flex space-x-2 mb-3">
+          <!-- Job Title -->
+          <div class="w-full">
+            <label for="jobTitle" class="block text-black font-bold text-[12px] mb-1">Job Title</label>
+            <input type="text" id="jobTitle" placeholder="Enter Title" class="w-full border border-gray-300 rounded-lg px-3 py-1 text-xs">
+          </div>
+  
+          <!-- Type -->
+          <div class="w-full">
+            <label for="jobType" class="block text-black font-bold text-[12px] mb-1">Type</label>
+            <select id="jobType" class="w-full border border-gray-300 rounded-lg px-3 py-1 text-xs">
+              <option value="onsite">Onsite</option>
+              <option value="hybrid">Hybrid</option>
+              <option value="remote">Remote</option>
+            </select>
+          </div>
+        </div>
+  
+        <!-- Job Description -->
+        <div class="mb-3">
+          <label for="jobDescription" class="block text-black font-bold text-[12px] mb-1">Description</label>
+          <textarea id="jobDescription" placeholder="Enter job description" class="w-full border border-gray-300 rounded-lg px-3 py-1 text-xs h-24"></textarea>
+        </div>
+  
+        <!-- Skills -->
+        <div class="mb-3">
+            <label for="skills" class="block text-black font-bold text-[12px] mb-1">Skills</label>
+            <div class="relative">
+              <div class="border border-gray-300 rounded-lg px-3 py-1 text-xs cursor-pointer flex justify-between items-center" id="skillsDropdown">
+                <span>Select Skills</span>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-500" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                </svg>
+              </div>
+              <div id="skillsList" class="absolute left-0 w-full mt-1 bg-white border border-gray-300 rounded-lg shadow-lg hidden z-10 max-h-40 overflow-y-auto">
+                <div class="skill-item p-2 cursor-pointer hover:bg-[#F0823E] hover:text-white">HTML</div>
+                <div class="skill-item p-2 cursor-pointer hover:bg-[#F0823E] hover:text-white">CSS</div>
+                <div class="skill-item p-2 cursor-pointer hover:bg-[#F0823E] hover:text-white">JavaScript</div>
+                <div class="skill-item p-2 cursor-pointer hover:bg-[#F0823E] hover:text-white">Python</div>
+                <div class="skill-item p-2 cursor-pointer hover:bg-[#F0823E] hover:text-white">Figma</div>
+                <div class="skill-item p-2 cursor-pointer hover:bg-[#F0823E] hover:text-white">Blender</div>
+                <div class="skill-item p-2 cursor-pointer hover:bg-[#F0823E] hover:text-white">React</div>
+                <div class="skill-item p-2 cursor-pointer hover:bg-[#F0823E] hover:text-white">Protoyping</div>
+                <div class="skill-item p-2 cursor-pointer hover:bg-[#F0823E] hover:text-white">Graphics Design</div>
+                <div class="skill-item p-2 cursor-pointer hover:bg-[#F0823E] hover:text-white">UX/UI design</div>
+                <div class="skill-item p-2 cursor-pointer hover:bg-[#F0823E] hover:text-white">Accounting</div>
+                <div class="skill-item p-2 cursor-pointer hover:bg-[#F0823E] hover:text-white">Book Keeping</div>
+              </div>
+            </div>
+            <div id="selectedSkillsContainer" class="mt-2 flex flex-wrap gap-2"></div>
+          </div>
+          
+  
+        <!-- Pay -->
+        <div class="mb-3">
+          <label for="pay" class="block text-black font-bold text-[12px] mb-1">Pay</label>
+          <input type="text" id="pay" placeholder="Enter Pay" class="w-full border border-gray-300 rounded-lg px-3 py-1 text-xs">
+        </div>
+  
+        <!-- Application Deadline -->
+        <div class="mb-3">
+          <label for="deadline" class="block text-black font-bold text-[12px] mb-1">Application Deadline</label>
+          <input type="date" id="deadline" class="w-full border border-gray-300 rounded-lg px-3 py-1 text-xs">
+        </div>
+  
+        <!-- Submit Button -->
+        <div class="text-center">
+          <button onclick="closeModal()" type="submit" class="w-[150px] bg-[#F0823E] text-white font-bold text-[14px] py-2 rounded-full hover:bg-[#F0823E]/90 transition">
+            Submit
+          </button>
+        </div>
+      </form>
+    </div>
+</div>
+
+<section class="container mx-auto p-4">
+    <!-- Job Cards Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <!-- Job Card -->
+      <div class="max-w-[360px] w-full h-auto job-card-remote border border-[#6F6C6C]/[0.13] rounded-lg shadow-md hover:shadow-lg hover:translate-y-[-4px] transition-all duration-300 relative p-4 bg-white mx-auto">
+        <!-- Top Left Type Button -->
+        <button class="absolute top-4 left-4 bg-[#57DD70] text-white font-bold text-sm py-1 px-4 rounded-full">
+          Remote
+        </button>
+  
+        <!-- Top Right Delete Icon -->
+        <button class="absolute top-4 right-4">
+          <img src="../assets/deleteIcon.png" alt="Delete" class="w-5 h-6">
+        </button>
+  
+        <!-- Job Title -->
+        <h2 class="text-black text-[30px]  text-center mt-8">
+          Graphics Designer
+        </h2>
+  
+        <!-- Job Description -->
+        <p class="text-sm text-center mt-2 text-gray-600">
+          We are looking for a creative graphics designer to work on our project for 3 days...
+        </p>
+  
+        <!-- Pay, Applicants, Date, and Deadline -->
+        <div class="text-left mt-4">
+          <p class="text-[#398A48] font-medium text-sm">$10/hr</p>
+          <p class="text-[#398A48] font-bold text-xs">Applicants: 13</p>
+          <p class="text-gray-500 text-xs">Date: 02/01/2025</p>
+          <p class="text-[#398A48] font-bold text-xs">Deadline: 28/05/2025</p>
+        </div>
+  
+        <!-- Divider and View Job -->
+        <div class="flex flex-col items-center mt-4">
+          <div class="w-[160px] h-[1px] bg-[#57DD70]"></div>
+          <a href="#" class="mt-2 text-sm font-medium text-black">
+            VIEW DETAILS
+          </a>
+        </div>
+      </div>
+
+      <div class="max-w-[360px] w-full h-auto job-card-onsite border border-[#6F6C6C]/[0.13] rounded-lg shadow-md hover:shadow-lg hover:translate-y-[-4px] transition-all duration-300 relative p-4 bg-white mx-auto">
+        <!--  Type  -->
+        <button class="absolute top-4 left-4 bg-[#F0823E] text-white font-bold text-sm py-1 px-4 rounded-full">
+          Onsite
+        </button>
+  
+        <!-- Top Right Delete Icon -->
+        <button class="absolute top-4 right-4">
+          <img src="../assets/deleteIcon.png" alt="Delete" class="w-5 h-6">
+        </button>
+  
+        <!-- Job Title -->
+        <h2 class="text-black text-[30px]  text-center mt-8">
+          Graphics Designer
+        </h2>
+  
+        <!-- Job Description -->
+        <p class="text-sm text-center mt-2 text-gray-600">
+          We are looking for a creative graphics designer to work on our project for 3 days...
+        </p>
+  
+        <!-- Pay, Applicants, Date, and Deadline -->
+        <div class="text-left mt-4">
+          <p class="text-[#D66016] font-medium text-sm">$10/hr</p>
+          <p class="text-[#D66016] font-bold text-xs">Applicants: 13</p>
+          <p class="text-gray-500 text-xs">Date: 02/01/2025</p>
+          <p class="text-[#D66016] font-bold text-xs">Deadline: 28/05/2025</p>
+        </div>
+  
+        <!-- Divider and View Job -->
+        <div class="flex flex-col items-center mt-4">
+          <div class="w-[160px] h-[1px] bg-[#F0823E]"></div>
+          <a href="#" class="mt-2 text-sm font-medium text-black">
+            VIEW DETAILS
+          </a>
+        </div>
+      </div>
+
+      <div class="max-w-[360px] w-full h-auto job-card-hybrid border border-[#6F6C6C]/[0.13] rounded-lg shadow-md hover:shadow-lg hover:translate-y-[-4px] transition-all duration-300 relative p-4 bg-white mx-auto">
+        <!-- Top Left Type Button -->
+        <button class="absolute top-4 left-4 bg-[#6936B7] text-white font-bold text-sm py-1 px-4 rounded-full">
+          Hybrid
+        </button>
+  
+        <!-- Top Right Delete Icon -->
+        <button class="absolute top-4 right-4">
+          <img src="../assets/deleteIcon.png" alt="Delete" class="w-5 h-6">
+        </button>
+  
+        <!-- Job Title -->
+        <h2 class="text-black text-[30px]  text-center mt-8">
+          Graphics Designer
+        </h2>
+  
+        <!-- Job Description -->
+        <p class="text-sm text-center mt-2 text-gray-600">
+          We are looking for a creative graphics designer to work on our project for 3 days...
+        </p>
+  
+        <!-- Pay, Applicants, Date, and Deadline -->
+        <div class="text-left mt-4">
+          <p class="text-[#45227A] font-medium text-sm">$10/hr</p>
+          <p class="text-[#45227A] font-bold text-xs">Applicants: 13</p>
+          <p class="text-gray-500 text-xs">Date: 02/01/2025</p>
+          <p class="text-[#45227A] font-bold text-xs">Deadline: 28/05/2025</p>
+        </div>
+  
+        <!-- Divider and View Job -->
+        <div class="flex flex-col items-center mt-4">
+          <div class="w-[160px] h-[1px] bg-[#6936B7]"></div>
+          <a href="#" class="mt-2 text-sm font-medium text-black">
+            VIEW DETAILS
+          </a>
+        </div>
+      </div>
+
+
+      <div class="max-w-[360px] w-full h-auto job-card-hybrid border border-[#6F6C6C]/[0.13] rounded-lg shadow-md hover:shadow-lg hover:translate-y-[-4px] transition-all duration-300 relative p-4 bg-white mx-auto">
+        <!-- Top Left Type Button -->
+        <button class="absolute top-4 left-4 bg-[#6936B7] text-white font-bold text-sm py-1 px-4 rounded-full">
+          Hybrid
+        </button>
+  
+        <!-- Top Right Delete Icon -->
+        <button class="absolute top-4 right-4">
+          <img src="../assets/deleteIcon.png" alt="Delete" class="w-5 h-6">
+        </button>
+  
+        <!-- Job Title -->
+        <h2 class="text-black text-[30px]  text-center mt-8">
+          Graphics Designer
+        </h2>
+  
+        <!-- Job Description -->
+        <p class="text-sm text-center mt-2 text-gray-600">
+          We are looking for a creative graphics designer to work on our project for 3 days...
+        </p>
+  
+        <!-- Pay, Applicants, Date, and Deadline -->
+        <div class="text-left mt-4">
+          <p class="text-[#45227A] font-medium text-sm">$10/hr</p>
+          <p class="text-[#45227A] font-bold text-xs">Applicants: 13</p>
+          <p class="text-gray-500 text-xs">Date: 02/01/2025</p>
+          <p class="text-[#45227A] font-bold text-xs">Deadline: 28/05/2025</p>
+        </div>
+  
+        <!-- Divider and View Job -->
+        <div class="flex flex-col items-center mt-4">
+          <div class="w-[160px] h-[1px] bg-[#6936B7]"></div>
+          <a href="#" class="mt-2 text-sm font-medium text-black">
+            VIEW DETAILS
+          </a>
+        </div>
+      </div>
+
+
+      <div class="max-w-[360px] w-full h-auto job-card-remote border border-[#6F6C6C]/[0.13] rounded-lg shadow-md hover:shadow-lg hover:translate-y-[-4px] transition-all duration-300 relative p-4 bg-white mx-auto">
+        <!-- Top Left Type Button -->
+        <button class="absolute top-4 left-4 bg-[#57DD70] text-white font-bold text-sm py-1 px-4 rounded-full">
+          Remote
+        </button>
+  
+        <!-- Top Right Delete Icon -->
+        <button class="absolute top-4 right-4">
+          <img src="../assets/deleteIcon.png" alt="Delete" class="w-5 h-6">
+        </button>
+  
+        <!-- Job Title -->
+        <h2 class="text-black text-[30px]  text-center mt-8">
+          Graphics Designer
+        </h2>
+  
+        <!-- Job Description -->
+        <p class="text-sm text-center mt-2 text-gray-600">
+          We are looking for a creative graphics designer to work on our project for 3 days...
+        </p>
+  
+        <!-- Pay, Applicants, Date, and Deadline -->
+        <div class="text-left mt-4">
+          <p class="text-[#398A48] font-medium text-sm">$10/hr</p>
+          <p class="text-[#398A48] font-bold text-xs">Applicants: 13</p>
+          <p class="text-gray-500 text-xs">Date: 02/01/2025</p>
+          <p class="text-[#398A48] font-bold text-xs">Deadline: 28/05/2025</p>
+        </div>
+  
+        <!-- Divider and View Job -->
+        <div class="flex flex-col items-center mt-4">
+          <div class="w-[160px] h-[1px] bg-[#57DD70]"></div>
+          <a href="#" class="mt-2 text-sm font-medium text-black">
+            VIEW DETAILS
+          </a>
+        </div>
+      </div>
+
+      
+    </div>
+  </section>
+  
+
+
+    </main>
+
+  
+    <footer class="bg-black py-8">
+        <div class="grid grid-cols-5 gap-6 text-center text-[16px] font-bold text-white">
+            <!-- First Column -->
+            <div class="flex flex-col gap-4">
+                <a href="#" class="hover:text-[#6EB0B6] text-white text-sm sm:text-base">Home</a>
+                <a href="#" class="hover:text-[#F0823E] text-white text-sm sm:text-base">About Us</a>
+                <a href="#" class="hover:text-[#6EB0B6] text-white text-sm sm:text-base">Contact Us</a>
+                <a href="#" class="hover:text-[#F0823E] text-white text-sm sm:text-base">Privacy Policy</a>
+                <a href="#" class="hover:text-[#6EB0B6] text-white text-sm sm:text-base">Terms & Conditions</a>
+                <a href="#" class="hover:text-[#F0823E] text-white text-sm sm:text-base">FAQs</a>
+                <a href="#" class="hover:text-[#6EB0B6] text-white text-sm sm:text-base">Blog</a>
+                <a href="#" class="hover:text-[#F0823E] text-white text-sm sm:text-base">Careers</a>
+                <a href="#" class="hover:text-[#6EB0B6] text-white text-sm sm:text-base">Support Center</a>
+            </div>
+    
+            <!-- Second Column -->
+            <div class="flex flex-col gap-4">
+                <a href="#" class="hover:text-[#F0823E] text-white text-sm sm:text-base">Create a Profile</a>
+                <a href="#" class="hover:text-[#6EB0B6] text-white text-sm sm:text-base">Browse Jobs</a>
+                <a href="#" class="hover:text-[#F0823E] text-white text-sm sm:text-base">Apply for Jobs</a>
+                <a href="#" class="hover:text-[#6EB0B6] text-white text-sm sm:text-base">Update Availability</a>
+                <a href="#" class="hover:text-[#F0823E] text-white text-sm sm:text-base">View Job Offers</a>
+                <a href="#" class="hover:text-[#6EB0B6] text-white text-sm sm:text-base">Search by Skills</a>
+                <a href="#" class="hover:text-[#F0823E] text-white text-sm sm:text-base">Job Seeker Dashboard</a>
+                <a href="#" class="hover:text-[#6EB0B6] text-white text-sm sm:text-base">How It Works</a>
+            </div>
+    
+            <!-- Third Column -->
+            <div class="flex flex-col gap-4">
+                <a href="#" class="hover:text-[#6EB0B6] text-white text-sm sm:text-base">Our Mission</a>
+                <a href="#" class="hover:text-[#F0823E] text-white text-sm sm:text-base">Our Vision</a>
+                <a href="#" class="hover:text-[#6EB0B6] text-white text-sm sm:text-base">Team</a>
+                <a href="#" class="hover:text-[#F0823E] text-white text-sm sm:text-base">Partners</a>
+                <a href="#" class="hover:text-[#6EB0B6] text-white text-sm sm:text-base">Media Kit</a>
+                <a href="#" class="hover:text-[#F0823E] text-white text-sm sm:text-base">Press Releases</a>
+                <a href="#" class="hover:text-[#6EB0B6] text-white text-sm sm:text-base">Investor Relations</a>
+            </div>
+    
+            <!-- Fourth Column -->
+            <div class="flex flex-col gap-4">
+                <a href="#" class="hover:text-[#F0823E] text-white text-sm sm:text-base">Facebook</a>
+                <a href="#" class="hover:text-[#6EB0B6] text-white text-sm sm:text-base">Twitter</a>
+                <a href="#" class="hover:text-[#F0823E] text-white text-sm sm:text-base">LinkedIn</a>
+                <a href="#" class="hover:text-[#6EB0B6] text-white text-sm sm:text-base">Instagram</a>
+                <a href="#" class="hover:text-[#F0823E] text-white text-sm sm:text-base">YouTube</a>
+            </div>
+    
+            <!-- Fifth Column -->
+            <div class="flex flex-col gap-4">
+                <a href="#" class="hover:text-[#6EB0B6] text-white text-sm sm:text-base">Contact Support</a>
+                <a href="#" class="hover:text-[#F0823E] text-white text-sm sm:text-base">Troubleshooting Guides</a>
+                <a href="#" class="hover:text-[#6EB0B6] text-white text-sm sm:text-base">Live Chat</a>
+                <a href="#" class="hover:text-[#F0823E] text-white text-sm sm:text-base">Community Forum</a>
+                <a href="#" class="hover:text-[#6EB0B6] text-white text-sm sm:text-base">Knowledge Base</a>
+            </div>
+        </div>
+    
+   
+    </footer>
+         <!-- Copyright Section -->
+         <div class="mt-6 text-center pb-3 bg-white">
+            <p class="text-black text-[16px] font-bold sm:text-sm">© 2025 Vocation. All Rights Reserved.</p>
+        </div>
+
+
+
+
+
+        <script>
+            // Function to open the modal
+            function openModal() {
+              document.getElementById('modal').classList.remove('hidden');
+            }
+          
+            // Function to close the modal
+            function closeModal() {
+              document.getElementById('modal').classList.add('hidden');
+            }
+            const skillsDropdown = document.getElementById('skillsDropdown');
+  const skillsList = document.getElementById('skillsList');
+  const selectedSkillsContainer = document.getElementById('selectedSkillsContainer');
+
+  skillsDropdown.addEventListener('click', () => {
+    skillsList.classList.toggle('hidden');
+  });
+
+  const skillItems = skillsList.querySelectorAll('.skill-item');
+  
+  skillItems.forEach(item => {
+    item.addEventListener('click', () => {
+      const skill = item.textContent;
+
+  
+      if (!isSkillSelected(skill)) {
+     
+        const skillItem = document.createElement('div');
+        skillItem.className = 'bg-[#F0823E] text-white rounded-lg px-3 py-1 text-sm flex items-center';
+        skillItem.innerHTML = `${skill} <button onclick="removeSkill('${skill}')" class="ml-2 text-white">&times;</button>`;
+        selectedSkillsContainer.appendChild(skillItem);
+
+    
+        skillsList.classList.add('hidden');
+      }
+    });
+  });
+
+
+  function isSkillSelected(skill) {
+    const selectedSkills = selectedSkillsContainer.querySelectorAll('div');
+    return Array.from(selectedSkills).some(item => item.textContent.includes(skill));
+  }
+
+  function removeSkill(skill) {
+
+    const skillItem = Array.from(selectedSkillsContainer.children).find(item => item.textContent.includes(skill));
+    if (skillItem) {
+      selectedSkillsContainer.removeChild(skillItem);
+    }
+  }
+  </script>
+
+</body>
+</html>
