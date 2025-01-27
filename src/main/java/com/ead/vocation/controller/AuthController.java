@@ -18,9 +18,11 @@ import jakarta.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
 
-@RestController
+@Controller
 @RequestMapping("/auth")
 public class AuthController {
 
@@ -33,9 +35,29 @@ public class AuthController {
     @Autowired
     private JobPosterService jobPosterService;
 
+    @GetMapping("/freelancers/login")
+    public String getFreelancersLoginPage() {
+        return "freelancer-login";
+    }
+
+    @GetMapping("/job-posters/login")
+    public String getJobPostersLoginPage() {
+        return "job-poster-login";
+    }
+
+    @GetMapping("/freelancers/signup")
+    public String getFreelancersSignupPage() {
+        return "freelancer-signup";
+    }
+
+    @GetMapping("/job-posters/signup")
+    public String getJobPostersSignupPage() {
+        return "job-poster-signup";
+    }
+
     @PostMapping("/login")
     public ResponseEntity<?> loginFreelancers(@Valid @RequestBody LoginRequest loginRequest) {
-        String token = authService.login(loginRequest.getEmail(), loginRequest.getPassword());
+        String token = authService.login(loginRequest.getEmail(), loginRequest.getPassword(), loginRequest.getRole());
         return ResponseEntity.ok(new LoginResponse(token));
     }
 

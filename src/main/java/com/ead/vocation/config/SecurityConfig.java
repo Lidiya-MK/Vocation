@@ -31,9 +31,12 @@ public class SecurityConfig {
                         .requestMatchers("/freelancers/**").hasRole("FREELANCER")
                         .requestMatchers("/job-posters/**").hasRole("JOB_POSTER")
                         .requestMatchers("/public/**", "/styles/**", "/js/**", "/assets/**", "/favicon.ico", "/",
-                                "/index.html")
+                                "/index.html", "/scripts/**")
                         .permitAll()
                         .anyRequest().authenticated())
+                .exceptionHandling(exception -> exception
+                        .authenticationEntryPoint(
+                                (request, response, authException) -> response.sendRedirect("/")))
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 
