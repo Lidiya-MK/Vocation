@@ -25,6 +25,16 @@ public class JobPosterService {
     @Autowired
     private UserRepository userRepository;
 
+    public JobPoster getJobPoster(Integer id) {
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("User not found"));
+
+        JobPoster jobPoster = jobPosterRepository.findByUser(user)
+                .orElseThrow(() -> new IllegalArgumentException("User not found"));
+
+        return jobPoster;
+    }
+
     public JobPoster createJobPoster(JobPoster jobPoster, Integer userID) {
         User user = userRepository.findById(userID)
                 .orElseThrow(() -> new IllegalArgumentException("User not found"));

@@ -17,11 +17,13 @@ import com.ead.vocation.dtos.JobRequest;
 import com.ead.vocation.dtos.JobResponse;
 import com.ead.vocation.model.Application;
 import com.ead.vocation.model.Job;
+import com.ead.vocation.model.JobPoster;
 import com.ead.vocation.service.ApplicationService;
 import com.ead.vocation.service.JobPosterService;
 import com.ead.vocation.shared.ErrorResponse;
 import com.ead.vocation.shared.util.JwtServices;
 
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 
 import org.springframework.web.bind.annotation.PostMapping;
@@ -42,10 +44,19 @@ public class JobPosterController {
     private ApplicationService applicationService;
 
     @GetMapping("/dashboard")
-    public String getDashboard(@RequestHeader("Authorization") String token, Model model) {
+    public String getDashboard(HttpServletRequest request, Model model) {
+        String token = (String) request.getAttribute("Authorization");
+        System.out.println(token);
         Integer id = jwtServices.extractIdFromHeader(token);
-        model.addAttribute("id", id);
-        return "test-page";
+        JobPoster jobPoster = jobPosterService.getJobPoster(id);
+        List<Job> jobs = jobPosterService.getAllJobsByPosterId(id);
+        model.addAttribute("companyName", jobPoster.getUser().getName());
+        model.addAttribute("companyEmail", jobPoster.getUser().getEmail());
+        model.addAttribute("industryName", jobPoster.getIndustry());
+        model.addAttribute("location", jobPoster.getLocation());
+        model.addAttribute("companyDescription", jobPoster.getDescription());
+        model.addAttribute("jobs", jobs);
+        return "job-poster-home";
     }
 
     @GetMapping("/jobs")

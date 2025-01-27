@@ -30,6 +30,9 @@ public class SecurityConfig {
                         .requestMatchers("/admins/**").hasRole("ADMIN")
                         .requestMatchers("/freelancers/**").hasRole("FREELANCER")
                         .requestMatchers("/job-posters/**").hasRole("JOB_POSTER")
+                        .requestMatchers("/public/**", "/styles/**", "/js/**", "/assets/**", "/favicon.ico", "/",
+                                "/index.html")
+                        .permitAll()
                         .anyRequest().authenticated())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);

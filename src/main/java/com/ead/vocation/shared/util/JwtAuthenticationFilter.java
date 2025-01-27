@@ -2,6 +2,7 @@ package com.ead.vocation.shared.util;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
@@ -37,10 +38,24 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                 return;
             }
 
-            final String authHeader = request.getHeader("Authorization");
+            String authHeader = request.getHeader("Authorization");
+            if (authHeader == null || authHeader == "") {
+                HttpServletRequest httpRequest = (HttpServletRequest) request;
+                Cookie[] cookies = httpRequest.getCookies();
+                if (cookies != null) {
+                    for (Cookie cookie : cookies) {
+                        if ("accessToken".equals(cookie.getName())) {
+                            authHeader = "Bearer " + cookie.getValue();
+                            System.out.println("COOKIE CONTENTS " + cookie.getValue());
+                            break;
+                        }
+                    }
+                }
+            }
+
+            request.setAttribute("Authorization", authHeader);
             String id = null;
             String token = null;
-
             if (authHeader != null && authHeader.startsWith("Bearer ")) {
                 token = authHeader.substring(7);
                 id = jwtServices.extractSubject(token);
@@ -60,7 +75,13 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                             userDetails, null, userDetails.getAuthorities());
                     authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                     SecurityContextHolder.getContext().setAuthentication(authentication);
+                } else {
+                    response.sendRedirect("/");
+                    return;
                 }
+            } else {
+                response.sendRedirect("/");
+                return;
             }
 
             chain.doFilter(request, response);

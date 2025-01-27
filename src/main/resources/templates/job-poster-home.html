@@ -13,9 +13,9 @@
       href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="../styles/style.css" />
+    <link rel="stylesheet" href="/styles/style.css" />
 
-    <title>Employer Home</title>
+    <title>Job Poster Home</title>
   </head>
   <body class="bg-white">
     <!-- Top Navigation Bar -->
@@ -29,38 +29,20 @@
           <span class="text-30px font-medium">ocation</span>
         </div>
 
-        <!-- Search Bar -->
-        <div class="hidden md:flex items-center w-1/2">
-          <div
-            class="flex items-center w-full border border-[#F0823E] rounded-full px-4 py-2"
-          >
-            <img
-              src="../assets/searchIcon.png"
-              alt="Search Icon"
-              class="h-5 w-5 text-[#9C9C9C]"
-            />
-            <input
-              type="text"
-              placeholder="Search"
-              class="w-full bg-transparent text-[#9C9C9C] ml-2 focus:outline-none"
-            />
-          </div>
-        </div>
-
         <div class="flex space-x-8">
           <!-- Home -->
           <a href="#" class="flex flex-col items-center">
-            <img src="../assets/homeIcon.png" alt="Home" class="h-6 w-6" />
+            <img src="/assets/homeIcon.png" alt="Home" class="h-6 w-6" />
             <span class="text-sm text-black mt-1">Home</span>
           </a>
           <!-- Profile -->
           <a href="#" class="flex flex-col items-center">
-            <img src="../assets/userIcon.png" alt="Profile" class="h-6 w-6" />
+            <img src="/assets/userIcon.png" alt="Profile" class="h-6 w-6" />
             <span class="text-sm text-gray-500 mt-1">Profile</span>
           </a>
           <!-- Logout -->
           <a href="#" class="flex flex-col items-center">
-            <img src="../assets/logoutIcon.png" alt="Logout" class="h-6 w-6" />
+            <img src="/assets/logoutIcon.png" alt="Logout" class="h-6 w-6" />
             <span class="text-sm text-gray-500 mt-1">Logout</span>
           </a>
         </div>
@@ -70,7 +52,7 @@
     <main>
       <section class="relative w-full h-[250px]">
         <img
-          src="../assets/companyBanner.png"
+          src="/assets/companyBanner.png"
           alt="Cover Image"
           class="w-full h-full object-cover"
         />
@@ -84,16 +66,17 @@
             <!-- Circular Image and Company Name -->
             <div class="flex items-center space-x-4">
               <img
-                src="../assets/companyLogo.png"
+                src="/assets/companyLogo.png"
                 alt="Circular Image"
                 class="w-[140px] h-[140px] rounded-full object-cover"
               />
 
               <!-- Company Name -->
               <div>
-                <h2 class="text-black font-bold text-[40px] leading-none">
-                  Company Name
-                </h2>
+                <h2
+                  class="text-black font-bold text-[40px] leading-none"
+                  th:text="${companyName}"
+                ></h2>
               </div>
             </div>
 
@@ -101,35 +84,38 @@
             <div class="flex flex-col space-y-2 mt-[-80px]">
               <div class="flex items-center space-x-2">
                 <img
-                  src="../assets/onsite-employer.png"
+                  src="/assets/onsite-employer.png"
                   alt="Industry Icon"
                   class="w-6 h-6"
                 />
-                <span class="text-[#C95A15] font-bold text-[16px]"
-                  >Company Industry Name</span
-                >
+                <span
+                  class="text-[#C95A15] font-bold text-[16px]"
+                  th:text="${industryName}"
+                ></span>
               </div>
 
               <div class="flex items-center space-x-2">
                 <img
-                  src="../assets/mailIcon.png"
+                  src="/assets/mailIcon.png"
                   alt="Industry Icon"
                   class="w-6 h-6"
                 />
-                <span class="text-[#716D6D] font-bold text-[16px]"
-                  >office@gmail.com</span
-                >
+                <span
+                  class="text-[#716D6D] font-bold text-[16px]"
+                  th:text="${companyEmail}"
+                ></span>
               </div>
 
               <div class="flex items-center space-x-2">
                 <img
-                  src="../assets/LocationIcon.png"
+                  src="/assets/LocationIcon.png"
                   alt="Location Icon"
                   class="w-6 h-6"
                 />
-                <span class="text-[#716D6D] font-bold text-[16px]"
-                  >Addis Ababa, Ethiopia</span
-                >
+                <span
+                  class="text-[#716D6D] font-bold text-[16px]"
+                  th:text="${location}"
+                ></span>
               </div>
             </div>
           </div>
@@ -141,14 +127,8 @@
             </h2>
             <p
               class="text-[#4b4b4b] text-[16px] font-light w-[500px] mt-2 hidden lg:block"
-            >
-              Founded as a dedicated video production company, Venmo has always
-              been driven by creativity and storytelling. Over time, our passion
-              for design and innovation inspired us to expand our horizons
-              beyond video production. Today, we are evolving into a
-              full-service creative agency, offering expert services in UI
-              design and graphic design.
-            </p>
+              th:text="${companyDescription}"
+            ></p>
           </div>
         </div>
       </section>
@@ -158,7 +138,7 @@
           <!-- Left Content -->
           <div class="flex items-center space-x-4 text-center md:text-left">
             <img
-              src="../assets/announIcon.png"
+              src="/assets/announIcon.png"
               alt="Announcement Icon"
               class="w-8 h-8"
             />
@@ -174,7 +154,7 @@
               class="flex items-center border border-[#F0823E] rounded-full px-4 py-2 text-[#F0823E] text-[16px] font-medium hover:bg-[#F0823E]/10 transition"
             >
               <img
-                src="../assets/addIcon.png"
+                src="/assets/addIcon.png"
                 alt="Plus Icon"
                 class="w-6 h-6 mr-2"
               />
@@ -193,7 +173,7 @@
           <!-- Modal Header -->
           <div class="flex items-center justify-center space-x-2 mb-3">
             <img
-              src="../assets/addIcon.png"
+              src="/assets/addIcon.png"
               alt="Plus Icon"
               class="w-[20px] h-[20px]"
             />
@@ -230,9 +210,9 @@
                   id="jobType"
                   class="w-full border border-gray-300 rounded-lg px-3 py-1 text-xs"
                 >
-                  <option value="onsite">Onsite</option>
-                  <option value="hybrid">Hybrid</option>
-                  <option value="remote">Remote</option>
+                  <option value="ON_SITE">Onsite</option>
+                  <option value="HYBRID">Hybrid</option>
+                  <option value="REMOTE">Remote</option>
                 </select>
               </div>
             </div>
@@ -395,249 +375,178 @@
       <section class="container mx-auto p-4">
         <!-- Job Cards Grid -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          <!-- Job Card -->
-          <div
-            class="max-w-[360px] w-full h-auto job-card-remote border border-[#6F6C6C]/[0.13] rounded-lg shadow-md hover:shadow-lg hover:translate-y-[-4px] transition-all duration-300 relative p-4 bg-white mx-auto"
-          >
-            <!-- Top Left Type Button -->
-            <button
-              class="absolute top-4 left-4 bg-[#57DD70] text-white font-bold text-sm py-1 px-4 rounded-full"
+          <div th:each="job : ${jobs}">
+            <div
+              class="max-w-[360px] w-full h-auto job-card-remote border border-[#6F6C6C]/[0.13] rounded-lg shadow-md hover:shadow-lg hover:translate-y-[-4px] transition-all duration-300 relative p-4 bg-white mx-auto"
+              th:if="${job.type.name() == 'REMOTE'}"
             >
-              Remote
-            </button>
+              <!-- Top Left Type Button -->
+              <button
+                class="absolute top-4 left-4 bg-[#57DD70] text-white font-bold text-sm py-1 px-4 rounded-full"
+              >
+                Remote
+              </button>
 
-            <!-- Top Right Delete Icon -->
-            <button class="absolute top-4 right-4">
-              <img
-                src="../assets/deleteIcon.png"
-                alt="Delete"
-                class="w-5 h-6"
-              />
-            </button>
+              <!-- Top Right Delete Icon -->
+              <button class="absolute top-4 right-4">
+                <img
+                  src="/assets/deleteIcon.png"
+                  alt="Delete"
+                  class="w-5 h-6"
+                />
+              </button>
 
-            <!-- Job Title -->
-            <h2 class="text-black text-[30px] text-center mt-8">
-              Graphics Designer
-            </h2>
+              <!-- Job Title -->
+              <h2
+                class="text-black text-[30px] text-center mt-8"
+                th:text="${job.title}"
+              ></h2>
 
-            <!-- Job Description -->
-            <p class="text-sm text-center mt-2 text-gray-600">
-              We are looking for a creative graphics designer to work on our
-              project for 3 days...
-            </p>
+              <!-- Job Description -->
+              <p
+                class="text-sm text-center mt-2 text-gray-600"
+                th:text="${job.description}"
+              ></p>
 
-            <!-- Pay, Applicants, Date, and Deadline -->
-            <div class="text-left mt-4">
-              <p class="text-[#398A48] font-medium text-sm">$10/hr</p>
-              <p class="text-[#398A48] font-bold text-xs">Applicants: 13</p>
-              <p class="text-gray-500 text-xs">Date: 02/01/2025</p>
-              <p class="text-[#398A48] font-bold text-xs">
-                Deadline: 28/05/2025
-              </p>
+              <!-- Pay, Applicants, Date, and Deadline -->
+              <div class="text-left mt-4">
+                <p
+                  class="text-[#398A48] font-medium text-sm"
+                  th:text="${job.budget} + ' Birr/hr'"
+                ></p>
+                <p
+                  class="text-gray-500 text-xs"
+                  th:text="'Date: ' + ${job.startDate}"
+                ></p>
+                <p
+                  class="text-[#398A48] font-bold text-xs"
+                  th:text="'Deadline: ' + ${job.applicationDeadline}"
+                ></p>
+              </div>
+
+              <!-- Divider and View Job -->
+              <div class="flex flex-col items-center mt-4">
+                <div class="w-[160px] h-[1px] bg-[#57DD70]"></div>
+                <a href="#" class="mt-2 text-sm font-medium text-black">
+                  VIEW DETAILS
+                </a>
+              </div>
             </div>
 
-            <!-- Divider and View Job -->
-            <div class="flex flex-col items-center mt-4">
-              <div class="w-[160px] h-[1px] bg-[#57DD70]"></div>
-              <a href="#" class="mt-2 text-sm font-medium text-black">
-                VIEW DETAILS
-              </a>
-            </div>
-          </div>
-
-          <div
-            class="max-w-[360px] w-full h-auto job-card-onsite border border-[#6F6C6C]/[0.13] rounded-lg shadow-md hover:shadow-lg hover:translate-y-[-4px] transition-all duration-300 relative p-4 bg-white mx-auto"
-          >
-            <!--  Type  -->
-            <button
-              class="absolute top-4 left-4 bg-[#F0823E] text-white font-bold text-sm py-1 px-4 rounded-full"
+            <div
+              class="max-w-[360px] w-full h-auto job-card-onsite border border-[#6F6C6C]/[0.13] rounded-lg shadow-md hover:shadow-lg hover:translate-y-[-4px] transition-all duration-300 relative p-4 bg-white mx-auto"
+              th:if="${job.type.name() == 'ON_SITE'}"
             >
-              Onsite
-            </button>
+              <!--  Type  -->
+              <button
+                class="absolute top-4 left-4 bg-[#F0823E] text-white font-bold text-sm py-1 px-4 rounded-full"
+              >
+                Onsite
+              </button>
 
-            <!-- Top Right Delete Icon -->
-            <button class="absolute top-4 right-4">
-              <img
-                src="../assets/deleteIcon.png"
-                alt="Delete"
-                class="w-5 h-6"
-              />
-            </button>
+              <!-- Top Right Delete Icon -->
+              <button class="absolute top-4 right-4">
+                <img
+                  src="/assets/deleteIcon.png"
+                  alt="Delete"
+                  class="w-5 h-6"
+                />
+              </button>
 
-            <!-- Job Title -->
-            <h2 class="text-black text-[30px] text-center mt-8">
-              Graphics Designer
-            </h2>
+              <!-- Job Title -->
+              <h2
+                class="text-black text-[30px] text-center mt-8"
+                th:text="${job.title}"
+              ></h2>
 
-            <!-- Job Description -->
-            <p class="text-sm text-center mt-2 text-gray-600">
-              We are looking for a creative graphics designer to work on our
-              project for 3 days...
-            </p>
+              <!-- Job Description -->
+              <p
+                class="text-sm text-center mt-2 text-gray-600"
+                th:text="${job.description}"
+              ></p>
 
-            <!-- Pay, Applicants, Date, and Deadline -->
-            <div class="text-left mt-4">
-              <p class="text-[#D66016] font-medium text-sm">$10/hr</p>
-              <p class="text-[#D66016] font-bold text-xs">Applicants: 13</p>
-              <p class="text-gray-500 text-xs">Date: 02/01/2025</p>
-              <p class="text-[#D66016] font-bold text-xs">
-                Deadline: 28/05/2025
-              </p>
+              <!-- Pay, Applicants, Date, and Deadline -->
+              <div class="text-left mt-4">
+                <p
+                  class="text-[#D66016] font-medium text-sm"
+                  th:text="${job.budget} + ' Birr/hr'"
+                ></p>
+                <p
+                  class="text-gray-500 text-xs"
+                  th:text="'Date: ' + ${job.startDate}"
+                ></p>
+                <p
+                  class="text-[#D66016] font-bold text-xs"
+                  th:text="'Deadline: ' +  ${job.applicationDeadline}"
+                ></p>
+              </div>
+
+              <!-- Divider and View Job -->
+              <div class="flex flex-col items-center mt-4">
+                <div class="w-[160px] h-[1px] bg-[#F0823E]"></div>
+                <a href="#" class="mt-2 text-sm font-medium text-black">
+                  VIEW DETAILS
+                </a>
+              </div>
             </div>
 
-            <!-- Divider and View Job -->
-            <div class="flex flex-col items-center mt-4">
-              <div class="w-[160px] h-[1px] bg-[#F0823E]"></div>
-              <a href="#" class="mt-2 text-sm font-medium text-black">
-                VIEW DETAILS
-              </a>
-            </div>
-          </div>
-
-          <div
-            class="max-w-[360px] w-full h-auto job-card-hybrid border border-[#6F6C6C]/[0.13] rounded-lg shadow-md hover:shadow-lg hover:translate-y-[-4px] transition-all duration-300 relative p-4 bg-white mx-auto"
-          >
-            <!-- Top Left Type Button -->
-            <button
-              class="absolute top-4 left-4 bg-[#6936B7] text-white font-bold text-sm py-1 px-4 rounded-full"
+            <div
+              class="max-w-[360px] w-full h-auto job-card-hybrid border border-[#6F6C6C]/[0.13] rounded-lg shadow-md hover:shadow-lg hover:translate-y-[-4px] transition-all duration-300 relative p-4 bg-white mx-auto"
+              th:if="${job.type.name()  == 'HYBRID'}"
             >
-              Hybrid
-            </button>
+              <!-- Top Left Type Button -->
+              <button
+                class="absolute top-4 left-4 bg-[#6936B7] text-white font-bold text-sm py-1 px-4 rounded-full"
+              >
+                Hybrid
+              </button>
 
-            <!-- Top Right Delete Icon -->
-            <button class="absolute top-4 right-4">
-              <img
-                src="../assets/deleteIcon.png"
-                alt="Delete"
-                class="w-5 h-6"
-              />
-            </button>
+              <!-- Top Right Delete Icon -->
+              <button class="absolute top-4 right-4">
+                <img
+                  src="/assets/deleteIcon.png"
+                  alt="Delete"
+                  class="w-5 h-6"
+                />
+              </button>
 
-            <!-- Job Title -->
-            <h2 class="text-black text-[30px] text-center mt-8">
-              Graphics Designer
-            </h2>
+              <!-- Job Title -->
+              <h2
+                class="text-black text-[30px] text-center mt-8"
+                th:text="${job.title}"
+              >
+                Graphics Designer
+              </h2>
 
-            <!-- Job Description -->
-            <p class="text-sm text-center mt-2 text-gray-600">
-              We are looking for a creative graphics designer to work on our
-              project for 3 days...
-            </p>
+              <!-- Job Description -->
+              <p
+                class="text-sm text-center mt-2 text-gray-600"
+                th:text="${job.description}"
+              ></p>
 
-            <!-- Pay, Applicants, Date, and Deadline -->
-            <div class="text-left mt-4">
-              <p class="text-[#45227A] font-medium text-sm">$10/hr</p>
-              <p class="text-[#45227A] font-bold text-xs">Applicants: 13</p>
-              <p class="text-gray-500 text-xs">Date: 02/01/2025</p>
-              <p class="text-[#45227A] font-bold text-xs">
-                Deadline: 28/05/2025
-              </p>
-            </div>
+              <!-- Pay, Applicants, Date, and Deadline -->
+              <div class="text-left mt-4">
+                <p
+                  class="text-[#45227A] font-medium text-sm"
+                  th:text="${job.budget} + ' Birr/hr'"
+                ></p>
+                <p
+                  class="text-gray-500 text-xs"
+                  th:text="'Date: ' + ${job.startDate}"
+                ></p>
+                <p
+                  class="text-[#45227A] font-bold text-xs"
+                  th:text="'Deadline: ' +  ${job.applicationDeadline}"
+                ></p>
+              </div>
 
-            <!-- Divider and View Job -->
-            <div class="flex flex-col items-center mt-4">
-              <div class="w-[160px] h-[1px] bg-[#6936B7]"></div>
-              <a href="#" class="mt-2 text-sm font-medium text-black">
-                VIEW DETAILS
-              </a>
-            </div>
-          </div>
-
-          <div
-            class="max-w-[360px] w-full h-auto job-card-hybrid border border-[#6F6C6C]/[0.13] rounded-lg shadow-md hover:shadow-lg hover:translate-y-[-4px] transition-all duration-300 relative p-4 bg-white mx-auto"
-          >
-            <!-- Top Left Type Button -->
-            <button
-              class="absolute top-4 left-4 bg-[#6936B7] text-white font-bold text-sm py-1 px-4 rounded-full"
-            >
-              Hybrid
-            </button>
-
-            <!-- Top Right Delete Icon -->
-            <button class="absolute top-4 right-4">
-              <img
-                src="../assets/deleteIcon.png"
-                alt="Delete"
-                class="w-5 h-6"
-              />
-            </button>
-
-            <!-- Job Title -->
-            <h2 class="text-black text-[30px] text-center mt-8">
-              Graphics Designer
-            </h2>
-
-            <!-- Job Description -->
-            <p class="text-sm text-center mt-2 text-gray-600">
-              We are looking for a creative graphics designer to work on our
-              project for 3 days...
-            </p>
-
-            <!-- Pay, Applicants, Date, and Deadline -->
-            <div class="text-left mt-4">
-              <p class="text-[#45227A] font-medium text-sm">$10/hr</p>
-              <p class="text-[#45227A] font-bold text-xs">Applicants: 13</p>
-              <p class="text-gray-500 text-xs">Date: 02/01/2025</p>
-              <p class="text-[#45227A] font-bold text-xs">
-                Deadline: 28/05/2025
-              </p>
-            </div>
-
-            <!-- Divider and View Job -->
-            <div class="flex flex-col items-center mt-4">
-              <div class="w-[160px] h-[1px] bg-[#6936B7]"></div>
-              <a href="#" class="mt-2 text-sm font-medium text-black">
-                VIEW DETAILS
-              </a>
-            </div>
-          </div>
-
-          <div
-            class="max-w-[360px] w-full h-auto job-card-remote border border-[#6F6C6C]/[0.13] rounded-lg shadow-md hover:shadow-lg hover:translate-y-[-4px] transition-all duration-300 relative p-4 bg-white mx-auto"
-          >
-            <!-- Top Left Type Button -->
-            <button
-              class="absolute top-4 left-4 bg-[#57DD70] text-white font-bold text-sm py-1 px-4 rounded-full"
-            >
-              Remote
-            </button>
-
-            <!-- Top Right Delete Icon -->
-            <button class="absolute top-4 right-4">
-              <img
-                src="../assets/deleteIcon.png"
-                alt="Delete"
-                class="w-5 h-6"
-              />
-            </button>
-
-            <!-- Job Title -->
-            <h2 class="text-black text-[30px] text-center mt-8">
-              Graphics Designer
-            </h2>
-
-            <!-- Job Description -->
-            <p class="text-sm text-center mt-2 text-gray-600">
-              We are looking for a creative graphics designer to work on our
-              project for 3 days...
-            </p>
-
-            <!-- Pay, Applicants, Date, and Deadline -->
-            <div class="text-left mt-4">
-              <p class="text-[#398A48] font-medium text-sm">$10/hr</p>
-              <p class="text-[#398A48] font-bold text-xs">Applicants: 13</p>
-              <p class="text-gray-500 text-xs">Date: 02/01/2025</p>
-              <p class="text-[#398A48] font-bold text-xs">
-                Deadline: 28/05/2025
-              </p>
-            </div>
-
-            <!-- Divider and View Job -->
-            <div class="flex flex-col items-center mt-4">
-              <div class="w-[160px] h-[1px] bg-[#57DD70]"></div>
-              <a href="#" class="mt-2 text-sm font-medium text-black">
-                VIEW DETAILS
-              </a>
+              <!-- Divider and View Job -->
+              <div class="flex flex-col items-center mt-4">
+                <div class="w-[160px] h-[1px] bg-[#6936B7]"></div>
+                <a href="#" class="mt-2 text-sm font-medium text-black">
+                  VIEW DETAILS
+                </a>
+              </div>
             </div>
           </div>
         </div>
