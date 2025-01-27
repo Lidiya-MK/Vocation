@@ -14,6 +14,9 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="/styles/style.css" />
+    <script src="/scripts/toast.js"></script>
+    <script src="/scripts/tokens.js"></script>
+    <script src="/scripts/job-poster.js"></script>
 
     <title>Job Poster Home</title>
   </head>
@@ -379,6 +382,7 @@
             <div
               class="max-w-[360px] w-full h-auto job-card-remote border border-[#6F6C6C]/[0.13] rounded-lg shadow-md hover:shadow-lg hover:translate-y-[-4px] transition-all duration-300 relative p-4 bg-white mx-auto"
               th:if="${job.type.name() == 'REMOTE'}"
+              th:attr="data-job-id=${job.id}"
             >
               <!-- Top Left Type Button -->
               <button
@@ -388,7 +392,7 @@
               </button>
 
               <!-- Top Right Delete Icon -->
-              <button class="absolute top-4 right-4">
+              <button class="absolute top-4 right-4 delete-job-button">
                 <img
                   src="/assets/deleteIcon.png"
                   alt="Delete"
@@ -436,6 +440,7 @@
             <div
               class="max-w-[360px] w-full h-auto job-card-onsite border border-[#6F6C6C]/[0.13] rounded-lg shadow-md hover:shadow-lg hover:translate-y-[-4px] transition-all duration-300 relative p-4 bg-white mx-auto"
               th:if="${job.type.name() == 'ON_SITE'}"
+              th:attr="data-job-id=${job.id}"
             >
               <!--  Type  -->
               <button
@@ -445,7 +450,7 @@
               </button>
 
               <!-- Top Right Delete Icon -->
-              <button class="absolute top-4 right-4">
+              <button class="absolute top-4 right-4 delete-job-button">
                 <img
                   src="/assets/deleteIcon.png"
                   alt="Delete"
@@ -493,6 +498,7 @@
             <div
               class="max-w-[360px] w-full h-auto job-card-hybrid border border-[#6F6C6C]/[0.13] rounded-lg shadow-md hover:shadow-lg hover:translate-y-[-4px] transition-all duration-300 relative p-4 bg-white mx-auto"
               th:if="${job.type.name()  == 'HYBRID'}"
+              th:attr="data-job-id=${job.id}"
             >
               <!-- Top Left Type Button -->
               <button
@@ -502,7 +508,7 @@
               </button>
 
               <!-- Top Right Delete Icon -->
-              <button class="absolute top-4 right-4">
+              <button class="absolute top-4 right-4 delete-job-button">
                 <img
                   src="/assets/deleteIcon.png"
                   alt="Delete"
@@ -808,6 +814,32 @@
           selectedSkillsContainer.removeChild(skillItem);
         }
       }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const buttons = document.querySelectorAll(".delete-job-button");
+
+        buttons.forEach((button) => {
+          button.addEventListener("click", async (event) => {
+            const jobCard = event.target.parentElement.parentElement;
+            const jobId = jobCard.getAttribute("data-job-id");
+
+            if (jobId) {
+              const deleteUrl = `/job-posters/jobs/${jobId}`;
+              try {
+                const res = await sendDeleteJobRequest(deleteUrl);
+                if (res === true) {
+                  jobCard.parentElement.remove();
+                  showToast("Job deleted successfully", "success");
+                }
+              } catch (error) {
+                showToast(error.message, "error");
+              }
+            } else {
+              showToast("Job ID not found", "error");
+            }
+          });
+        });
+      });
     </script>
   </body>
 </html>
