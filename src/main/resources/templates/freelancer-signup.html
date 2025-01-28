@@ -71,27 +71,18 @@
     </header>
 
     <main class="flex justify-center items-center min-h-screen">
-      <div
-        class="flex justify-center items-center w-full max-w-screen-md px-4 pb-6"
-      >
-        <div
-          class="w-full sm:w-[50%] bg-[#6699A7]/[15%] rounded-2xl p-6 shadow-md"
-        >
-          <!-- Sign Up Title -->
-          <h2 class="text-center text-2xl font-light mb-4">
-            Freelancer Sign Up
-          </h2>
-
-          <!-- Form -->
-          <form id="signup-form" method="post">
-            <!--  Name -->
+      <div class="flex justify-center items-center w-full max-w-screen-md px-4 pb-6">
+        <div class="w-full sm:w-[50%] bg-[#6699A7]/[15%] rounded-2xl p-6 shadow-md">
+          <h2 class="text-center text-2xl font-light mb-4">Freelancer Sign Up</h2>
+          <form id="signup-form">
+            <!-- Name -->
             <input
               type="text"
-              id="company-name"
+              id="name"
               placeholder="Name"
               class="w-full p-2 mb-3 bg-white rounded-lg placeholder-gray-500 text-sm"
             />
-
+    
             <!-- Email -->
             <input
               type="email"
@@ -99,7 +90,7 @@
               placeholder="Email"
               class="w-full p-2 mb-3 bg-white rounded-lg placeholder-gray-500 text-sm"
             />
-
+    
             <!-- Industry Dropdown -->
             <select
               id="industry"
@@ -115,7 +106,7 @@
               <option value="Construction">Construction</option>
               <option value="E-Commerce">E-Commerce</option>
             </select>
-
+    
             <!-- Skills -->
             <div class="mb-2">
               <div class="relative">
@@ -141,74 +132,17 @@
                   id="skillsList"
                   class="absolute left-0 w-full mt-1 bg-white border border-gray-300 rounded-lg shadow-lg hidden z-10 max-h-32 overflow-y-auto"
                 >
-                  <div
-                    class="skill-item p-1 cursor-pointer hover:bg-[#6692A7] hover:text-white"
-                  >
-                    HTML
-                  </div>
-                  <div
-                    class="skill-item p-1 cursor-pointer hover:bg-[#6692A7] hover:text-white"
-                  >
-                    CSS
-                  </div>
-                  <div
-                    class="skill-item p-1 cursor-pointer hover:bg-[#6692A7] hover:text-white"
-                  >
-                    JavaScript
-                  </div>
-                  <div
-                    class="skill-item p-1 cursor-pointer hover:bg-[#6692A7] hover:text-white"
-                  >
-                    Python
-                  </div>
-                  <div
-                    class="skill-item p-1 cursor-pointer hover:bg-[#6692A7] hover:text-white"
-                  >
-                    Figma
-                  </div>
-                  <div
-                    class="skill-item p-1 cursor-pointer hover:bg-[#6692A7] hover:text-white"
-                  >
-                    Blender
-                  </div>
-                  <div
-                    class="skill-item p-1 cursor-pointer hover:bg-[#6692A7] hover:text-white"
-                  >
-                    React
-                  </div>
-                  <div
-                    class="skill-item p-1 cursor-pointer hover:bg-[#6692A7] hover:text-white"
-                  >
-                    Prototyping
-                  </div>
-                  <div
-                    class="skill-item p-1 cursor-pointer hover:bg-[#6692A7] hover:text-white"
-                  >
-                    Graphics Design
-                  </div>
-                  <div
-                    class="skill-item p-1 cursor-pointer hover:bg-[#6692A7] hover:text-white"
-                  >
-                    UX/UI design
-                  </div>
-                  <div
-                    class="skill-item p-1 cursor-pointer hover:bg-[#6692A7] hover:text-white"
-                  >
-                    Accounting
-                  </div>
-                  <div
-                    class="skill-item p-1 cursor-pointer hover:bg-[#6692A7] hover:text-white"
-                  >
-                    Book Keeping
-                  </div>
+                  <!-- Add skills here as .skill-item -->
+                  <!-- Example: -->
+                  <div class="skill-item p-1 cursor-pointer hover:bg-[#6692A7] hover:text-white">HTML</div>
+                  <div class="skill-item p-1 cursor-pointer hover:bg-[#6692A7] hover:text-white">CSS</div>
+                  <div class="skill-item p-1 cursor-pointer hover:bg-[#6692A7] hover:text-white">JavaScript</div>
+                  <!-- More skills -->
                 </div>
               </div>
-              <div
-                id="selectedSkillsContainer"
-                class="mt-2 flex flex-wrap gap-1"
-              ></div>
+              <div id="selectedSkillsContainer" class="mt-2 flex flex-wrap gap-1"></div>
             </div>
-
+    
             <!-- Password -->
             <input
               type="password"
@@ -216,7 +150,7 @@
               placeholder="Password"
               class="w-full p-2 mb-3 bg-white rounded-lg placeholder-gray-500 text-sm"
             />
-
+    
             <!-- Confirm Password -->
             <input
               type="password"
@@ -224,6 +158,46 @@
               placeholder="Confirm Password"
               class="w-full p-2 mb-3 bg-white rounded-lg placeholder-gray-500 text-sm"
             />
+    
+            <!-- Location -->
+            <input
+              type="text"
+              id="location"
+              placeholder="Location"
+              class="w-full p-2 mb-3 bg-white rounded-lg placeholder-gray-500 text-sm"
+            />
+    
+            <!-- Phone Number -->
+            <input
+              type="tel"
+              id="phoneNumber"
+              placeholder="Phone Number"
+              class="w-full p-2 mb-3 bg-white rounded-lg placeholder-gray-500 text-sm"
+            />
+    
+            <!-- Resume Link -->
+            <input
+              type="url"
+              id="resumeLink"
+              placeholder="Resume Link"
+              class="w-full p-2 mb-3 bg-white rounded-lg placeholder-gray-500 text-sm"
+            />
+    
+            <!-- Cover Letter -->
+            <textarea
+              id="coverLetter"
+              placeholder="Cover Letter"
+              class="w-full p-2 mb-3 bg-white rounded-lg placeholder-gray-500 text-sm"
+            ></textarea>
+    
+            <!-- Profile Picture -->
+            <input
+              type="url"
+              id="profilePicture"
+              placeholder="Profile Picture Link"
+              class="w-full p-2 mb-3 bg-white rounded-lg placeholder-gray-500 text-sm"
+            />
+    
 
             <!-- Employer / Freelancer Toggle -->
             <div class="flex space-x-3 mb-4">
@@ -246,11 +220,11 @@
 
             <!-- Sign Up Button -->
             <button
-              type="submit"
-              class="w-full py-2 text-white bg-[#6EB0B6] font-bold text-sm rounded-[50px] hover:bg-[#6EB0B6]/90 transition"
-            >
-              Sign Up
-            </button>
+            type="submit"
+            class="w-full py-2 text-white bg-[#6EB0B6] font-bold text-sm rounded-[50px] hover:bg-[#6EB0B6]/90 transition"
+          >
+            Sign Up
+          </button>
 
             <!-- Admin Link -->
             <div class="text-center mt-3">
@@ -481,34 +455,7 @@
         navbar.classList.toggle("hidden");
       });
 
-      const skillsDropdown = document.getElementById("skillsDropdown");
-      const skillsList = document.getElementById("skillsList");
-      const selectedSkillsContainer = document.getElementById(
-        "selectedSkillsContainer"
-      );
-
-      skillsDropdown.addEventListener("click", () => {
-        skillsList.classList.toggle("hidden");
-      });
-
-      const skillItems = skillsList.querySelectorAll(".skill-item");
-
-      skillItems.forEach((item) => {
-        item.addEventListener("click", () => {
-          const skill = item.textContent;
-
-          if (!isSkillSelected(skill)) {
-            const skillItem = document.createElement("div");
-            skillItem.className =
-              "bg-[#6692A7] text-white rounded-lg px-3 py-1 text-sm flex items-center";
-            skillItem.innerHTML = `${skill} <button onclick="removeSkill('${skill}')" class="ml-2 text-white">&times;</button>`;
-            selectedSkillsContainer.appendChild(skillItem);
-
-            skillsList.classList.add("hidden");
-          }
-        });
-      });
-
+    
       function isSkillSelected(skill) {
         const selectedSkills = selectedSkillsContainer.querySelectorAll("div");
         return Array.from(selectedSkills).some((item) =>
@@ -524,6 +471,109 @@
           selectedSkillsContainer.removeChild(skillItem);
         }
       }
+
+
+
+
+      const skillsDropdown = document.getElementById("skillsDropdown");
+const skillsList = document.getElementById("skillsList");
+const selectedSkillsContainer = document.getElementById("selectedSkillsContainer");
+
+let selectedSkills = [];
+
+
+skillsDropdown.addEventListener("click", () => {
+  skillsList.classList.toggle("hidden");
+});
+
+
+const skillItems = skillsList.querySelectorAll(".skill-item");
+skillItems.forEach((item) => {
+  item.addEventListener("click", () => {
+    const skill = item.textContent;
+
+    if (!selectedSkills.includes(skill)) {
+      selectedSkills.push(skill);
+      const skillItem = document.createElement("div");
+      skillItem.className = "bg-[#6692A7] text-white rounded-lg px-3 py-1 text-sm flex items-center";
+      skillItem.innerHTML = `${skill} <button onclick="removeSkill('${skill}')" class="ml-2 text-white">&times;</button>`;
+      selectedSkillsContainer.appendChild(skillItem);
+      skillsList.classList.add("hidden");
+    }
+  });
+});
+
+
+function removeSkill(skill) {
+  selectedSkills = selectedSkills.filter(s => s !== skill);
+  const skillItem = Array.from(selectedSkillsContainer.children).find(
+    (item) => item.textContent.includes(skill)
+  );
+  if (skillItem) {
+    selectedSkillsContainer.removeChild(skillItem);
+  }
+}
+
+
+const signupForm = document.getElementById("signup-form");
+signupForm.addEventListener("submit", async (event) => {
+  event.preventDefault();
+
+  const name = document.getElementById("name").value;
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+  const confirmPassword = document.getElementById("confirm-password").value;
+  const industry = document.getElementById("industry").value;
+  const location = document.getElementById("location").value;
+  const phoneNumber = document.getElementById("phoneNumber").value;
+  const resumeLink = document.getElementById("resumeLink").value;
+  const coverLetter = document.getElementById("coverLetter").value;
+  const profilePicture = document.getElementById("profilePicture").value;
+
+
+  if (password !== confirmPassword) {
+    alert("Passwords do not match");
+    return;
+  }
+
+
+  const signupData = {
+    name,
+    email,
+    password,
+    skills: selectedSkills, 
+    industry,
+    yearsOfExperience: 0,
+    resumeLink,
+    coverLetter,
+    links: [], 
+    description: "",
+    location,
+    phoneNumber,
+    profilePicture,
+  };
+
+  try {
+    // Send the data to the backend API
+    const response = await fetch("/auth/freelancers/signup", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(signupData),
+    });
+
+    if (response.ok) {
+      window.location.href = "/auth/freelancers/login";  
+    } else {
+      alert("Signup failed. Please try again.");
+    }
+  } catch (error) {
+    console.error("Error during signup:", error);
+    alert("An error occurred. Please try again later.");
+  }
+});
+
     </script>
   </body>
 </html>

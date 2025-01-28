@@ -196,6 +196,29 @@
               placeholder="Add Links (Optional, comma-separated)"
               class="w-full p-2 mb-3 bg-white rounded-lg placeholder-gray-500 text-sm"
             ></textarea>
+
+
+
+              <!-- Employer / Freelancer Toggle -->
+              <div class="flex space-x-3 mb-4">
+                <button
+                  type="button"
+                  id="employer-btn"
+                  class="w-1/2 border-2 border-[#F0823E] text-[#F0823E] py-2 text-sm rounded-[50px] hover:bg-[#F0823E]/10 transition"
+                >
+                  Job Poster
+                </button>
+                <button
+                  type="button"
+                  id="freelancer-btn"
+                  class="w-1/2 border-2 border-[#6699A7] text-[#6699A7] py-2 text-sm rounded-[50px] hover:bg-[#6699A7]/10 transition"
+                  onclick="window.location.href='/auth/freelancers/signup'"
+                >
+                  Freelancer
+                </button>
+              </div>
+  
+              
     
             <!-- Sign Up Button -->
             <button
@@ -417,7 +440,7 @@
     </div>
 
     <script>
-      // Toggle menu visibility on smaller screens
+    
       const menuToggle = document.getElementById("menu-toggle");
       const navbar = document.getElementById("navbar");
 
@@ -426,87 +449,173 @@
       });
 
 
-
-
       document.getElementById("signup-form").addEventListener("submit", async function (event) {
-  event.preventDefault(); // Prevent default form submission
-
-  // Gather input values
-  const companyName = document.getElementById("company-name").value.trim();
-  const email = document.getElementById("email").value.trim();
-  const industry = document.getElementById("industry").value;
-  const password = document.getElementById("password").value.trim();
-  const confirmPassword = document.getElementById("confirm-password").value.trim();
-  const location = document.getElementById("location").value.trim();
-  const description = document.getElementById("description").value.trim();
-  const phoneNumber = document.getElementById("phone-number").value.trim();
-  const profilePicture = document.getElementById("profile-picture").value.trim();
-  const linksInput = document.getElementById("links").value.trim();
-
-  // Process links as an array if provided
-  const links = linksInput ? linksInput.split(",").map(link => link.trim()) : [];
-
-  // Validate input fields
-  if (!companyName || !email || !industry || !password || !confirmPassword || !location) {
-    alert("Please fill out all required fields.");
-    return;
-  }
-
-  if (password !== confirmPassword) {
-    alert("Passwords do not match.");
-    return;
-  }
-
-  if (links.some(link => !/^https?:\/\//.test(link))) {
-    alert("All links must be valid URLs starting with http:// or https://");
-    return;
-  }
-
-  if (profilePicture && !/^https?:\/\//.test(profilePicture)) {
-    alert("Profile picture URL must start with http:// or https://");
-    return;
-  }
-
-  // Construct the request payload
-  const requestBody = {
-    name: companyName,
-    email: email,
-    password: password,
-    industry: industry,
-    location: location,
-    description: description,
-    phoneNumber: phoneNumber,
-    links: links,
-    profilePicture: profilePicture
-  };
-
-  try {
-    // Send the POST request to the Spring Boot backend
-    const response = await fetch("/auth/job-posters/signup", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(requestBody),
-    });
-
-    if (response.ok) {
-      const responseData = await response.json();
-      alert("Signup successful!");
-      console.log(responseData);
-      // Optionally redirect to another page
-      window.location.href = "/auth/job-posters/login";
-    } else {
-      const errorData = await response.text();
-      alert(`Signup failed: ${errorData}`);
-      console.error(errorData);
+    event.preventDefault(); 
+  
+    const companyName = document.getElementById("company-name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const industry = document.getElementById("industry").value;
+    const password = document.getElementById("password").value.trim();
+    const confirmPassword = document.getElementById("confirm-password").value.trim();
+    const location = document.getElementById("location").value.trim();
+    const description = document.getElementById("description").value.trim();
+    const phoneNumber = document.getElementById("phone-number").value.trim();
+    const profilePicture = document.getElementById("profile-picture").value.trim();
+    const linksInput = document.getElementById("links").value.trim();
+  
+  
+    const links = linksInput ? linksInput.split(",").map(link => link.trim()) : [];
+  
+  
+    if (!companyName || !email || !industry || !password || !confirmPassword || !location) {
+      alert("Please fill out all required fields.");
+      return;
     }
-  } catch (error) {
-    console.error("An error occurred during signup:", error);
-    alert("An unexpected error occurred. Please try again later.");
-  }
-});
+  
+    if (password !== confirmPassword) {
+      alert("Passwords do not match.");
+      return;
+    }
+  
+    if (links.some(link => !/^https?:\/\//.test(link))) {
+      alert("All links must be valid URLs starting with http:// or https://");
+      return;
+    }
+  
+    if (profilePicture && !/^https?:\/\//.test(profilePicture)) {
+      alert("Profile picture URL must start with http:// or https://");
+      return;
+    }
+  
+  
+    const requestBody = {
+      name: companyName,
+      email: email,
+      password: password,
+      industry: industry,
+      location: location,
+      description: description,
+      phoneNumber: phoneNumber,
+      links: links,
+      profilePicture: profilePicture
+    };
+  
+    try {
+   
+      const response = await fetch("/auth/job-posters/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(requestBody),
+      });
+  
+      if (response.ok) {
+        const responseData = await response.json();
+        alert("Signup successful!");
+        console.log(responseData);
+   
+        window.location.href = "/auth/job-posters/login";
+      } else {
+        const errorData = await response.text();
+        alert(`Signup failed: ${errorData}`);
+        console.error(errorData);
+      }
+    } catch (error) {
+      console.error("An error occurred during signup:", error);
+      alert("An unexpected error occurred. Please try again later.");
+    }
+  });
+  
+  document.getElementById("signup-form").addEventListener("submit", async function (event) {
+    event.preventDefault(); 
 
+    const name = document.getElementById("company-name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const industry = document.getElementById("industry").value;
+    const password = document.getElementById("password").value.trim();
+    const confirmPassword = document.getElementById("confirm-password").value.trim();
+    const location = document.getElementById("location").value.trim();
+    const description = document.getElementById("description").value.trim();
+    const phoneNumber = document.getElementById("phone-number").value.trim();
+    const profilePicture = document.getElementById("profile-picture").value.trim();
+    
+    // Get the selected skills from the dropdown
+    const skills = [];
+    const selectedSkills = document.querySelectorAll("#selectedSkillsContainer .skill-item");
+    selectedSkills.forEach(skill => {
+      skills.push(skill.textContent.trim());
+    });
+  
+    // Get the resume link
+    const resumeLink = document.getElementById("resume-link").value.trim();
+
+    // Get links (if any)
+    const linksInput = document.getElementById("links").value.trim();
+    const links = linksInput ? linksInput.split(",").map(link => link.trim()) : [];
+
+    if (!name || !email || !industry || !password || !confirmPassword || !location) {
+      alert("Please fill out all required fields.");
+      return;
+    }
+
+    if (password !== confirmPassword) {
+      alert("Passwords do not match.");
+      return;
+    }
+
+    if (links.some(link => !/^https?:\/\//.test(link))) {
+      alert("All links must be valid URLs starting with http:// or https://");
+      return;
+    }
+
+    if (profilePicture && !/^https?:\/\//.test(profilePicture)) {
+      alert("Profile picture URL must start with http:// or https://");
+      return;
+    }
+
+    const requestBody = {
+      name: name,
+      email: email,
+      password: password,
+      skills: skills,
+      industry: industry,
+      yearsOfExperience: 0, // You can adjust this if there's a field for experience
+      resumeLink: resumeLink,
+      coverLetter: description, // You can adjust this if there's a cover letter field
+      links: links,
+      description: description,
+      location: location,
+      phoneNumber: phoneNumber,
+      profilePicture: profilePicture,
+    };
+
+    try {
+      const response = await fetch("/auth/freelancer/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(requestBody),
+      });
+
+      if (response.ok) {
+        const responseData = await response.json();
+        alert("Signup successful!");
+        console.log(responseData);
+        window.location.href = "/auth/freelancer/login";
+      } else {
+        const errorData = await response.text();
+        alert(`Signup failed: ${errorData}`);
+        console.error(errorData);
+      }
+    } catch (error) {
+      console.error("An error occurred during signup:", error);
+      alert("An unexpected error occurred. Please try again later.");
+    }
+  });
+
+      
     </script>
 
 
