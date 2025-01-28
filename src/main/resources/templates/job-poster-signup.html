@@ -71,9 +71,7 @@
     </header>
 
     <main class="flex justify-center items-center min-h-screen">
-      <div
-        class="flex justify-center items-center w-full max-w-screen-md px-4 py-6"
-      >
+      <div class="flex justify-center items-center w-full max-w-screen-md px-4 py-6">
         <!-- Left Side Image -->
         <div class="hidden sm:block w-1/2 h-full">
           <img
@@ -82,38 +80,64 @@
             class="object-cover w-full h-full rounded-l-2xl"
           />
         </div>
-
+    
         <!-- Right Side Card -->
-        <div
-          class="w-full sm:w-[50%] bg-[#F0823E]/[15%] rounded-2xl p-6 shadow-md"
-        >
+        <div class="w-full sm:w-[50%] bg-[#F0823E]/[15%] rounded-2xl p-6 shadow-md">
           <!-- Sign Up Title -->
-          <h2 class="text-center text-2xl font-light mb-4">
-            Job Poster Sign Up
-          </h2>
-
+          <h2 class="text-center text-2xl font-light mb-4">Job Poster Sign Up</h2>
+    
           <!-- Form -->
           <form id="signup-form">
             <!-- Company Name -->
             <input
               type="text"
               id="company-name"
+              name="name"
               placeholder="Company Name"
               class="w-full p-2 mb-3 bg-white rounded-lg placeholder-gray-500 text-sm"
+              required
+              maxlength="50"
             />
-
+    
             <!-- Email -->
             <input
               type="email"
               id="email"
+              name="email"
               placeholder="Email"
               class="w-full p-2 mb-3 bg-white rounded-lg placeholder-gray-500 text-sm"
+              required
             />
-
+    
+            <!-- Password -->
+            <input
+              type="password"
+              id="password"
+              name="password"
+              placeholder="Password"
+              class="w-full p-2 mb-3 bg-white rounded-lg placeholder-gray-500 text-sm"
+              required
+              minlength="6"
+              maxlength="20"
+            />
+    
+            <!-- Confirm Password -->
+            <input
+              type="password"
+              id="confirm-password"
+              placeholder="Confirm Password"
+              class="w-full p-2 mb-3 bg-white rounded-lg placeholder-gray-500 text-sm"
+              required
+              minlength="6"
+              maxlength="20"
+            />
+    
             <!-- Industry Dropdown -->
             <select
               id="industry"
+              name="industry"
               class="w-full p-2 mb-3 bg-white rounded-lg text-gray-700 text-sm border border-gray-300"
+              required
             >
               <option value="" disabled selected>Select Industry</option>
               <option value="Software Development">Software Development</option>
@@ -125,42 +149,54 @@
               <option value="Construction">Construction</option>
               <option value="E-Commerce">E-Commerce</option>
             </select>
-
-            <!-- Password -->
-            <input
-              type="password"
-              id="password"
-              placeholder="Password"
+    
+            <!-- Description -->
+            <textarea
+              id="description"
+              name="description"
+              placeholder="Description (Optional)"
               class="w-full p-2 mb-3 bg-white rounded-lg placeholder-gray-500 text-sm"
-            />
-
-            <!-- Confirm Password -->
+              maxlength="1000"
+            ></textarea>
+    
+            <!-- Location -->
             <input
-              type="password"
-              id="confirm-password"
-              placeholder="Confirm Password"
+              type="text"
+              id="location"
+              name="location"
+              placeholder="Location"
               class="w-full p-2 mb-3 bg-white rounded-lg placeholder-gray-500 text-sm"
+              required
             />
-
-            <!-- Employer / Freelancer Toggle -->
-            <div class="flex space-x-3 mb-4">
-              <button
-                type="button"
-                id="employer-btn"
-                class="w-1/2 border-2 border-[#F0823E] text-[#F0823E] py-2 text-sm rounded-[50px] hover:bg-[#F0823E]/10 transition"
-              >
-                Job Poster
-              </button>
-              <button
-                type="button"
-                id="freelancer-btn"
-                class="w-1/2 border-2 border-[#6699A7] text-[#6699A7] py-2 text-sm rounded-[50px] hover:bg-[#6699A7]/10 transition"
-                onclick="window.location.href='/auth/freelancers/signup'"
-              >
-                Freelancer
-              </button>
-            </div>
-
+    
+            <!-- Phone Number -->
+            <input
+              type="text"
+              id="phone-number"
+              name="phoneNumber"
+              placeholder="Phone Number (e.g., +1234567890)"
+              class="w-full p-2 mb-3 bg-white rounded-lg placeholder-gray-500 text-sm"
+              pattern="^\+?[0-9]*$"
+            />
+    
+            <!-- Profile Picture -->
+            <input
+              type="url"
+              id="profile-picture"
+              name="profilePicture"
+              placeholder="Profile Picture URL (Optional)"
+              class="w-full p-2 mb-3 bg-white rounded-lg placeholder-gray-500 text-sm"
+              pattern="^(https?://).+"
+            />
+    
+            <!-- Links -->
+            <textarea
+              id="links"
+              name="links"
+              placeholder="Add Links (Optional, comma-separated)"
+              class="w-full p-2 mb-3 bg-white rounded-lg placeholder-gray-500 text-sm"
+            ></textarea>
+    
             <!-- Sign Up Button -->
             <button
               type="submit"
@@ -168,18 +204,16 @@
             >
               Sign Up
             </button>
-
+    
             <!-- Admin Link -->
             <div class="text-center mt-3">
-              <a href="#" class="text-black text-xs hover:underline"
-                >Admin? Click here</a
-              >
+              <a href="#" class="text-black text-xs hover:underline">Admin? Click here</a>
             </div>
           </form>
         </div>
       </div>
     </main>
-
+    
     <footer class="bg-black py-8">
       <div
         class="grid grid-cols-5 gap-6 text-center text-[16px] font-bold text-white"
@@ -390,6 +424,92 @@
       menuToggle.addEventListener("click", () => {
         navbar.classList.toggle("hidden");
       });
+
+
+
+
+      document.getElementById("signup-form").addEventListener("submit", async function (event) {
+  event.preventDefault(); // Prevent default form submission
+
+  // Gather input values
+  const companyName = document.getElementById("company-name").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const industry = document.getElementById("industry").value;
+  const password = document.getElementById("password").value.trim();
+  const confirmPassword = document.getElementById("confirm-password").value.trim();
+  const location = document.getElementById("location").value.trim();
+  const description = document.getElementById("description").value.trim();
+  const phoneNumber = document.getElementById("phone-number").value.trim();
+  const profilePicture = document.getElementById("profile-picture").value.trim();
+  const linksInput = document.getElementById("links").value.trim();
+
+  // Process links as an array if provided
+  const links = linksInput ? linksInput.split(",").map(link => link.trim()) : [];
+
+  // Validate input fields
+  if (!companyName || !email || !industry || !password || !confirmPassword || !location) {
+    alert("Please fill out all required fields.");
+    return;
+  }
+
+  if (password !== confirmPassword) {
+    alert("Passwords do not match.");
+    return;
+  }
+
+  if (links.some(link => !/^https?:\/\//.test(link))) {
+    alert("All links must be valid URLs starting with http:// or https://");
+    return;
+  }
+
+  if (profilePicture && !/^https?:\/\//.test(profilePicture)) {
+    alert("Profile picture URL must start with http:// or https://");
+    return;
+  }
+
+  // Construct the request payload
+  const requestBody = {
+    name: companyName,
+    email: email,
+    password: password,
+    industry: industry,
+    location: location,
+    description: description,
+    phoneNumber: phoneNumber,
+    links: links,
+    profilePicture: profilePicture
+  };
+
+  try {
+    // Send the POST request to the Spring Boot backend
+    const response = await fetch("/auth/job-posters/signup", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(requestBody),
+    });
+
+    if (response.ok) {
+      const responseData = await response.json();
+      alert("Signup successful!");
+      console.log(responseData);
+      // Optionally redirect to another page
+      window.location.href = "/auth/job-posters/login";
+    } else {
+      const errorData = await response.text();
+      alert(`Signup failed: ${errorData}`);
+      console.error(errorData);
+    }
+  } catch (error) {
+    console.error("An error occurred during signup:", error);
+    alert("An unexpected error occurred. Please try again later.");
+  }
+});
+
     </script>
+
+
+
   </body>
 </html>
