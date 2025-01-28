@@ -16,11 +16,12 @@
     <link rel="stylesheet" href="/styles/style.css" />
     <script src="/scripts/toast.js"></script>
     <script src="/scripts/tokens.js"></script>
+    <script src="/scripts/job-poster.js"></script>
     <script src="/scripts/logout.js"></script>
 
     <title>Job Poster Profile</title>
   </head>
-  <body class="bg-white flex flex-col justify-between min-h-screen">
+  <body class="bg-gray-100 flex flex-col justify-between min-h-screen">
     <!-- Top Navigation Bar -->
     <header>
       <nav
@@ -34,12 +35,12 @@
 
         <div class="flex space-x-8">
           <!-- Home -->
-          <a href="/" class="flex flex-col items-center">
+          <a href="/job-posters/dashboard" class="flex flex-col items-center">
             <img src="/assets/homeIcon.png" alt="Home" class="h-6 w-6" />
             <span class="text-sm text-black mt-1">Home</span>
           </a>
           <!-- Profile -->
-          <a class="flex flex-col items-center">
+          <a href="/job-posters/profile" class="flex flex-col items-center">
             <img src="/assets/userIcon.png" alt="Profile" class="h-6 w-6" />
             <span class="text-sm text-gray-500 mt-1">Profile</span>
           </a>
@@ -55,142 +56,228 @@
       </nav>
     </header>
 
-    <main>
-      <form class="px-6 py-8 max-w-[400px] mx-auto">
-        <!-- Modal Header -->
-        <div class="flex items-center justify-center space-x-2 mb-4">
-          <h2 class="text-[40px] font-light text-black">Update Profile</h2>
-        </div>
+    <!-- Form Section -->
+    <main class="flex-grow flex items-center justify-center my-8">
+      <form
+        id="profileForm"
+        class="bg-white rounded-lg shadow-lg p-6 w-[90%] max-w-[600px] p-4"
+      >
+        <h2 class="text-2xl font-bold text-center mb-6 text-[#F0823E]">
+          Update Profile
+        </h2>
 
-        <!-- Name and Industry -->
-        <div class="flex flex-col space-y-4 mb-4">
-          <!-- Company Name -->
-          <div class="w-full">
-            <label
-              for="name"
-              class="block text-black font-bold text-[12px] mb-1"
-            >
-              Company Name</label
-            >
-            <input
-              type="text"
-              id="name"
-              placeholder="Enter name"
-              class="w-full border border-gray-300 rounded-lg px-2 py-2 text-[12px]"
-            />
-          </div>
-
-          <!-- Industry -->
-          <div class="w-full">
-            <label
-              for="industry"
-              class="block text-black font-bold text-[12px] mb-1"
-              >Industry</label
-            >
-            <select
-              id="industry"
-              class="w-full border border-gray-300 rounded-lg px-2 py-2 text-[12px]"
-            >
-              <option value="Design">Design</option>
-              <option value="Software Engineering">Software Engineering</option>
-              <option value="Marketing">Marketing</option>
-              <option value="Healthcare">Healthcare</option>
-              <option value="Finance">Finance</option>
-              <option value="Education">Education</option>
-              <option value="Construction">Construction</option>
-            </select>
-          </div>
-        </div>
-
-        <!-- About -->
+        <!-- Name -->
         <div class="mb-4">
-          <label for="about" class="block text-black font-bold text-[12px] mb-1"
-            >About</label
+          <label for="name" class="block text-sm font-bold mb-1">Name</label>
+          <input
+            type="text"
+            id="name"
+            placeholder="Enter your full name"
+            class="w-full border rounded-lg px-3 py-2 text-sm"
+            th:value="${name}"
+            required
+          />
+        </div>
+
+        <!-- Industry -->
+        <div class="mb-4">
+          <label for="industry" class="block text-sm font-bold mb-1"
+            >Industry</label
+          >
+          <select
+            id="industry"
+            class="w-full border rounded-lg px-3 py-2 text-sm"
+            required
+          >
+            <option
+              value="Software Development"
+              th:selected="${industry == 'Software Development'}"
+            >
+              Software Development
+            </option>
+            <option value="Design" th:selected="${industry == 'Design'}">
+              Design
+            </option>
+            <option value="Marketing" th:selected="${industry == 'Marketing'}">
+              Marketing
+            </option>
+            <option value="Finance" th:selected="${industry == 'Finance'}">
+              Finance
+            </option>
+            <option
+              value="Healthcare"
+              th:selected="${industry == 'Healthcare'}"
+            >
+              Healthcare
+            </option>
+            <option value="Education" th:selected="${industry == 'Education'}">
+              Education
+            </option>
+            <option
+              value="Construction"
+              th:selected="${industry == 'Construction'}"
+            >
+              Construction
+            </option>
+            <option
+              value="E-Commerce"
+              th:selected="${industry == 'E-Commerce'}"
+            >
+              E-Commerce
+            </option>
+          </select>
+        </div>
+
+        <!-- Description -->
+        <div class="mb-4">
+          <label for="description" class="block text-sm font-bold mb-1"
+            >Description</label
           >
           <textarea
-            id="about"
-            placeholder="Tell us about yourself"
-            class="w-full border border-gray-300 rounded-lg px-2 py-2 text-[12px] h-[100px]"
+            id="description"
+            placeholder="Describe yourself"
+            class="w-full border rounded-lg px-3 py-2 text-sm"
+            rows="4"
+            th:text="${description}"
           ></textarea>
         </div>
 
         <!-- Email -->
         <div class="mb-4">
-          <label for="email" class="block text-black font-bold text-[12px] mb-1"
-            >Email</label
-          >
+          <label for="email" class="block text-sm font-bold mb-1">Email</label>
           <input
-            type="email"
+            type="text"
             id="email"
-            placeholder="Enter company email"
-            class="w-full border border-gray-300 rounded-lg px-2 py-2 text-[12px]"
+            placeholder="Enter your email"
+            class="w-full border rounded-lg px-3 py-2 text-sm"
+            required
+            th:value="${email}"
           />
         </div>
 
-        <!-- Location (City & Country) -->
+        <!-- Location -->
         <div class="mb-4">
-          <label
-            for="location"
-            class="block text-black font-bold text-[12px] mb-1"
+          <label for="location" class="block text-sm font-bold mb-1"
             >Location</label
           >
           <input
             type="text"
             id="location"
-            placeholder="Enter location"
-            class="w-1/2 border border-gray-300 rounded-lg px-2 py-2 text-[12px]"
+            placeholder="City, Country"
+            class="w-full border rounded-lg px-3 py-2 text-sm"
+            th:value="${location}"
           />
         </div>
 
-        <!-- Banner Image Upload and Profile Image Upload -->
-        <div class="mb-4 flex flex-col space-y-4">
-          <!-- Banner Image Upload -->
-          <div class="w-full">
-            <label
-              for="bannerImage"
-              class="block text-black font-bold text-[12px] mb-1"
-              >Banner Image</label
-            >
-            <input
-              type="file"
-              id="bannerImage"
-              accept="image/*"
-              class="w-full border border-gray-300 rounded-lg px-2 py-2 text-[12px]"
-            />
-          </div>
-
-          <!-- Profile Image Upload -->
-          <div class="w-full">
-            <label
-              for="profileImage"
-              class="block text-black font-bold text-[12px] mb-1"
-              >Profile Image</label
-            >
-            <input
-              type="file"
-              id="profileImage"
-              accept="image/*"
-              class="w-full border border-gray-300 rounded-lg px-2 py-2 text-[12px]"
-            />
-          </div>
-        </div>
-
-        <!-- Submit Button -->
-        <div class="text-center py-6">
-          <button
-            type="submit"
-            class="w-[120px] bg-[#57DD70] text-white font-bold text-[14px] py-2 rounded-full hover:bg-[#57DD70]/90 transition"
+        <!-- Phone -->
+        <div class="mb-4">
+          <label for="phoneNumber" class="block text-sm font-bold mb-1"
+            >Phone Number</label
           >
-            Submit
-          </button>
+          <input
+            type="tel"
+            id="phoneNumber"
+            placeholder="Enter phone number"
+            class="w-full border rounded-lg px-3 py-2 text-sm"
+            th:value="${phoneNumber}"
+          />
         </div>
+
+        <!-- Password and Confirm Password -->
+        <div class="mb-4">
+          <label for="password" class="block text-sm font-bold mb-1"
+            >Password</label
+          >
+          <input
+            type="password"
+            id="password"
+            placeholder="Enter password"
+            class="w-full border rounded-lg px-3 py-2 text-sm"
+            required
+          />
+        </div>
+
+        <div class="mb-4">
+          <label for="confirmPassword" class="block text-sm font-bold mb-1"
+            >Confirm Password</label
+          >
+          <input
+            type="password"
+            id="confirmPassword"
+            placeholder="Confirm password"
+            class="w-full border rounded-lg px-3 py-2 text-sm"
+            required
+          />
+        </div>
+
+        <!-- Links -->
+        <div class="mb-4">
+          <label for="links" class="block text-sm font-bold mb-1"
+            >Links (comma-separated)</label
+          >
+          <input
+            type="text"
+            id="links"
+            placeholder="https://linkedin.com, https://github.com"
+            class="w-full border rounded-lg px-3 py-2 text-sm"
+            th:value="${#strings.arrayJoin(links, ', ')}"
+          />
+        </div>
+
+        <button
+          type="submit"
+          class="w-full bg-[#57DD70] text-white font-bold py-2 rounded-lg hover:bg-[#57DD70]/90 transition"
+        >
+          Submit
+        </button>
       </form>
     </main>
 
-    <div class="mt-6 text-center pb-3 bg-white">
+    <!-- Copyright Section -->
+    <div class="mt-6 text-center py-3 bg-white">
       <p class="text-black text-[16px] font-bold sm:text-sm">
         © 2025 Vocation. All Rights Reserved.
       </p>
     </div>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const form = document.getElementById("profileForm");
+
+        form.addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const name = document.getElementById("name").value;
+          const industry = document.getElementById("industry").value;
+          const description = document.getElementById("description").value;
+          const email = document.getElementById("email").value;
+          const location = document.getElementById("location").value;
+          const phoneNumber = document.getElementById("phoneNumber").value;
+          const password = document.getElementById("password").value;
+          const confirmPassword =
+            document.getElementById("confirmPassword").value;
+          const links = document.getElementById("links").value.split(",");
+
+          if (password !== confirmPassword) {
+            showToast("Passwords do not match", "error");
+            return;
+          }
+
+          const payload = {
+            name,
+            email,
+            password,
+            industry,
+            description: description,
+            location,
+            phoneNumber,
+            links: links.map((link) => link.trim()),
+          };
+
+          await sendProfileUpdateRequest(
+            "/job-posters/update-profile",
+            payload
+          );
+        });
+      });
+    </script>
   </body>
 </html>

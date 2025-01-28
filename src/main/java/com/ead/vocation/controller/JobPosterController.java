@@ -91,12 +91,19 @@ public class JobPosterController {
         String token = (String) request.getAttribute("Authorization");
         Integer jobPosterId = jwtServices.extractIdFromHeader(token);
         JobPoster jobPoster = jobPosterService.getJobPoster(jobPosterId);
+        model.addAttribute("name", jobPoster.getUser().getName());
+        model.addAttribute("industry", jobPoster.getIndustry());
+        model.addAttribute("description", jobPoster.getDescription());
+        model.addAttribute("email", jobPoster.getUser().getEmail());
+        model.addAttribute("location", jobPoster.getLocation());
+        model.addAttribute("phoneNumber", jobPoster.getPhoneNumber());
+        model.addAttribute("links", jobPoster.getLinks());
         return "job-poster-update-profile";
     }
 
     @PutMapping("/update-profile")
     public ResponseEntity<?> updateJobPoster(@RequestHeader("Authorization") String token,
-            @RequestBody UpdateJobPosterRequest entity) {
+            @Valid @RequestBody UpdateJobPosterRequest entity) {
         try {
             Integer id = jwtServices.extractIdFromHeader(token);
             JobPoster jobPoster = jobPosterService.updateJobPoster(id, entity);

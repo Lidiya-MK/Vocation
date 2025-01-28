@@ -51,9 +51,9 @@ public class SignupFreelancerRequest {
     @NotBlank(message = "Location is mandatory")
     private String location;
 
-    @Pattern(regexp = "^\\+?[0-9]*$", message = "Phone number should only contain numbers and an optional leading '+'")
+    @Pattern(regexp = "^[\\+]?[(]?[0-9]{3}[)]?[-\\s\\.]?[0-9]{3}[-\\s\\.]?[0-9]{4,6}$", message = "Phone number should only contain numbers and an optional leading '+'")
     private String phoneNumber;
 
-    @Pattern(regexp = "^(https?://).+", message = "Profile picture link must be a valid URL starting with http:// or https://")
+    @Pattern(regexp = "^\\+?[1-9][0-9]{7,14}$", message = "Phone number should be valid")
     private String profilePicture;
 }

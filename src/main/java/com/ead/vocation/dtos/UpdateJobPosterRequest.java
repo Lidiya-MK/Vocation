@@ -38,6 +38,6 @@ public class UpdateJobPosterRequest {
     @NotBlank(message = "Location is mandatory")
     private String location;
 
-    @Pattern(regexp = "^\\+?[0-9]*$", message = "Phone number should only contain numbers and an optional leading '+'")
+    @Pattern(regexp = "^[\\+]?[(]?[0-9]{3}[)]?[-\\s\\.]?[0-9]{3}[-\\s\\.]?[0-9]{4,6}$", message = "Phone number should be valid")
     private String phoneNumber;
 }
