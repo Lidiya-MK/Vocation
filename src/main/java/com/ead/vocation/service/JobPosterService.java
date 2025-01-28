@@ -4,9 +4,11 @@ import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.ead.vocation.dtos.JobRequest;
+import com.ead.vocation.dtos.UpdateJobPosterRequest;
 import com.ead.vocation.model.Job;
 import com.ead.vocation.model.JobPoster;
 import com.ead.vocation.model.User;
@@ -24,6 +26,9 @@ public class JobPosterService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     public JobPoster getJobPoster(Integer id) {
         User user = userRepository.findById(id)
@@ -136,5 +141,30 @@ public class JobPosterService {
                         "Job not found or does not belong to the specified Job Poster"));
 
         jobRepository.delete(job);
+    }
+
+    public JobPoster updateJobPoster(Integer id, UpdateJobPosterRequest newJobPosterRequest) {
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("User not found"));
+
+        JobPoster jobPoster = jobPosterRepository.findByUser(user)
+                .orElseThrow(() -> new IllegalArgumentException("Job Poster not found"));
+
+        System.out.println(newJobPosterRequest.getEmail() + "; ;" + jobPoster.getUser().getEmail());
+        System.out.println(newJobPosterRequest.getEmail() != jobPoster.getUser().getEmail());
+        if (userRepository.existsByEmail(newJobPosterRequest.getEmail())
+                && !newJobPosterRequest.getEmail().equals(jobPoster.getUser().getEmail())) {
+            throw new IllegalArgumentException("Email already in use");
+        }
+
+        jobPoster.getUser().setName(newJobPosterRequest.getName());
+        jobPoster.getUser().setEmail(newJobPosterRequest.getEmail());
+        jobPoster.getUser().setPassword(passwordEncoder.encode(newJobPosterRequest.getPassword()));
+        jobPoster.setIndustry(newJobPosterRequest.getIndustry());
+        jobPoster.setDescription(newJobPosterRequest.getDescription());
+        jobPoster.setLocation(newJobPosterRequest.getLocation());
+        jobPoster.setPhoneNumber(newJobPosterRequest.getPhoneNumber());
+        jobPoster.setLinks(newJobPosterRequest.getLinks());
+        return jobPosterRepository.save(jobPoster);
     }
 }

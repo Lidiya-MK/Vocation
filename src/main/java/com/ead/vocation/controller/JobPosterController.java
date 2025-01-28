@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.ead.vocation.dtos.JobPosterResponse;
 import com.ead.vocation.dtos.JobRequest;
 import com.ead.vocation.dtos.JobResponse;
+import com.ead.vocation.dtos.UpdateJobPosterRequest;
 import com.ead.vocation.model.Application;
 import com.ead.vocation.model.Job;
 import com.ead.vocation.model.JobPoster;
@@ -90,6 +92,20 @@ public class JobPosterController {
         Integer jobPosterId = jwtServices.extractIdFromHeader(token);
         JobPoster jobPoster = jobPosterService.getJobPoster(jobPosterId);
         return "job-poster-update-profile";
+    }
+
+    @PutMapping("/update-profile")
+    public ResponseEntity<?> updateJobPoster(@RequestHeader("Authorization") String token,
+            @RequestBody UpdateJobPosterRequest entity) {
+        try {
+            Integer id = jwtServices.extractIdFromHeader(token);
+            JobPoster jobPoster = jobPosterService.updateJobPoster(id, entity);
+            JobPosterResponse jobPosterResponse = new JobPosterResponse();
+            jobPosterResponse.setFields(jobPoster, jobPoster.getUser());
+            return ResponseEntity.ok(jobPosterResponse);
+        } catch (IllegalArgumentException e) {
+            return handleException(e);
+        }
     }
 
     @GetMapping("/jobs")
