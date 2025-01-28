@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Mansalva&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles/style.css" />
+
+    <title>Freelancer Home page</title>
+  </head>
+  <body class="bg-white">
+    <!-- Top Navigation Bar -->
+    <header>
+      <nav
+        class="bg-white py-2 px-4 flex items-center justify-between shadow-md"
+      >
+        <!-- Company Name -->
+        <div class="text-[#6692A7] flex items-center company-name">
+          <span class="text-60px font-bold">V</span>
+          <span class="text-30px font-medium">ocation</span>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="hidden md:flex items-center w-1/2">
+          <div
+            class="flex items-center w-full border border-[#6692A7] rounded-full px-4 py-2"
+          >
+            <img
+              src="../assets/searchIcon.png"
+              alt="Search Icon"
+              class="h-5 w-5 text-[#9C9C9C]"
+            />
+            <input
+              type="text"
+              placeholder="Search"
+              class="w-full bg-transparent text-[#9C9C9C] ml-2 focus:outline-none"
+            />
+          </div>
+        </div>
+
+        <div class="flex space-x-8">
+          <!-- Home -->
+          <a href="#" class="flex flex-col items-center">
+            <img src="../assets/homeIcon.png" alt="Home" class="h-6 w-6" />
+            <span class="text-sm text-black mt-1">Home</span>
+          </a>
+          <!-- Profile -->
+          <a href="#" class="flex flex-col items-center">
+            <img src="../assets/userIcon.png" alt="Profile" class="h-6 w-6" />
+            <span class="text-sm text-gray-500 mt-1">Profile</span>
+          </a>
+          <!-- Logout -->
+          <a href="#" class="flex flex-col items-center">
+            <img src="../assets/logoutIcon.png" alt="Logout" class="h-6 w-6" />
+            <span class="text-sm text-gray-500 mt-1">Logout</span>
+          </a>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section class="relative w-full h-[250px]">
+        <img
+          src="../assets/FreelancerBanner.png"
+          alt="Cover Image"
+          class="w-full h-full object-cover"
+        />
+
+        <!-- Content Overlay -->
+        <div
+          class="absolute inset-0 flex justify-between items-center px-10 py-8"
+        >
+          <!-- Left Content -->
+          <div class="flex flex-col space-y-4">
+            <!-- Circular Image and Freelancer Name -->
+            <div class="flex items-center space-x-4">
+              <img
+                src="../assets/hibu.png"
+                alt="Circular Image"
+                class="w-[140px] h-[140px] rounded-full object-cover"
+              />
+
+              <!-- Freelancer Name -->
+              <div>
+                <h2 class="text-black font-bold text-[40px] leading-none">
+                  Hiba Kemal
+                </h2>
+              </div>
+            </div>
+
+            <!-- Industry and Location -->
+            <div class="flex flex-col space-y-2 mt-[-80px]">
+              <div class="flex items-center space-x-2">
+                <img
+                  src="../assets/suitcaseIcon.png"
+                  alt="Industry Icon"
+                  class="w-6 h-6"
+                />
+                <span class="text-[#6692A7] font-bold text-[16px]"
+                  >Graphics Designer, UI/UX designer</span
+                >
+              </div>
+              <div class="flex items-center space-x-2">
+                <img
+                  src="../assets/mailIcon.png"
+                  alt="Industry Icon"
+                  class="w-6 h-6"
+                />
+                <span class="text-[#716D6D] font-bold text-[16px]"
+                  >hiba@gmail.com</span
+                >
+              </div>
+              <div class="flex items-center space-x-2">
+                <img
+                  src="../assets/LocationIcon.png"
+                  alt="Location Icon"
+                  class="w-6 h-6"
+                />
+                <span class="text-[#716D6D] font-bold text-[16px]"
+                  >Addis Ababa, Ethiopia</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Content -->
+          <div class="text-left">
+            <h2 class="text-[#716D6D] font-bold text-[16px] hidden lg:block">
+              About
+            </h2>
+            <p
+              class="text-[#4b4b4b] text-[16px] font-light w-[500px] mt-2 hidden lg:block"
+            >
+              Hello! I'm a passionate UI/UX designer and graphic design
+              freelancer based in Addis Ababa, Ethiopia, dedicated to creating
+              user-centered digital experiences and compelling visual content.
+              With a keen eye for detail and a love for innovation, I specialize
+              in designing intuitive interfaces and crafting unique graphics
+              that bring ideas to life.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="mt-10 flex flex-col items-center px-4 sm:px-8">
+          <!-- Pending Applications Title -->
+          <div class="flex items-center gap-2">
+            <img
+              src="../assets/PendingIcon.png"
+              alt="Pending Icon"
+              class="w-6 h-6"
+            />
+            <p class="text-[20px] font-bold text-[#6EB0B6]">
+              Pending Applications
+            </p>
+          </div>
+
+          <!-- Pending Application Card -->
+          <div
+            class="w-full lg:w-[80%] border-[1.5px] border-black/[0.36] rounded-lg p-4 flex flex-wrap items-center lg:flex-nowrap gap-6 mt-6 mx-2"
+          >
+            <!-- Circular Image -->
+            <img
+              src="../assets/companyLogo.png"
+              alt="Profile"
+              class="w-[100px] h-[100px] rounded-full hidden lg:block"
+            />
+
+            <!-- Left Content (Details) -->
+            <div class="flex-1">
+              <!-- Job Title -->
+              <p class="text-[22px] lg:text-[27px] text-[#6F6C6C] font-light">
+                Graphics Designer
+              </p>
+
+              <!-- Company Name -->
+              <div class="flex items-center mt-1">
+                <img
+                  src="../assets/companyIcon.png"
+                  alt="Company Icon"
+                  class="w-4 h-4 mr-2"
+                />
+                <p class="text-[16px] font-bold text-[#716D6D]">
+                  Venmo Studios
+                </p>
+              </div>
+
+              <!-- Email -->
+              <div class="flex items-center mt-1">
+                <img
+                  src="../assets/mailIcon.png"
+                  alt="Mail Icon"
+                  class="w-4 h-4 mr-2"
+                />
+                <p class="text-[16px] font-bold text-[#716D6D]">
+                  office@venmo.com
+                </p>
+              </div>
+
+              <!-- Status -->
+              <p class="mt-1 text-[16px] font-bold">
+                <span class="text-[#6F6C6C]">Status: </span>
+                <span class="text-[#57DD70]">Open</span>
+              </p>
+            </div>
+
+            <!-- Right Content (Date, Pending, Withdraw) -->
+            <div
+              class="flex items-center justify-between lg:justify-end gap-6 lg:flex-1"
+            >
+              <!-- Date -->
+              <p class="text-[14px] lg:text-[16px] hidden lg:block">
+                23/08/2025
+              </p>
+
+              <!-- Pending Status -->
+              <p
+                class="text-[16px] lg:text-[18px] font-semibold text-[#AC9C10]"
+              >
+                Pending
+              </p>
+
+              <!-- Withdraw Button -->
+              <button
+                class="border-[1px] border-[#F0443E] text-[#F0443E] font-semibold text-[14px] lg:text-[16px] px-3 py-1 rounded-[50px] hover:bg-[#F0443E] hover:text-white transition"
+              >
+                Withdraw
+              </button>
+            </div>
+          </div>
+
+          <!-- Pending Application Card -->
+          <div
+            class="w-full lg:w-[80%] border-[1.5px] border-black/[0.36] rounded-lg p-4 flex flex-wrap items-center lg:flex-nowrap gap-6 mt-6 mx-2"
+          >
+            <!-- Circular Image -->
+            <img
+              src="../assets/companyLogo.png"
+              alt="Profile"
+              class="w-[100px] h-[100px] rounded-full hidden lg:block"
+            />
+
+            <!-- Left Content (Details) -->
+            <div class="flex-1">
+              <!-- Job Title -->
+              <p class="text-[22px] lg:text-[27px] text-[#6F6C6C] font-light">
+                Graphics Designer
+              </p>
+
+              <!-- Company Name -->
+              <div class="flex items-center mt-1">
+                <img
+                  src="../assets/companyIcon.png"
+                  alt="Company Icon"
+                  class="w-4 h-4 mr-2"
+                />
+                <p class="text-[16px] font-bold text-[#716D6D]">
+                  Venmo Studios
+                </p>
+              </div>
+
+              <!-- Email -->
+              <div class="flex items-center mt-1">
+                <img
+                  src="../assets/mailIcon.png"
+                  alt="Mail Icon"
+                  class="w-4 h-4 mr-2"
+                />
+                <p class="text-[16px] font-bold text-[#716D6D]">
+                  office@venmo.com
+                </p>
+              </div>
+
+              <!-- Status -->
+              <p class="mt-1 text-[16px] font-bold">
+                <span class="text-[#6F6C6C]">Status: </span>
+                <span class="text-[#57DD70]">Open</span>
+              </p>
+            </div>
+
+            <!-- Right Content (Date, Pending, Withdraw) -->
+            <div
+              class="flex items-center justify-between lg:justify-end gap-6 lg:flex-1"
+            >
+              <!-- Date -->
+              <p class="text-[14px] lg:text-[16px] hidden lg:block">
+                23/08/2025
+              </p>
+
+              <!-- Pending Status -->
+              <p
+                class="text-[16px] lg:text-[18px] font-semibold text-[#AC9C10]"
+              >
+                Pending
+              </p>
+
+              <!-- Withdraw Button -->
+              <button
+                class="border-[1px] border-[#F0443E] text-[#F0443E] font-semibold text-[14px] lg:text-[16px] px-3 py-1 rounded-[50px] hover:bg-[#F0443E] hover:text-white transition"
+              >
+                Withdraw
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="container mx-auto p-4 mt-12">
+        <div class="text-center">
+          <!-- Main Text -->
+          <p class="text-[20px] font-light text-[#6699A7]">
+            Jobs that match your preferences
+          </p>
+
+          <!-- Separator Line -->
+          <div class="w-[40%] h-[1px] bg-[#6699A7] mx-auto"></div>
+
+          <!-- Apply Now Text -->
+          <p class="text-[45px] font-light text-black">Apply Now!</p>
+        </div>
+      </section>
+
+      <section class="container mx-auto p-4">
+        <!-- Job Cards Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Job Card (Remote) -->
+          <div
+            class="max-w-[360px] w-full h-auto job-card-remote border-[1px] border-[#6F6C6C]/[0.13] rounded-lg shadow-md hover:shadow-lg hover:translate-y-[-4px] transition-all duration-300 relative p-3 mx-auto"
+          >
+            <!-- Top Left Button -->
+            <button
+              class="absolute top-4 left-4 bg-[#57DD70] text-white font-bold text-sm py-1 px-4 rounded-full"
+            >
+              Remote
+            </button>
+            <span
+              class="absolute top-4 right-4 text-[#398A48] font-medium text-lg"
+            >
+              $10/hr
+            </span>
+            <div class="flex items-center justify-center mt-10">
+              <img
+                src="../assets/remote-employer.png"
+                alt="Icon"
+                class="w-7 h-7 mr-2"
+              />
+              <span class="text-[#716D6D] text-[18px]">Venmo Studios</span>
+            </div>
+            <h2 class="text-black text-[32px] text-center mt-2">
+              Graphics Designer
+            </h2>
+            <p class="text-[12px] text-center mt-2">
+              We are looking for a creative graphics designer to work on our
+              project for 3 days...
+            </p>
+            <div class="flex flex-col items-center mt-4">
+              <div class="w-[160px] h-[1px] bg-[#57DD70]"></div>
+              <button class="mt-2 text-[16px] font-medium text-black">
+                VIEW JOB
+              </button>
+            </div>
+          </div>
+
+          <!-- Job Card (Onsite) -->
+          <div
+            class="max-w-[360px] w-full h-auto job-card-onsite border-[1px] border-[#6F6C6C]/[0.13] rounded-lg shadow-md hover:shadow-lg hover:translate-y-[-4px] transition-all duration-300 relative p-3 mx-auto"
+          >
+            <button
+              class="absolute top-4 left-4 bg-[#F0823E] text-white font-bold text-sm py-1 px-4 rounded-full"
+            >
+              Onsite
+            </button>
+            <span
+              class="absolute top-4 right-4 text-[#D66016] font-medium text-lg"
+            >
+              $12/hr
+            </span>
+            <div class="flex items-center justify-center mt-10">
+              <img
+                src="../assets/onsite-employer.png"
+                alt="Icon"
+                class="w-7 h-7 mr-2"
+              />
+              <span class="text-[#716D6D] text-[18px]">Venmo Studios</span>
+            </div>
+            <h2 class="text-black text-[32px] text-center mt-2">
+              UX/UI Designer
+            </h2>
+            <p class="text-[12px] text-center mt-2">
+              We are seeking a talented UX/UI designer to collaborate on a
+              short-term project for 3 days.
+            </p>
+            <div class="flex flex-col items-center mt-4">
+              <div class="w-[160px] h-[1px] bg-[#F0823E]"></div>
+              <button class="mt-2 text-[16px] font-medium text-black">
+                VIEW JOB
+              </button>
+            </div>
+          </div>
+
+          <!-- Job Card (Hybrid) -->
+          <div
+            class="max-w-[360px] w-full h-auto job-card-hybrid border-[1px] border-[#6F6C6C]/[0.13] rounded-lg shadow-md hover:shadow-lg hover:translate-y-[-4px] transition-all duration-300 relative p-3 mx-auto"
+          >
+            <button
+              class="absolute top-4 left-4 bg-[#6936B7] text-white font-bold text-sm py-1 px-4 rounded-full"
+            >
+              Hybrid
+            </button>
+            <span
+              class="absolute top-4 right-4 text-[#45227A] font-medium text-lg"
+            >
+              $12/hr
+            </span>
+            <div class="flex items-center justify-center mt-10">
+              <img
+                src="../assets/hybrid-employer.png"
+                alt="Icon"
+                class="w-7 h-7 mr-2"
+              />
+              <span class="text-[#716D6D] text-[18px]">Venmo Studios</span>
+            </div>
+            <h2 class="text-black text-[32px] text-center mt-2">
+              Live Translator
+            </h2>
+            <p class="text-[12px] text-center mt-2">
+              We are seeking a skilled Focus Group Discussion (FGD) moderator to
+              lead engaging and insig...
+            </p>
+            <div class="flex flex-col items-center mt-4">
+              <div class="w-[160px] h-[1px] bg-[#6936B7]"></div>
+              <button class="mt-2 text-[16px] font-medium text-black">
+                VIEW JOB
+              </button>
+            </div>
+          </div>
+
+          <!-- Job Card (Hybrid) -->
+          <div
+            class="max-w-[360px] w-full h-auto job-card-hybrid border-[1px] border-[#6F6C6C]/[0.13] rounded-lg shadow-md hover:shadow-lg hover:translate-y-[-4px] transition-all duration-300 relative p-3 mx-auto"
+          >
+            <button
+              class="absolute top-4 left-4 bg-[#6936B7] text-white font-bold text-sm py-1 px-4 rounded-full"
+            >
+              Hybrid
+            </button>
+            <span
+              class="absolute top-4 right-4 text-[#45227A] font-medium text-lg"
+            >
+              $12/hr
+            </span>
+            <div class="flex items-center justify-center mt-10">
+              <img
+                src="../assets/hybrid-employer.png"
+                alt="Icon"
+                class="w-7 h-7 mr-2"
+              />
+              <span class="text-[#716D6D] text-[18px]">Venmo Studios</span>
+            </div>
+            <h2 class="text-black text-[32px] text-center mt-2">
+              Live Translator
+            </h2>
+            <p class="text-[12px] text-center mt-2">
+              We are seeking a skilled Focus Group Discussion (FGD) moderator to
+              lead engaging and insig...
+            </p>
+            <div class="flex flex-col items-center mt-4">
+              <div class="w-[160px] h-[1px] bg-[#6936B7]"></div>
+              <button class="mt-2 text-[16px] font-medium text-black">
+                VIEW JOB
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="bg-black py-8">
+      <div
+        class="grid grid-cols-5 gap-6 text-center text-[16px] font-bold text-white"
+      >
+        <!-- First Column -->
+        <div class="flex flex-col gap-4">
+          <a
+            href="#"
+            class="hover:text-[#6EB0B6] text-white text-sm sm:text-base"
+            >Home</a
+          >
+          <a
+            href="#"
+            class="hover:text-[#F0823E] text-white text-sm sm:text-base"
+            >About Us</a
+          >
+          <a
+            href="#"
+            class="hover:text-[#6EB0B6] text-white text-sm sm:text-base"
+            >Contact Us</a
+          >
+          <a
+            href="#"
+            class="hover:text-[#F0823E] text-white text-sm sm:text-base"
+            >Privacy Policy</a
+          >
+          <a
+            href="#"
+            class="hover:text-[#6EB0B6] text-white text-sm sm:text-base"
+            >Terms & Conditions</a
+          >
+          <a
+            href="#"
+            class="hover:text-[#F0823E] text-white text-sm sm:text-base"
+            >FAQs</a
+          >
+          <a
+            href="#"
+            class="hover:text-[#6EB0B6] text-white text-sm sm:text-base"
+            >Blog</a
+          >
+          <a
+            href="#"
+            class="hover:text-[#F0823E] text-white text-sm sm:text-base"
+            >Careers</a
+          >
+          <a
+            href="#"
+            class="hover:text-[#6EB0B6] text-white text-sm sm:text-base"
+            >Support Center</a
+          >
+        </div>
+
+        <!-- Second Column -->
+        <div class="flex flex-col gap-4">
+          <a
+            href="#"
+            class="hover:text-[#F0823E] text-white text-sm sm:text-base"
+            >Create a Profile</a
+          >
+          <a
+            href="#"
+            class="hover:text-[#6EB0B6] text-white text-sm sm:text-base"
+            >Browse Jobs</a
+          >
+          <a
+            href="#"
+            class="hover:text-[#F0823E] text-white text-sm sm:text-base"
+            >Apply for Jobs</a
+          >
+          <a
+            href="#"
+            class="hover:text-[#6EB0B6] text-white text-sm sm:text-base"
+            >Update Availability</a
+          >
+          <a
+            href="#"
+            class="hover:text-[#F0823E] text-white text-sm sm:text-base"
+            >View Job Offers</a
+          >
+          <a
+            href="#"
+            class="hover:text-[#6EB0B6] text-white text-sm sm:text-base"
+            >Search by Skills</a
+          >
+          <a
+            href="#"
+            class="hover:text-[#F0823E] text-white text-sm sm:text-base"
+            >Job Seeker Dashboard</a
+          >
+          <a
+            href="#"
+            class="hover:text-[#6EB0B6] text-white text-sm sm:text-base"
+            >How It Works</a
+          >
+        </div>
+
+        <!-- Third Column -->
+        <div class="flex flex-col gap-4">
+          <a
+            href="#"
+            class="hover:text-[#6EB0B6] text-white text-sm sm:text-base"
+            >Our Mission</a
+          >
+          <a
+            href="#"
+            class="hover:text-[#F0823E] text-white text-sm sm:text-base"
+            >Our Vision</a
+          >
+          <a
+            href="#"
+            class="hover:text-[#6EB0B6] text-white text-sm sm:text-base"
+            >Team</a
+          >
+          <a
+            href="#"
+            class="hover:text-[#F0823E] text-white text-sm sm:text-base"
+            >Partners</a
+          >
+          <a
+            href="#"
+            class="hover:text-[#6EB0B6] text-white text-sm sm:text-base"
+            >Media Kit</a
+          >
+          <a
+            href="#"
+            class="hover:text-[#F0823E] text-white text-sm sm:text-base"
+            >Press Releases</a
+          >
+          <a
+            href="#"
+            class="hover:text-[#6EB0B6] text-white text-sm sm:text-base"
+            >Investor Relations</a
+          >
+        </div>
+
+        <!-- Fourth Column -->
+        <div class="flex flex-col gap-4">
+          <a
+            href="#"
+            class="hover:text-[#F0823E] text-white text-sm sm:text-base"
+            >Facebook</a
+          >
+          <a
+            href="#"
+            class="hover:text-[#6EB0B6] text-white text-sm sm:text-base"
+            >Twitter</a
+          >
+          <a
+            href="#"
+            class="hover:text-[#F0823E] text-white text-sm sm:text-base"
+            >LinkedIn</a
+          >
+          <a
+            href="#"
+            class="hover:text-[#6EB0B6] text-white text-sm sm:text-base"
+            >Instagram</a
+          >
+          <a
+            href="#"
+            class="hover:text-[#F0823E] text-white text-sm sm:text-base"
+            >YouTube</a
+          >
+        </div>
+
+        <!-- Fifth Column -->
+        <div class="flex flex-col gap-4">
+          <a
+            href="#"
+            class="hover:text-[#6EB0B6] text-white text-sm sm:text-base"
+            >Contact Support</a
+          >
+          <a
+            href="#"
+            class="hover:text-[#F0823E] text-white text-sm sm:text-base"
+            >Troubleshooting Guides</a
+          >
+          <a
+            href="#"
+            class="hover:text-[#6EB0B6] text-white text-sm sm:text-base"
+            >Live Chat</a
+          >
+          <a
+            href="#"
+            class="hover:text-[#F0823E] text-white text-sm sm:text-base"
+            >Community Forum</a
+          >
+          <a
+            href="#"
+            class="hover:text-[#6EB0B6] text-white text-sm sm:text-base"
+            >Knowledge Base</a
+          >
+        </div>
+      </div>
+    </footer>
+    <!-- Copyright Section -->
+    <div class="mt-6 text-center pb-3 bg-white">
+      <p class="text-black text-[16px] font-bold sm:text-sm">
+        © 2025 Vocation. All Rights Reserved.
+      </p>
+    </div>
+  </body>
+</html>

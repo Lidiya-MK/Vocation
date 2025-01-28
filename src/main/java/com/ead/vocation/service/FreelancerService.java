@@ -6,6 +6,7 @@ import com.ead.vocation.dtos.FreelancerUpdateRequest;
 import com.ead.vocation.model.Application;
 import com.ead.vocation.model.Freelancer;
 import com.ead.vocation.model.Job;
+import com.ead.vocation.model.JobPoster;
 import com.ead.vocation.model.User;
 import com.ead.vocation.repository.ApplicationRepository;
 import com.ead.vocation.repository.FreelancerRepository;
@@ -79,6 +80,10 @@ public class FreelancerService {
         return applicationRepository.save(applicationEntity);
     }
     
+
+
+    
+
  public List<Application> getAllApplicationsByFreelancerId(Integer freelancerID) {
         User user = userRepository.findById(freelancerID)
                 .orElseThrow(() -> new IllegalArgumentException("Freelancer not found"));
@@ -104,7 +109,7 @@ public class FreelancerService {
         Freelancer freelancer = freelancerRepository.findByUser(user)
                 .orElseThrow(() -> new IllegalArgumentException("Freelancer not found"));
     
-        Application application = applicationRepository.findByIdAndFreelancer(freelancerID, freelancer)
+        Application application = applicationRepository.findByIdAndFreelancer(applicationID, freelancer)
                 .orElseThrow(() -> new IllegalArgumentException("Application not found or does not belong to the specified freelancer"));
     
 

@@ -1,16 +1,18 @@
 package com.ead.vocation.controller;
 
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 
 import org.springframework.http.ResponseEntity;
-
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -25,17 +27,20 @@ import com.ead.vocation.dtos.FreelancerUpdateRequest;
 import com.ead.vocation.dtos.JobResponse;
 import com.ead.vocation.model.Application;
 import com.ead.vocation.model.Freelancer;
+import com.ead.vocation.model.Job;
+import com.ead.vocation.model.JobPoster;
 import com.ead.vocation.model.User;
 import com.ead.vocation.service.FreelancerService;
 import com.ead.vocation.service.JobService;
 
 import org.springframework.stereotype.Controller;
-
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestHeader;
 
-
+import com.ead.vocation.shared.ErrorResponse;
 import com.ead.vocation.shared.util.JwtServices;
 
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 
 
@@ -56,12 +61,29 @@ public class FreelancerController {
 
 
 
+   
+
     @GetMapping("/profile")
-    public String getProfile() {
-        return "freelancer profile";
+    public String getFreelancerDashboard(HttpServletRequest request, Model model) {
+        String token = (String) request.getAttribute("Authorization");
+        Integer id = jwtServices.extractIdFromHeader(token); // You need to extract freelancer ID here
+    
+        FreelancerResponse freelancerResponse = freelancerService.getFreelancerProfile(id);
+        
+   
+        List<Application> applications = freelancerService.getAllApplicationsByFreelancerId(id);
+        
+    
+        List<JobResponse> jobResponses = jobService.getAllJobs();
+        
+        model.addAttribute("freelancerName", freelancerResponse.getName());
+        model.addAttribute("freelancerEmail", freelancerResponse.getEmail());
+        model.addAttribute("freelancerIndustry", freelancerResponse.getIndustry());
+        model.addAttribute("applications", applications);
+        model.addAttribute("availableJobs", jobResponses);
+
+        return "freelancer-home";
     }
-
-
 
     @GetMapping("/jobs")
     public ResponseEntity<List<JobResponse>> getAllJobs() {
@@ -188,8 +210,29 @@ public ResponseEntity<?> updateFreelancerProfile(
     }
 }
 
+@DeleteMapping("/applications/withdraw/{applicationId}")
+public ResponseEntity<?> deleteApplicationById(
+        @PathVariable Integer applicationId,
+        @RequestHeader("Authorization") String token) {
+    try {
+        Integer freelancerId = jwtServices.extractIdFromHeader(token);
+        freelancerService.deleteApplicationByIdAndFreelancerId(applicationId, freelancerId);
+        
+      
+        Map<String, String> response = new HashMap<>();
+        response.put("message", "Application withdrawn successfully");
+        response.put("applicationId", String.valueOf(applicationId));
 
+        return ResponseEntity.ok(response);
+    } catch (IllegalArgumentException e) {
+        return handleException(e);
+    }
+}
 
+    private ResponseEntity<?> handleException(IllegalArgumentException e) {
+        HttpStatus status = e.getMessage().contains("not found") ? HttpStatus.NOT_FOUND : HttpStatus.BAD_REQUEST;
+        return ResponseEntity.status(status).body(new ErrorResponse(e.getMessage()));
+    }
 
 
 }
