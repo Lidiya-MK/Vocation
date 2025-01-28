@@ -21,3 +21,56 @@ async function sendDeleteJobRequest(deleteUrl) {
     return false;
   }
 }
+
+async function sendCreateRequest(url, payload) {
+  try {
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + getToken(),
+      },
+      body: JSON.stringify(payload),
+    });
+
+    if (response.ok) {
+      closeModal();
+      document.getElementById("selectedSkillsContainer").innerHTML = "";
+      showToast("Job posted successfully!", "success");
+      setTimeout(() => {
+        window.location.reload();
+      }, 1500);
+      return;
+    }
+
+    if (response.status === 400) {
+      const errorData = await response.json();
+      let message =
+        errorData.title ||
+        errorData.type ||
+        errorData.budget ||
+        errorData.startDate ||
+        errorData.description ||
+        errorData.applicationDeadline ||
+        errorData.skillsRequired ||
+        errorData.error ||
+        "Invalid job data. Please check your inputs";
+
+      if (
+        message.includes("java") ||
+        message.includes("Java") ||
+        message.includes("SQL") ||
+        message.includes("Spring")
+      ) {
+        message = "Invalid job data. Please check your inputs";
+      }
+
+      showToast(message, "error");
+      return;
+    }
+
+    showToast("Failed to post job. Please try again later1", "error");
+  } catch (error) {
+    showToast("Failed to post job. Please try again later2", "error");
+  }
+}

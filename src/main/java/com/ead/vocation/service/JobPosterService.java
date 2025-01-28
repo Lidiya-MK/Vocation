@@ -73,6 +73,14 @@ public class JobPosterService {
     }
 
     public Job createJob(JobRequest job, Integer jobPosterID) {
+        if (job.getApplicationDeadline().isAfter(job.getStartDate())) {
+            throw new IllegalArgumentException("Application deadline must be before the start date");
+        }
+
+        if (job.getStartDate().isAfter(job.getEndDate())) {
+            throw new IllegalArgumentException("Start date must be before the end date");
+        }
+
         User user = userRepository.findById(jobPosterID)
                 .orElseThrow(() -> new IllegalArgumentException("Job Poster not found"));
 

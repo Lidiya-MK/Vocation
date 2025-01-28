@@ -176,159 +176,159 @@
         id="modal"
         class="fixed inset-0 bg-gray-500 bg-opacity-50 flex justify-center items-center z-50 hidden"
       >
-        <div class="bg-white w-[80%] md:w-[320px] p-3 rounded-lg shadow-lg">
+        <div
+          class="bg-white w-[90%] p-6 rounded-lg shadow-lg space-y-6 relative md:w-[50%] max-w-[600px] px-6 py-4"
+        >
+          <!-- Close Button -->
+          <button
+            onclick="closeModal()"
+            class="absolute top-4 right-4 text-gray-500 hover:text-gray-800 transition"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
+          </button>
+
           <!-- Modal Header -->
-          <div class="flex items-center justify-center space-x-2 mb-3">
-            <img
-              src="/assets/addIcon.png"
-              alt="Plus Icon"
-              class="w-[20px] h-[20px]"
-            />
-            <h2 class="text-[16px] font-bold text-[#F0823E]">Create a Post</h2>
+          <div class="flex items-center justify-center space-x-2">
+            <img src="/assets/addIcon.png" alt="Plus Icon" class="w-6 h-6" />
+            <h2 class="text-3xl font-semibold text-[#F0823E]">Create a Post</h2>
           </div>
 
           <!-- Form -->
-          <form>
-            <!-- Job Title and Type -->
-            <div class="flex space-x-2 mb-3">
-              <!-- Job Title -->
-              <div class="w-full">
-                <label
-                  for="jobTitle"
-                  class="block text-black font-bold text-[12px] mb-1"
-                  >Job Title</label
-                >
-                <input
-                  type="text"
-                  id="jobTitle"
-                  placeholder="Enter Title"
-                  class="w-full border border-gray-300 rounded-lg px-3 py-1 text-xs"
-                />
-              </div>
+          <form id="job-form">
+            <!-- Job Title -->
+            <div class="mb-4">
+              <label
+                for="jobTitle"
+                class="block text-sm font-medium text-gray-700 mb-2"
+                >Job Title</label
+              >
+              <input
+                type="text"
+                id="jobTitle"
+                placeholder="Enter Title"
+                class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-[#F0823E] focus:border-[#F0823E]"
+                required
+              />
+            </div>
 
-              <!-- Type -->
-              <div class="w-full">
-                <label
-                  for="jobType"
-                  class="block text-black font-bold text-[12px] mb-1"
-                  >Type</label
-                >
-                <select
-                  id="jobType"
-                  class="w-full border border-gray-300 rounded-lg px-3 py-1 text-xs"
-                >
-                  <option value="ON_SITE">Onsite</option>
-                  <option value="HYBRID">Hybrid</option>
-                  <option value="REMOTE">Remote</option>
-                </select>
-              </div>
+            <!-- Job Type -->
+            <div class="mb-4">
+              <label
+                for="jobType"
+                class="block text-sm font-medium text-gray-700 mb-2"
+                >Type</label
+              >
+              <select
+                id="jobType"
+                class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-[#F0823E] focus:border-[#F0823E]"
+              >
+                <option value="ON_SITE">Onsite</option>
+                <option value="HYBRID">Hybrid</option>
+                <option value="REMOTE">Remote</option>
+              </select>
             </div>
 
             <!-- Job Description -->
-            <div class="mb-3">
+            <div class="mb-4">
               <label
                 for="jobDescription"
-                class="block text-black font-bold text-[12px] mb-1"
+                class="block text-sm font-medium text-gray-700 mb-2"
                 >Description</label
               >
               <textarea
                 id="jobDescription"
                 placeholder="Enter job description"
-                class="w-full border border-gray-300 rounded-lg px-3 py-1 text-xs h-24"
+                class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-[#F0823E] focus:border-[#F0823E] h-24"
               ></textarea>
             </div>
 
             <!-- Skills -->
-            <div class="mb-3">
+            <!-- Skills Multi-Select Dropdown -->
+            <div class="mb-4 relative">
               <label
                 for="skills"
-                class="block text-black font-bold text-[12px] mb-1"
+                class="block text-sm font-medium text-gray-700 mb-2"
                 >Skills</label
               >
-              <div class="relative">
-                <div
-                  class="border border-gray-300 rounded-lg px-3 py-1 text-xs cursor-pointer flex justify-between items-center"
-                  id="skillsDropdown"
+              <div
+                id="skillsDropdown"
+                class="border border-gray-300 rounded-lg px-3 py-2 text-sm cursor-pointer flex justify-between items-center"
+                onclick="toggleSkillsDropdown()"
+              >
+                <span id="skillsPlaceholder">Select Skills</span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-5 w-5 text-gray-500"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
                 >
-                  <span>Select Skills</span>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="h-4 w-4 text-gray-500"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                      clip-rule="evenodd"
-                    />
-                  </svg>
+                  <path
+                    fill-rule="evenodd"
+                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+              </div>
+              <div
+                id="skillsList"
+                class="absolute left-0 w-full mt-1 bg-white border border-gray-300 rounded-lg shadow-lg hidden z-10 max-h-40 overflow-y-auto"
+              >
+                <div
+                  class="skill-item p-2 cursor-pointer hover:bg-[#F0823E] hover:text-white"
+                  onclick="selectSkill('HTML')"
+                >
+                  HTML
                 </div>
                 <div
-                  id="skillsList"
-                  class="absolute left-0 w-full mt-1 bg-white border border-gray-300 rounded-lg shadow-lg hidden z-10 max-h-40 overflow-y-auto"
+                  class="skill-item p-2 cursor-pointer hover:bg-[#F0823E] hover:text-white"
+                  onclick="selectSkill('CSS')"
                 >
-                  <div
-                    class="skill-item p-2 cursor-pointer hover:bg-[#F0823E] hover:text-white"
-                  >
-                    HTML
-                  </div>
-                  <div
-                    class="skill-item p-2 cursor-pointer hover:bg-[#F0823E] hover:text-white"
-                  >
-                    CSS
-                  </div>
-                  <div
-                    class="skill-item p-2 cursor-pointer hover:bg-[#F0823E] hover:text-white"
-                  >
-                    JavaScript
-                  </div>
-                  <div
-                    class="skill-item p-2 cursor-pointer hover:bg-[#F0823E] hover:text-white"
-                  >
-                    Python
-                  </div>
-                  <div
-                    class="skill-item p-2 cursor-pointer hover:bg-[#F0823E] hover:text-white"
-                  >
-                    Figma
-                  </div>
-                  <div
-                    class="skill-item p-2 cursor-pointer hover:bg-[#F0823E] hover:text-white"
-                  >
-                    Blender
-                  </div>
-                  <div
-                    class="skill-item p-2 cursor-pointer hover:bg-[#F0823E] hover:text-white"
-                  >
-                    React
-                  </div>
-                  <div
-                    class="skill-item p-2 cursor-pointer hover:bg-[#F0823E] hover:text-white"
-                  >
-                    Protoyping
-                  </div>
-                  <div
-                    class="skill-item p-2 cursor-pointer hover:bg-[#F0823E] hover:text-white"
-                  >
-                    Graphics Design
-                  </div>
-                  <div
-                    class="skill-item p-2 cursor-pointer hover:bg-[#F0823E] hover:text-white"
-                  >
-                    UX/UI design
-                  </div>
-                  <div
-                    class="skill-item p-2 cursor-pointer hover:bg-[#F0823E] hover:text-white"
-                  >
-                    Accounting
-                  </div>
-                  <div
-                    class="skill-item p-2 cursor-pointer hover:bg-[#F0823E] hover:text-white"
-                  >
-                    Book Keeping
-                  </div>
+                  CSS
                 </div>
+                <div
+                  class="skill-item p-2 cursor-pointer hover:bg-[#F0823E] hover:text-white"
+                  onclick="selectSkill('JavaScript')"
+                >
+                  JavaScript
+                </div>
+                <div
+                  class="skill-item p-2 cursor-pointer hover:bg-[#F0823E] hover:text-white"
+                  onclick="selectSkill('Python')"
+                >
+                  Python
+                </div>
+                <div
+                  class="skill-item p-2 cursor-pointer hover:bg-[#F0823E] hover:text-white"
+                  onclick="selectSkill('React')"
+                >
+                  React
+                </div>
+                <div
+                  class="skill-item p-2 cursor-pointer hover:bg-[#F0823E] hover:text-white"
+                  onclick="selectSkill('Node.js')"
+                >
+                  Node.js
+                </div>
+                <div
+                  class="skill-item p-2 cursor-pointer hover:bg-[#F0823E] hover:text-white"
+                  onclick="selectSkill('Figma')"
+                >
+                  Figma
+                </div>
+                <!-- Add more skills as needed -->
               </div>
               <div
                 id="selectedSkillsContainer"
@@ -337,40 +337,72 @@
             </div>
 
             <!-- Pay -->
-            <div class="mb-3">
+            <div class="mb-4">
               <label
-                for="pay"
-                class="block text-black font-bold text-[12px] mb-1"
-                >Pay</label
+                for="budget"
+                class="block text-sm font-medium text-gray-700 mb-2"
+                >Budget</label
               >
               <input
-                type="text"
-                id="pay"
-                placeholder="Enter Pay"
-                class="w-full border border-gray-300 rounded-lg px-3 py-1 text-xs"
+                type="number"
+                id="budget"
+                placeholder="Enter budget (e.g., 80000)"
+                class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-[#F0823E] focus:border-[#F0823E]"
+                step="0.01"
+                required
+              />
+            </div>
+
+            <!-- Start Date -->
+            <div class="mb-4">
+              <label
+                for="startDate"
+                class="block text-sm font-medium text-gray-700 mb-2"
+                >Start Date</label
+              >
+              <input
+                type="date"
+                id="startDate"
+                class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-[#F0823E] focus:border-[#F0823E]"
+                required
+              />
+            </div>
+
+            <!-- End Date -->
+            <div class="mb-4">
+              <label
+                for="endDate"
+                class="block text-sm font-medium text-gray-700 mb-2"
+                >End Date</label
+              >
+              <input
+                type="date"
+                id="endDate"
+                class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-[#F0823E] focus:border-[#F0823E]"
+                required
               />
             </div>
 
             <!-- Application Deadline -->
-            <div class="mb-3">
+            <div class="mb-4">
               <label
-                for="deadline"
-                class="block text-black font-bold text-[12px] mb-1"
+                for="applicationDeadline"
+                class="block text-sm font-medium text-gray-700 mb-2"
                 >Application Deadline</label
               >
               <input
                 type="date"
-                id="deadline"
-                class="w-full border border-gray-300 rounded-lg px-3 py-1 text-xs"
+                id="applicationDeadline"
+                class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-[#F0823E] focus:border-[#F0823E]"
+                required
               />
             </div>
 
             <!-- Submit Button -->
             <div class="text-center">
               <button
-                onclick="closeModal()"
                 type="submit"
-                class="w-[150px] bg-[#F0823E] text-white font-bold text-[14px] py-2 rounded-full hover:bg-[#F0823E]/90 transition"
+                class="w-full bg-[#F0823E] text-white font-bold py-2 rounded-lg hover:bg-[#F0823E]/90 transition"
               >
                 Submit
               </button>
@@ -772,59 +804,150 @@
     </div>
 
     <script>
-      // Function to open the modal
       function openModal() {
         document.getElementById("modal").classList.remove("hidden");
+        document.getElementById("modal").classList.add("flex");
       }
 
-      // Function to close the modal
       function closeModal() {
+        document.getElementById("modal").classList.remove("flex");
         document.getElementById("modal").classList.add("hidden");
       }
-      const skillsDropdown = document.getElementById("skillsDropdown");
-      const skillsList = document.getElementById("skillsList");
-      const selectedSkillsContainer = document.getElementById(
-        "selectedSkillsContainer"
-      );
 
-      skillsDropdown.addEventListener("click", () => {
-        skillsList.classList.toggle("hidden");
-      });
+      function toggleSkillsDropdown() {
+        const dropdown = document.getElementById("skillsList");
+        dropdown.classList.toggle("hidden");
+      }
 
-      const skillItems = skillsList.querySelectorAll(".skill-item");
-
-      skillItems.forEach((item) => {
-        item.addEventListener("click", () => {
-          const skill = item.textContent;
-
-          if (!isSkillSelected(skill)) {
-            const skillItem = document.createElement("div");
-            skillItem.className =
-              "bg-[#F0823E] text-white rounded-lg px-3 py-1 text-sm flex items-center";
-            skillItem.innerHTML = `${skill} <button onclick="removeSkill('${skill}')" class="ml-2 text-white">&times;</button>`;
-            selectedSkillsContainer.appendChild(skillItem);
-
-            skillsList.classList.add("hidden");
-          }
-        });
-      });
-
-      function isSkillSelected(skill) {
-        const selectedSkills = selectedSkillsContainer.querySelectorAll("div");
-        return Array.from(selectedSkills).some((item) =>
-          item.textContent.includes(skill)
+      function selectSkill(skill) {
+        const selectedSkillsContainer = document.getElementById(
+          "selectedSkillsContainer"
         );
+
+        if (
+          Array.from(selectedSkillsContainer.children).some(
+            (child) => child.dataset.skill === skill
+          )
+        ) {
+          return;
+        }
+
+        const skillBadge = document.createElement("div");
+        skillBadge.className =
+          "bg-[#F0823E] text-white text-sm py-1 px-3 rounded-full flex items-center space-x-2";
+        skillBadge.dataset.skill = skill;
+
+        skillBadge.innerHTML = `
+      <span>${skill}</span>
+      <button
+        type="button"
+        class="text-white hover:text-gray-300"
+        onclick="removeSkill('${skill}')"
+      >
+        &times;
+      </button>
+    `;
+
+        selectedSkillsContainer.appendChild(skillBadge);
+
+        updateSkillsInput();
       }
 
       function removeSkill(skill) {
-        const skillItem = Array.from(selectedSkillsContainer.children).find(
-          (item) => item.textContent.includes(skill)
+        const selectedSkillsContainer = document.getElementById(
+          "selectedSkillsContainer"
         );
-        if (skillItem) {
-          selectedSkillsContainer.removeChild(skillItem);
+        const skillBadge = Array.from(selectedSkillsContainer.children).find(
+          (child) => child.dataset.skill === skill
+        );
+        if (skillBadge) {
+          selectedSkillsContainer.removeChild(skillBadge);
         }
+
+        updateSkillsInput();
       }
 
+      function updateSkillsInput() {
+        const selectedSkillsContainer = document.getElementById(
+          "selectedSkillsContainer"
+        );
+        const skills = Array.from(selectedSkillsContainer.children).map(
+          (child) => child.dataset.skill
+        );
+        const placeholder = document.getElementById("skillsPlaceholder");
+        placeholder.textContent = skills.length
+          ? skills.join(", ")
+          : "Select Skills";
+      }
+
+      window.addEventListener("click", (e) => {
+        const dropdown = document.getElementById("skillsList");
+        const dropdownContainer = document.getElementById("skillsDropdown");
+
+        if (!dropdownContainer.contains(e.target)) {
+          dropdown.classList.add("hidden");
+        }
+      });
+
+      // create form
+      document.addEventListener("DOMContentLoaded", () => {
+        document
+          .getElementById("job-form")
+          .addEventListener("submit", async function (event) {
+            event.preventDefault();
+
+            const title = document.getElementById("jobTitle").value;
+            const type = document.getElementById("jobType").value;
+            const description = document.getElementById("jobDescription").value;
+            const budget = parseFloat(document.getElementById("budget").value);
+            const startDate = document.getElementById("startDate").value;
+            const endDate = document.getElementById("endDate").value;
+            const applicationDeadline = document.getElementById(
+              "applicationDeadline"
+            ).value;
+
+            const selectedSkillsContainer = document.getElementById(
+              "selectedSkillsContainer"
+            );
+            const skillsRequired = Array.from(
+              selectedSkillsContainer.children
+            ).map((child) => child.dataset.skill);
+
+            if (
+              !title ||
+              !type ||
+              !description ||
+              !budget ||
+              !startDate ||
+              !endDate ||
+              !applicationDeadline
+            ) {
+              showToast("Please fill in all the fields.", "error");
+              return;
+            }
+
+            if (skillsRequired.length === 0) {
+              showToast("Please select at least one skill.", "error");
+              return;
+            }
+
+            const payload = {
+              title,
+              description,
+              type,
+              skillsRequired,
+              budget: budget,
+              startDate,
+              endDate,
+              applicationDeadline,
+              status: "OPEN",
+            };
+
+            sendCreateRequest("/job-posters/jobs", payload);
+          });
+      });
+
+      // delete buttons
       document.addEventListener("DOMContentLoaded", () => {
         const buttons = document.querySelectorAll(".delete-job-button");
         const detailsLink = document.querySelectorAll(
@@ -857,7 +980,6 @@
           link.addEventListener("click", (event) => {
             const jobCard = event.target.parentElement.parentElement;
             const jobId = jobCard.getAttribute("data-job-id");
-            console.log(jobCard, jobId);
             if (jobId) {
               window.location.href = `/job-posters/job-details/${jobId}`;
             } else {

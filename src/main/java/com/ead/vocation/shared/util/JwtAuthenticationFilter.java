@@ -46,7 +46,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                     for (Cookie cookie : cookies) {
                         if ("accessToken".equals(cookie.getName())) {
                             authHeader = "Bearer " + cookie.getValue();
-                            System.out.println("COOKIE CONTENTS " + cookie.getValue());
                             break;
                         }
                     }
