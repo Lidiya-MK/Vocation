@@ -14,4 +14,6 @@ public interface JobRepository extends JpaRepository<Job, Integer> {
     List<Job> findByJobPoster(JobPoster jobPoster);
 
     Optional<Job> findByIdAndJobPoster(Integer id, JobPoster jobPoster);
+
+    List<Job> findAll();
 }
