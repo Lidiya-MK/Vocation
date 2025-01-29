@@ -73,8 +73,8 @@
 
               <!-- Freelancer Name -->
               <div>
-                <h2 class="text-black font-bold text-[40px] leading-none">
-                  Hiba Kemal
+                <h2 class="text-black font-bold text-[40px] leading-none" th:text="${name}">
+                  
                 </h2>
               </div>
             </div>
@@ -87,8 +87,8 @@
                   alt="Industry Icon"
                   class="w-6 h-6"
                 />
-                <span class="text-[#6692A7] font-bold text-[16px]"
-                  >Graphics Designer, UI/UX designer</span
+                <span class="text-[#6692A7] font-bold text-[16px]" th:text="${industry}"
+                  ></span>
                 >
               </div>
               <div class="flex items-center space-x-2">
@@ -97,8 +97,8 @@
                   alt="Industry Icon"
                   class="w-6 h-6"
                 />
-                <span class="text-[#716D6D] font-bold text-[16px]"
-                  >hiba@gmail.com</span
+                <span class="text-[#716D6D] font-bold text-[16px]" th:text="${email}"
+                ></span
                 >
               </div>
               <div class="flex items-center space-x-2">
@@ -107,8 +107,8 @@
                   alt="Location Icon"
                   class="w-6 h-6"
                 />
-                <span class="text-[#716D6D] font-bold text-[16px]"
-                  >Addis Ababa, Ethiopia</span
+                <span class="text-[#716D6D] font-bold text-[16px]" th:text="${location}"
+                  ></span
                 >
               </div>
             </div>
@@ -120,15 +120,10 @@
               About
             </h2>
             <p
-              class="text-[#4b4b4b] text-[16px] font-light w-[500px] mt-2 hidden lg:block"
-            >
-              Hello! I'm a passionate UI/UX designer and graphic design
-              freelancer based in Addis Ababa, Ethiopia, dedicated to creating
-              user-centered digital experiences and compelling visual content.
-              With a keen eye for detail and a love for innovation, I specialize
-              in designing intuitive interfaces and crafting unique graphics
-              that bring ideas to life.
-            </p>
+            class="text-[#4b4b4b] text-[16px] font-light w-[500px] mt-2 hidden lg:block"  th:text="${description}"
+          >
+            Tell us about yourself! Update your profile to add an about section
+          </p>
           </div>
         </div>
       </section>
