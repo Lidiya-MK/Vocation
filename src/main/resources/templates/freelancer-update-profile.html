@@ -65,12 +65,9 @@
           <div class="flex flex-col space-y-4">
             <!-- Circular Image and Freelancer Name -->
             <div class="flex items-center space-x-4">
-              <img
-                src="../assets/hibu.png"
-                alt="Circular Image"
-                class="w-[140px] h-[140px] rounded-full object-cover"
-              />
-
+              <img th:src="${profilePicture}"
+              alt="Profile Picture"
+              class="w-[140px] h-[140px] rounded-full object-cover" />
               <!-- Freelancer Name -->
               <div>
                 <h2 class="text-black font-bold text-[40px] leading-none" th:text="${name}">
@@ -89,7 +86,7 @@
                 />
                 <span class="text-[#6692A7] font-bold text-[16px]" th:text="${industry}"
                   ></span>
-                >
+                
               </div>
               <div class="flex items-center space-x-2">
                 <img
@@ -421,59 +418,13 @@
       </div>
 
       <!-- Skills Section -->
-      <div class="text-center">
-        <!-- Title -->
-        <h2 class="text-black font-light text-4xl mb-6">Skills</h2>
-
-        <!-- Skill Phrases -->
-        <div class="flex flex-wrap justify-center gap-4 px-10 pb-10">
-          <div
-            class="skill-item border border-[#6699A7] px-4 py-2 text-black font-light text-[20px] text-center rounded-[50px]"
-          >
-            Adobe Illustrator
-          </div>
-          <div
-            class="skill-item border border-[#6699A7] px-4 py-2 text-black font-light text-[20px] text-center rounded-[50px]"
-          >
-            Figma
-          </div>
-          <div
-            class="skill-item border border-[#6699A7] px-4 py-2 text-black font-light text-[20px] text-center rounded-[50px]"
-          >
-            Blender
-          </div>
-          <div
-            class="skill-item border border-[#6699A7] px-4 py-2 text-black font-light text-[20px] text-center rounded-[50px]"
-          >
-            Communication
-          </div>
-          <div
-            class="skill-item border border-[#6699A7] px-4 py-2 text-black font-light text-[20px] text-center rounded-[50px]"
-          >
-            Adaptability
-          </div>
-          <div
-            class="skill-item border border-[#6699A7] px-4 py-2 text-black font-light text-[20px] text-center rounded-[50px]"
-          >
-            Collaboration
-          </div>
-          <div
-            class="skill-item border border-[#6699A7] px-4 py-2 text-black font-light text-[20px] text-center rounded-[50px]"
-          >
-            Problem Solving
-          </div>
-          <div
-            class="skill-item border border-[#6699A7] px-4 py-2 text-black font-light text-[20px] text-center rounded-[50px]"
-          >
-            HTML
-          </div>
-          <div
-            class="skill-item border border-[#6699A7] px-4 py-2 text-black font-light text-[20px] text-center rounded-[50px]"
-          >
-            CSS
-          </div>
+      <div class="flex flex-wrap justify-center gap-4 px-10 pb-10">
+        <div th:each="skill : ${skills}"
+            class="skill-item border border-[#6699A7] px-4 py-2 text-black font-light text-[20px] text-center rounded-[50px]">
+            <span th:text="${skill}"></span>
         </div>
-      </div>
+    </div>
+    
 
       <!-- Resume Sect -->
       <div class="text-left mb-8 px-10">

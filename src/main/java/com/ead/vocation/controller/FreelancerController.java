@@ -94,8 +94,11 @@ public class FreelancerController {
         model.addAttribute("description", freelancerResponse.getDescription());
         model.addAttribute("email", freelancerResponse.getEmail());
         model.addAttribute("location", freelancerResponse.getLocation());
+        model.addAttribute("location", freelancerResponse.getLocation());
         model.addAttribute("phoneNumber", freelancerResponse.getPhoneNumber());
         model.addAttribute("links", freelancerResponse.getLinks());
+        model.addAttribute("profilePicture", freelancerResponse.getProfilePicture());
+        model.addAttribute("skills", freelancerResponse.getSkills());
         return "freelancer-update-profile";
     }
 
