@@ -17,6 +17,8 @@
     <script src="/scripts/toast.js"></script>
     <script src="/scripts/tokens.js"></script>
     <script src="/scripts/logout.js"></script>
+    <script src="/scripts/job-poster.js"></script>
+    <script src="/scripts/confirm-box.js"></script>
 
     <title>Job Poster Home</title>
   </head>
@@ -74,7 +76,7 @@
               <img
                 src="/assets/companyLogo.png"
                 alt="Circular Image"
-                class="w-[140px] h-[140px] rounded-full object-cover"
+                class="w-[100px] h-[100px] rounded-full object-cover"
               />
 
               <!-- Company Name -->
@@ -412,8 +414,18 @@
 
       <section class="container mx-auto p-4">
         <!-- Job Cards Grid -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          <div th:each="job : ${jobs}">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 my-10">
+          <!-- Empty state for no applications -->
+          <div id="empty-state" class="hidden text-center col-span-full">
+            <img
+              src="/assets/emptyIcon.png"
+              alt="Empty Icon"
+              class="w-64 h-64 mx-auto mb-4 opacity-65"
+            />
+            <p class="text-lg text-gray-700">No applications available</p>
+          </div>
+
+          <div th:each="job : ${jobs}" class="job-item">
             <div
               class="max-w-[360px] w-full h-auto job-card-remote border border-[#6F6C6C]/[0.13] rounded-lg shadow-md hover:shadow-lg hover:translate-y-[-4px] transition-all duration-300 relative p-4 bg-white mx-auto"
               th:if="${job.type.name() == 'REMOTE'}"
@@ -803,6 +815,15 @@
     </div>
 
     <script>
+      const applicationItems = document.querySelectorAll(".job-item");
+      const emptyState = document.getElementById("empty-state");
+
+      if (applicationItems.length === 0) {
+        emptyState.classList.remove("hidden");
+      } else {
+        emptyState.classList.add("hidden");
+      }
+
       function openModal() {
         document.getElementById("modal").classList.remove("hidden");
         document.getElementById("modal").classList.add("flex");
@@ -957,6 +978,14 @@
           button.addEventListener("click", async (event) => {
             const jobCard = event.target.parentElement.parentElement;
             const jobId = jobCard.getAttribute("data-job-id");
+            const confirmed = await showConfirmBox(
+              "Are you sure you want to delete this job?",
+              "error"
+            );
+
+            if (!confirmed) {
+              return;
+            }
 
             if (jobId) {
               const deleteUrl = `/job-posters/jobs/${jobId}`;
@@ -965,6 +994,15 @@
                 if (res === true) {
                   jobCard.parentElement.remove();
                   showToast("Job deleted successfully", "success");
+                  const applicationItems =
+                    document.querySelectorAll(".job-item");
+                  const emptyState = document.getElementById("empty-state");
+
+                  if (applicationItems.length === 0) {
+                    emptyState.classList.remove("hidden");
+                  } else {
+                    emptyState.classList.add("hidden");
+                  }
                 }
               } catch (error) {
                 showToast(error.message, "error");

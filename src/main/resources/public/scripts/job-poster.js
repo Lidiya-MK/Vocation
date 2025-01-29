@@ -39,7 +39,7 @@ async function sendCreateRequest(url, payload) {
       showToast("Job posted successfully!", "success");
       setTimeout(() => {
         window.location.reload();
-      }, 1500);
+      }, 1000);
       return;
     }
 
@@ -120,5 +120,40 @@ async function sendProfileUpdateRequest(url, payload) {
     showToast("Failed to update profile. Please try again later", "error");
   } catch (error) {
     showToast("Failed to update profile. Please try again later", "error");
+  }
+}
+
+async function sendApplicationStatusUpdateRequest(
+  jobId,
+  applicationId,
+  newStatus
+) {
+  try {
+    const response = await fetch(
+      `/job-posters/jobs/${jobId}/applications/${applicationId}`,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + getToken(),
+        },
+        body: JSON.stringify({ newStatus }),
+      }
+    );
+
+    if (response.ok) {
+      showToast(
+        `Application ${newStatus.toLowerCase()} successfully`,
+        "success"
+      );
+
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000);
+    } else {
+      showToast("Failed to update application status", "error");
+    }
+  } catch (error) {
+    showToast("An error occurred. Please try again", "error");
   }
 }

@@ -20,8 +20,8 @@ public class ApplicationRequest {
     @NotNull(message = "Job ID is mandatory")
     private Integer jobId;
 
-
     @NotNull(message = "Application status is mandatory")
+    @Pattern(regexp = "PENDING|REJECTED|ACCEPTED", message = "Invalid status")
     private ApplicationStatus status;
 
     public Application toApplicationEntity(Job job, Freelancer freelancer) {

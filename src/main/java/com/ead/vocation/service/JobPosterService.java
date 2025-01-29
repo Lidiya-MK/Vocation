@@ -6,12 +6,14 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.ead.vocation.dtos.JobRequest;
 import com.ead.vocation.dtos.UpdateJobPosterRequest;
 import com.ead.vocation.model.Job;
 import com.ead.vocation.model.JobPoster;
 import com.ead.vocation.model.User;
+import com.ead.vocation.repository.ApplicationRepository;
 import com.ead.vocation.repository.JobPosterRepository;
 import com.ead.vocation.repository.JobRepository;
 import com.ead.vocation.repository.UserRepository;
@@ -26,6 +28,9 @@ public class JobPosterService {
 
 	@Autowired
 	private UserRepository userRepository;
+
+	@Autowired
+	private ApplicationRepository applicationRepository;
 
 	@Autowired
 	private PasswordEncoder passwordEncoder;
@@ -126,6 +131,7 @@ public class JobPosterService {
 		return jobRepository.save(job);
 	}
 
+	@Transactional
 	public void deleteJobByIdAndPosterId(Integer jobID, Integer jobPosterID) {
 		User user = userRepository.findById(jobPosterID)
 				.orElseThrow(() -> new IllegalArgumentException("Job Poster not found"));
@@ -140,6 +146,7 @@ public class JobPosterService {
 				.orElseThrow(() -> new IllegalArgumentException(
 						"Job not found or does not belong to the specified Job Poster"));
 
+		applicationRepository.deleteByJob(job);
 		jobRepository.delete(job);
 	}
 
@@ -150,8 +157,6 @@ public class JobPosterService {
 		JobPoster jobPoster = jobPosterRepository.findByUser(user)
 				.orElseThrow(() -> new IllegalArgumentException("Job Poster not found"));
 
-		System.out.println(newJobPosterRequest.getEmail() + "; ;" + jobPoster.getUser().getEmail());
-		System.out.println(newJobPosterRequest.getEmail() != jobPoster.getUser().getEmail());
 		if (userRepository.existsByEmail(newJobPosterRequest.getEmail())
 				&& !newJobPosterRequest.getEmail().equals(jobPoster.getUser().getEmail())) {
 			throw new IllegalArgumentException("Email already in use");

@@ -8,14 +8,15 @@ import org.springframework.stereotype.Repository;
 
 import com.ead.vocation.model.Application;
 import com.ead.vocation.model.Freelancer;
-
-
+import com.ead.vocation.model.Job;
 
 @Repository
 public interface ApplicationRepository extends JpaRepository<Application, Integer> {
     List<Application> findByFreelancer(Freelancer freelancer);
-   
+
     List<Application> findByJobId(Integer jobId);
 
-    Optional<Application> findByIdAndFreelancer(Integer id,  Freelancer freelancer);
+    Optional<Application> findByIdAndFreelancer(Integer id, Freelancer freelancer);
+
+    void deleteByJob(Job job);
 }

@@ -6,7 +6,6 @@ import com.ead.vocation.dtos.FreelancerUpdateRequest;
 import com.ead.vocation.model.Application;
 import com.ead.vocation.model.Freelancer;
 import com.ead.vocation.model.Job;
-import com.ead.vocation.model.JobPoster;
 import com.ead.vocation.model.User;
 import com.ead.vocation.repository.ApplicationRepository;
 import com.ead.vocation.repository.FreelancerRepository;
@@ -31,7 +30,6 @@ public class FreelancerService {
     @Autowired
     private JobRepository jobRepository;
 
-
     @Autowired
     private ApplicationRepository applicationRepository;
 
@@ -43,55 +41,41 @@ public class FreelancerService {
         return freelancerRepository.save(freelancer);
     }
 
-
-
     public FreelancerResponse getFreelancerByUserId(Integer userId) {
-        
+
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new IllegalArgumentException("User not found"));
-    
-        
+
         Freelancer freelancer = freelancerRepository.findByUser(user)
                 .orElseThrow(() -> new IllegalArgumentException("Freelancer not found"));
-    
-       
+
         FreelancerResponse response = new FreelancerResponse();
         response.setFields(freelancer, user);
-    
+
         return response;
     }
-    
-
-
-   
 
     public Application createApplication(ApplicationRequest applicationRequest, Integer freelancerID) {
-      
+
         User user = userRepository.findById(freelancerID)
                 .orElseThrow(() -> new IllegalArgumentException("User not found"));
-    
+
         Freelancer freelancer = freelancerRepository.findByUser(user)
                 .orElseThrow(() -> new IllegalArgumentException("Freelancer not found"));
-    
-      
+
         Job job = jobRepository.findById(applicationRequest.getJobId())
                 .orElseThrow(() -> new IllegalArgumentException("Job not found"));
-    
+
         Application applicationEntity = applicationRequest.toApplicationEntity(job, freelancer);
-    
-    
+
         return applicationRepository.save(applicationEntity);
     }
-    
 
-
-    
-
- public List<Application> getAllApplicationsByFreelancerId(Integer freelancerID) {
+    public List<Application> getAllApplicationsByFreelancerId(Integer freelancerID) {
         User user = userRepository.findById(freelancerID)
                 .orElseThrow(() -> new IllegalArgumentException("Freelancer not found"));
 
-       Freelancer freelancer = freelancerRepository.findByUser(user)
+        Freelancer freelancer = freelancerRepository.findByUser(user)
                 .orElseThrow(() -> new IllegalArgumentException("Freelancer not found"));
         if (freelancer == null) {
             throw new IllegalArgumentException("Freelancer not found");
@@ -101,66 +85,52 @@ public class FreelancerService {
         return applications != null ? applications : Collections.emptyList();
     }
 
-
-
     public void deleteApplicationByIdAndFreelancerId(Integer applicationID, Integer freelancerID) {
-      
+
         User user = userRepository.findById(freelancerID)
                 .orElseThrow(() -> new IllegalArgumentException("Freelancer not found"));
-    
-    
+
         Freelancer freelancer = freelancerRepository.findByUser(user)
                 .orElseThrow(() -> new IllegalArgumentException("Freelancer not found"));
-    
+
         Application application = applicationRepository.findByIdAndFreelancer(applicationID, freelancer)
-                .orElseThrow(() -> new IllegalArgumentException("Application not found or does not belong to the specified freelancer"));
-    
+                .orElseThrow(() -> new IllegalArgumentException(
+                        "Application not found or does not belong to the specified freelancer"));
 
         applicationRepository.delete(application);
     }
-    
-
-
-
 
     public FreelancerResponse getFreelancerProfile(Integer userId) {
-       
+
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new IllegalArgumentException("User not found"));
 
-        
         Freelancer freelancer = freelancerRepository.findByUser(user)
                 .orElseThrow(() -> new IllegalArgumentException("Freelancer not found"));
 
-      
         FreelancerResponse freelancerResponse = new FreelancerResponse();
         freelancerResponse.setFields(freelancer, user);
 
         return freelancerResponse;
     }
 
-
     public FreelancerResponse updateFreelancerProfile(Integer userId, FreelancerUpdateRequest freelancerUpdateRequest) {
-     
+
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new IllegalArgumentException("User not found"));
-    
-      
+
         Freelancer freelancer = freelancerRepository.findByUser(user)
                 .orElseThrow(() -> new IllegalArgumentException("Freelancer not found"));
-    
-   
+
         if (freelancerUpdateRequest.getName() != null) {
             user.setName(freelancerUpdateRequest.getName());
         }
         if (freelancerUpdateRequest.getEmail() != null) {
             user.setEmail(freelancerUpdateRequest.getEmail());
         }
-    
-       
+
         userRepository.save(user);
-    
-      
+
         if (freelancerUpdateRequest.getIndustry() != null) {
             freelancer.setIndustry(freelancerUpdateRequest.getIndustry());
         }
@@ -191,17 +161,12 @@ public class FreelancerService {
         if (freelancerUpdateRequest.getProfilePicture() != null) {
             freelancer.setProfilePicture(freelancerUpdateRequest.getProfilePicture());
         }
-    
-      
+
         freelancerRepository.save(freelancer);
-    
-      
+
         FreelancerResponse response = new FreelancerResponse();
         response.setFields(freelancer, user);
         return response;
     }
-    
-
-
 
 }

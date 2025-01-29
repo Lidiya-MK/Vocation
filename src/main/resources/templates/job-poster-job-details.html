@@ -17,10 +17,12 @@
     <script src="/scripts/toast.js"></script>
     <script src="/scripts/tokens.js"></script>
     <script src="/scripts/logout.js"></script>
+    <script src="/scripts/job-poster.js"></script>
+    <script src="/scripts/confirm-box.js"></script>
 
     <title>Job Details</title>
   </head>
-  <body class="bg-white">
+  <body class="bg-white" th:attr="data-job-id=${jobId}">
     <!-- Top Navigation Bar -->
     <header>
       <nav class="bg-white py-2 px-4 flex items-center justify-between">
@@ -115,158 +117,147 @@
             <p class="text-[40px] font-light text-black">Applicants</p>
           </div>
 
-          <div
-            class="w-full lg:w-[87%] border-[1.5px] border-black/[0.36] rounded-lg p-4 flex flex-wrap items-center lg:flex-nowrap gap-6 mt-6 mx-2"
-          >
-            <!-- Circular Image -->
+          <!-- Empty state for no applications -->
+          <div id="empty-state" class="hidden text-center my-10">
             <img
-              src="/assets/applicant.png"
-              alt="Profile"
-              class="w-[100px] h-[100px] rounded-full hidden lg:block"
+              src="/assets/emptyIcon.png"
+              alt="Empty Icon"
+              class="w-64 h-64 mx-auto mb-4 opacity-65"
             />
-
-            <!-- Left Content (Details) -->
-            <div class="flex-1">
-              <!-- Applicant Name -->
-              <p class="text-[22px] lg:text-[27px] text-[#6F6C6C] font-light">
-                Solomon Taddesse
-              </p>
-
-              <!-- Company Name -->
-              <div class="flex items-center mt-1">
-                <img
-                  src="/assets/suitcaseIcon.png"
-                  alt="Company Icon"
-                  class="w-4 h-4 mr-2"
-                />
-                <p class="text-[16px] font-bold text-[#F0823E]">
-                  Graphics Designer, UI/UX designer
-                </p>
-              </div>
-
-              <!-- Email -->
-              <div class="flex items-center mt-1">
-                <img
-                  src="/assets/mailIcon.png"
-                  alt="Mail Icon"
-                  class="w-4 h-4 mr-2"
-                />
-                <p class="text-[16px] font-bold text-[#716D6D]">
-                  solomon@gmail.com
-                </p>
-              </div>
-
-              <!-- Location -->
-              <div class="flex items-center mt-1">
-                <img
-                  src="/assets/LocationIcon.png"
-                  alt="Mail Icon"
-                  class="w-4 h-4 mr-2"
-                />
-                <p class="text-[16px] font-bold text-[#716D6D]">
-                  Addis Ababa, Ethiopia
-                </p>
-              </div>
-            </div>
-
-            <!-- Right Content -->
-            <div
-              class="flex items-center justify-between lg:justify-end gap-6 lg:flex-1"
-            >
-              <!-- Accept Button -->
-              <button
-                class="border-[1px] border-[#57DD70] text-[#A0A0A0] font-bold text-[14px] lg:text-[16px] px-3 py-1 rounded-[50px] hover:bg-[#57DD70] hover:text-white transition"
-              >
-                Accept
-              </button>
-
-              <!-- Reject Button -->
-              <button
-                class="border-[1px] border-[#F0443E] text-[#A0A0A0] font-bold text-[14px] lg:text-[16px] px-3 py-1 rounded-[50px] hover:bg-[#F0443E] hover:text-white transition"
-              >
-                Reject
-              </button>
-            </div>
+            <p class="text-lg text-gray-700">No applications available</p>
           </div>
 
           <div
-            class="w-full lg:w-[87%] border-[1.5px] border-black/[0.36] rounded-lg p-4 flex flex-wrap items-center lg:flex-nowrap gap-6 mt-6 mx-2"
+            class="w-full lg:w-[87%] border-[1.5px] border-black/[0.36] rounded-lg p-4 items-center flex flex-col gap-6 mt-6 mx-2 shadow-lg application-item"
+            th:each="applicationItem : ${applications}"
+            th:if="${applicationItem.status.name() != 'REJECTED'}"
+            th:attr="data-application-id=${applicationItem.id}"
           >
-            <!-- Circular Image -->
-            <img
-              src="/assets/hibu.png"
-              alt="Profile"
-              class="w-[100px] h-[100px] rounded-full hidden lg:block"
-            />
-
-            <!-- Left Content  -->
-            <div class="flex-1">
-              <!-- Applicant Name -->
-              <p class="text-[22px] lg:text-[27px] text-[#6F6C6C] font-light">
-                Hiba Kemal
-              </p>
-
-              <!-- Company Name -->
-              <div class="flex items-center mt-1">
+            <div class="flex flex-nowrap w-full gap-6">
+              <div class="flex items-center gap-4">
+                <!-- Circular Image -->
                 <img
-                  src="/assets/suitcaseIcon.png"
-                  alt="Company Icon"
-                  class="w-4 h-4 mr-2"
+                  src="/assets/applicant.png"
+                  alt="Profile"
+                  class="w-[100px] h-[100px] rounded-full hidden lg:block"
                 />
-                <p class="text-[16px] font-bold text-[#F0823E]">
-                  Graphics Designer, UI/UX designer
-                </p>
+
+                <!-- Left Content (Details) -->
+                <div class="flex-1">
+                  <p
+                    class="text-[22px] lg:text-[27px] text-[#6F6C6C] font-light"
+                    th:text="${applicationItem.freelancer.user.name}"
+                  ></p>
+
+                  <div class="flex items-center mt-1">
+                    <img
+                      src="/assets/suitcaseIcon.png"
+                      alt="Company Icon"
+                      class="w-4 h-4 mr-2"
+                    />
+                    <p
+                      class="text-[16px] font-bold text-[#F0823E]"
+                      th:text="${applicationItem.freelancer.industry}"
+                    ></p>
+                  </div>
+
+                  <div class="flex items-center mt-1">
+                    <img
+                      src="/assets/mailIcon.png"
+                      alt="Mail Icon"
+                      class="w-4 h-4 mr-2"
+                    />
+                    <p
+                      class="text-[16px] font-bold text-[#716D6D]"
+                      th:text="${applicationItem.freelancer.user.email}"
+                    ></p>
+                  </div>
+
+                  <div class="flex items-center mt-1">
+                    <img
+                      src="/assets/LocationIcon.png"
+                      alt="Location Icon"
+                      class="w-4 h-4 mr-2"
+                    />
+                    <p
+                      class="text-[16px] font-bold text-[#716D6D]"
+                      th:text="${applicationItem.freelancer.location}"
+                    ></p>
+                  </div>
+                </div>
               </div>
 
-              <!-- Email -->
-              <div class="flex items-center mt-1">
-                <img
-                  src="/assets/mailIcon.png"
-                  alt="Mail Icon"
-                  class="w-4 h-4 mr-2"
-                />
-                <p class="text-[16px] font-bold text-[#716D6D]">
-                  hiba@gmail.com
-                </p>
-              </div>
+              <!-- Right Content -->
+              <div
+                class="flex items-center justify-between lg:justify-end gap-6 lg:flex-1"
+              >
+                <th:block
+                  th:if="${applicationItem.status.name() == 'ACCEPTED'}"
+                >
+                  <!-- Show accepted icon instead of buttons -->
+                  <div
+                    class="flex items-center gap-2 text-green-700 font-bold text-lg"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                      class="w-6 h-6 text-green-700"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M12 2a10 10 0 1010 10A10.011 10.011 0 0012 2zm4.707 7.293a1 1 0 00-1.414-1.414L10 13.172l-1.293-1.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l6-6z"
+                        clip-rule="evenodd"
+                      />
+                    </svg>
+                    <span>Accepted!</span>
+                  </div>
+                </th:block>
+                <th:block
+                  th:if="${applicationItem.status.name() != 'ACCEPTED'}"
+                >
+                  <!-- Accept Button -->
+                  <button
+                    class="accept-app-btn border-[1px] border-[#57DD70] text-[#A0A0A0] font-bold text-[14px] lg:text-[16px] px-3 py-1 rounded-[50px] hover:bg-[#57DD70] hover:text-white transition"
+                  >
+                    Accept
+                  </button>
 
-              <!-- Location -->
-              <div class="flex items-center mt-1">
-                <img
-                  src="/assets/LocationIcon.png"
-                  alt="Mail Icon"
-                  class="w-4 h-4 mr-2"
-                />
-                <p class="text-[16px] font-bold text-[#716D6D]">
-                  Addis Ababa, Ethiopia
-                </p>
+                  <!-- Reject Button -->
+                  <button
+                    class="reject-app-btn border-[1px] border-[#F0443E] text-[#A0A0A0] font-bold text-[14px] lg:text-[16px] px-3 py-1 rounded-[50px] hover:bg-[#F0443E] hover:text-white transition"
+                  >
+                    Reject
+                  </button>
+                </th:block>
               </div>
             </div>
 
-            <!-- Right Content -->
-            <div
-              class="flex items-center justify-between lg:justify-end gap-6 lg:flex-1"
-            >
-              <!-- Accept Button -->
-              <button
-                class="border-[1px] border-[#57DD70] text-[#A0A0A0] font-bold text-[14px] lg:text-[16px] px-3 py-1 rounded-[50px] hover:bg-[#57DD70] hover:text-white transition"
-              >
-                Accpet
-              </button>
+            <!-- Cover Letter -->
+            <div class="w-full">
+              <h3 class="text-[20px] font-bold text-[#6F6C6C]">Cover Letter</h3>
+              <p
+                class="text-[16px] text-black font-light mt-2"
+                th:text="${applicationItem.freelancer.coverLetter}"
+              ></p>
+            </div>
 
-              <!-- Reject Button -->
-              <button
-                class="border-[1px] border-[#F0443E] text-[#A0A0A0] font-bold text-[14px] lg:text-[16px] px-3 py-1 rounded-[50px] hover:bg-[#F0443E] hover:text-white transition"
+            <!-- Resume Link -->
+            <div class="w-full">
+              <h3 class="text-[20px] font-bold text-[#6F6C6C]">Resume</h3>
+              <a
+                href="#"
+                th:href="@{${applicationItem.freelancer.resumeLink}}"
+                class="text-[16px] text-[#F0823E] font-bold hover:underline"
+                >View Resume</a
               >
-                Reject
-              </button>
             </div>
           </div>
         </div>
       </section>
     </main>
 
-    <footer class="bg-black py-8">
+    <footer class="bg-black py-8 mt-4">
       <div
         class="grid grid-cols-5 gap-6 text-center text-[16px] font-bold text-white"
       >
@@ -469,58 +460,52 @@
     </div>
 
     <script>
-      // Function to open the modal
-      function openModal() {
-        document.getElementById("modal").classList.remove("hidden");
+      const applicationItems = document.querySelectorAll(".application-item");
+      const emptyState = document.getElementById("empty-state");
+
+      if (applicationItems.length === 0) {
+        emptyState.classList.remove("hidden");
+      } else {
+        emptyState.classList.add("hidden");
       }
 
-      // Function to close the modal
-      function closeModal() {
-        document.getElementById("modal").classList.add("hidden");
-      }
-      const skillsDropdown = document.getElementById("skillsDropdown");
-      const skillsList = document.getElementById("skillsList");
-      const selectedSkillsContainer = document.getElementById(
-        "selectedSkillsContainer"
-      );
+      document.addEventListener("DOMContentLoaded", function () {
+        document
+          .querySelectorAll(".accept-app-btn, .reject-app-btn")
+          .forEach((button) => {
+            button.addEventListener("click", async function () {
+              const applicationContainer = this.closest(
+                "[data-application-id]"
+              );
+              const applicationId = applicationContainer.getAttribute(
+                "data-application-id"
+              );
+              const jobId = document.body.getAttribute("data-job-id");
+              const newStatus = this.classList.contains("accept-app-btn")
+                ? "ACCEPTED"
+                : "REJECTED";
 
-      skillsDropdown.addEventListener("click", () => {
-        skillsList.classList.toggle("hidden");
+              let message = "Are you sure you want to accept this application?";
+              if (newStatus == "REJECTED") {
+                message = "Are you sure you want to reject this application?";
+              }
+
+              const colorScheme = this.classList.contains("accept-app-btn")
+                ? "success"
+                : "error";
+              const confirmed = await showConfirmBox(message, colorScheme);
+              if (!confirmed) {
+                return;
+              }
+
+              sendApplicationStatusUpdateRequest(
+                jobId,
+                applicationId,
+                newStatus
+              );
+            });
+          });
       });
-
-      const skillItems = skillsList.querySelectorAll(".skill-item");
-
-      skillItems.forEach((item) => {
-        item.addEventListener("click", () => {
-          const skill = item.textContent;
-
-          if (!isSkillSelected(skill)) {
-            const skillItem = document.createElement("div");
-            skillItem.className =
-              "bg-[#F0823E] text-white rounded-lg px-3 py-1 text-sm flex items-center";
-            skillItem.innerHTML = `${skill} <button onclick="removeSkill('${skill}')" class="ml-2 text-white">&times;</button>`;
-            selectedSkillsContainer.appendChild(skillItem);
-
-            skillsList.classList.add("hidden");
-          }
-        });
-      });
-
-      function isSkillSelected(skill) {
-        const selectedSkills = selectedSkillsContainer.querySelectorAll("div");
-        return Array.from(selectedSkills).some((item) =>
-          item.textContent.includes(skill)
-        );
-      }
-
-      function removeSkill(skill) {
-        const skillItem = Array.from(selectedSkillsContainer.children).find(
-          (item) => item.textContent.includes(skill)
-        );
-        if (skillItem) {
-          selectedSkillsContainer.removeChild(skillItem);
-        }
-      }
     </script>
   </body>
 </html>

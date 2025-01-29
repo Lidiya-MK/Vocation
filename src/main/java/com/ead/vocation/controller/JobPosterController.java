@@ -10,12 +10,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.ead.vocation.dtos.ApplicationResponse;
+import com.ead.vocation.dtos.FreelancerResponse;
 import com.ead.vocation.dtos.JobPosterResponse;
 import com.ead.vocation.dtos.JobRequest;
 import com.ead.vocation.dtos.JobResponse;
+import com.ead.vocation.dtos.UpdateApplicationStatusRequest;
 import com.ead.vocation.dtos.UpdateJobPosterRequest;
 import com.ead.vocation.model.Application;
 import com.ead.vocation.model.Job;
@@ -66,6 +70,7 @@ public class JobPosterController {
         Integer jobPosterId = jwtServices.extractIdFromHeader(token);
         Job job = jobPosterService.getJobByIdAndPosterId(jobId, jobPosterId);
 
+        List<Application> applications = applicationService.getAllApplications(jobId, jobPosterId);
         StringBuilder skills = new StringBuilder();
         for (String skill : job.getSkillsRequired()) {
             skills.append(skill + ", ");
@@ -77,12 +82,14 @@ public class JobPosterController {
 
         model.addAttribute("skillsRequired", skills.toString());
         model.addAttribute("jobTitle", job.getTitle());
+        model.addAttribute("jobId", job.getId());
         model.addAttribute("startDate", job.getStartDate());
         model.addAttribute("jobType", job.getType());
         model.addAttribute("jobDescription", job.getDescription());
         model.addAttribute("budget", job.getBudget());
         model.addAttribute("deadline", job.getApplicationDeadline());
         model.addAttribute("skills", skills.toString());
+        model.addAttribute("applications", applications);
         return "job-poster-job-details";
     }
 
@@ -187,28 +194,42 @@ public class JobPosterController {
         }
     }
 
-    // TODO: create output DTO for this endpoint
     @GetMapping("/jobs/{jobId}/applications")
     public ResponseEntity<?> getAllApplications(@PathVariable Integer jobId,
             @RequestHeader("Authorization") String token) {
         try {
             Integer posterId = jwtServices.extractIdFromHeader(token);
             List<Application> applications = applicationService.getAllApplications(jobId, posterId);
-            return ResponseEntity.ok(applications);
+            List<ApplicationResponse> applicationResponses = applications.stream()
+                    .map(application -> {
+                        ApplicationResponse applicationResponse = new ApplicationResponse();
+                        JobResponse jobResponse = new JobResponse();
+                        jobResponse.setFields(application.getJob());
+                        FreelancerResponse freelancerResponse = new FreelancerResponse();
+                        freelancerResponse.setFields(application.getFreelancer(),
+                                application.getFreelancer().getUser());
+                        applicationResponse.setFields(application, jobResponse, freelancerResponse);
+                        return applicationResponse;
+                    })
+                    .collect(Collectors.toList());
+
+            return ResponseEntity.ok(applicationResponses);
         } catch (IllegalArgumentException e) {
             return handleException(e);
         }
     }
 
-    // TODO: create output DTO for this endpoint
-    @GetMapping("/jobs/{jobId}/applications/{applicationId}")
-    public ResponseEntity<?> getApplicationById(@PathVariable Integer jobId, @PathVariable Integer applicationId,
-            @RequestHeader("Authorization") String token) {
+    @PatchMapping("/jobs/{jobId}/applications/{applicationId}")
+    public ResponseEntity<?> updateApplicationStatus(@PathVariable Integer jobId,
+            @PathVariable Integer applicationId,
+            @RequestHeader("Authorization") String token,
+            @Valid @RequestBody UpdateApplicationStatusRequest updateRequest) {
         try {
             Integer posterId = jwtServices.extractIdFromHeader(token);
-            Application application = applicationService.getApplicationById(applicationId, jobId,
+            applicationService.updateApplicationStatus(updateRequest.getNewStatus(),
+                    applicationId, jobId,
                     posterId);
-            return ResponseEntity.ok(application);
+            return ResponseEntity.ok().build();
         } catch (IllegalArgumentException e) {
             return handleException(e);
         }

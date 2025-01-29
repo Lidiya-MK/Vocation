@@ -15,6 +15,8 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 import com.ead.vocation.shared.util.JwtAuthenticationFilter;
 
+import jakarta.servlet.http.HttpServletResponse;
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
@@ -30,14 +32,23 @@ public class SecurityConfig {
                         .requestMatchers("/admins/**").hasRole("ADMIN")
                         .requestMatchers("/freelancers/**").hasRole("FREELANCER")
                         .requestMatchers("/job-posters/**").hasRole("JOB_POSTER")
-                        .requestMatchers("/public/**", "/styles/**", "/js/**", "/assets/**", "/favicon.ico", "/",
+                        .requestMatchers("/public/**", "/styles/**", "/js/**", "/assets/**",
+                                "/favicon.ico", "/", "/404",
                                 "/index.html", "/scripts/**")
                         .permitAll()
                         .anyRequest().authenticated())
                 .exceptionHandling(exception -> exception
                         .authenticationEntryPoint(
-                                (request, response, authException) -> response.sendRedirect("/")))
-                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                                (request, response, authException) -> {
+                                    if ("GET".equalsIgnoreCase(request.getMethod())) {
+                                        response.sendRedirect("/404");
+                                    } else {
+                                        response.sendError(HttpServletResponse.SC_UNAUTHORIZED,
+                                                authException.getMessage());
+                                    }
+                                }))
+                .sessionManagement(session -> session
+                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
