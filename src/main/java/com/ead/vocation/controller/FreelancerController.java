@@ -63,26 +63,40 @@ public class FreelancerController {
 
    
 
-    @GetMapping("/profile")
+    @GetMapping("/dashboard")
     public String getFreelancerDashboard(HttpServletRequest request, Model model) {
         String token = (String) request.getAttribute("Authorization");
-        Integer id = jwtServices.extractIdFromHeader(token); // You need to extract freelancer ID here
-    
+        Integer id = jwtServices.extractIdFromHeader(token); 
         FreelancerResponse freelancerResponse = freelancerService.getFreelancerProfile(id);
-        
-   
         List<Application> applications = freelancerService.getAllApplicationsByFreelancerId(id);
-        
-    
         List<JobResponse> jobResponses = jobService.getAllJobs();
         
         model.addAttribute("freelancerName", freelancerResponse.getName());
         model.addAttribute("freelancerEmail", freelancerResponse.getEmail());
         model.addAttribute("freelancerIndustry", freelancerResponse.getIndustry());
+        model.addAttribute("freelancerLocation", freelancerResponse.getLocation());
+        model.addAttribute("freelancerDescription", freelancerResponse.getDescription());
+        model.addAttribute("freelancerProfilePicture", freelancerResponse.getProfilePicture());
         model.addAttribute("applications", applications);
         model.addAttribute("availableJobs", jobResponses);
 
         return "freelancer-home";
+    }
+
+
+     @GetMapping("/profile")
+    public String getFreelancerProfile(HttpServletRequest request, Model model) {
+        String token = (String) request.getAttribute("Authorization");
+        Integer id = jwtServices.extractIdFromHeader(token); 
+        FreelancerResponse freelancerResponse = freelancerService.getFreelancerProfile(id);
+        model.addAttribute("name", freelancerResponse.getName());
+        model.addAttribute("industry", freelancerResponse.getIndustry());
+        model.addAttribute("description", freelancerResponse.getDescription());
+        model.addAttribute("email", freelancerResponse.getEmail());
+        model.addAttribute("location", freelancerResponse.getLocation());
+        model.addAttribute("phoneNumber", freelancerResponse.getPhoneNumber());
+        model.addAttribute("links", freelancerResponse.getLinks());
+        return "freelancer-update-profile";
     }
 
     @GetMapping("/jobs")

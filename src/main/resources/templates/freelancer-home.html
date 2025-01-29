@@ -14,6 +14,9 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="/styles/style.css" />
+    <script src="/scripts/toast.js"></script>
+    <script src="/scripts/tokens.js"></script>
+    <script src="/scripts/logout.js"></script>
 
     <title>Freelancer Home page</title>
   </head>
@@ -54,12 +57,12 @@
             <span class="text-sm text-black mt-1">Home</span>
           </a>
           <!-- Profile -->
-          <a href="#" class="flex flex-col items-center">
+          <a href="/freelancers/profile" class="flex flex-col items-center">
             <img src="../assets/userIcon.png" alt="Profile" class="h-6 w-6" />
             <span class="text-sm text-gray-500 mt-1">Profile</span>
           </a>
           <!-- Logout -->
-          <a href="#" class="flex flex-col items-center">
+          <a class="flex flex-col items-center" id="logout-button">
             <img src="../assets/logoutIcon.png" alt="Logout" class="h-6 w-6" />
             <span class="text-sm text-gray-500 mt-1">Logout</span>
           </a>
@@ -83,16 +86,15 @@
           <div class="flex flex-col space-y-4">
             <!-- Circular Image and Freelancer Name -->
             <div class="flex items-center space-x-4">
-              <img
-                src="../assets/hibu.png"
-                alt="Circular Image"
-                class="w-[140px] h-[140px] rounded-full object-cover"
-              />
+              <img th:src="${freelancerProfilePicture}"
+              alt="Profile Picture"
+              class="w-[140px] h-[140px] rounded-full object-cover" />
+         
 
               <!-- Freelancer Name -->
               <div>
-                <h2 class="text-black font-bold text-[40px] leading-none">
-                  Hiba Kemal
+                <h2 class="text-black font-bold text-[40px] leading-none" th:text="${freelancerName}">
+                  
                 </h2>
               </div>
             </div>
@@ -105,9 +107,8 @@
                   alt="Industry Icon"
                   class="w-6 h-6"
                 />
-                <span class="text-[#6692A7] font-bold text-[16px]"
-                  >Graphics Designer, UI/UX designer</span
-                >
+                <span class="text-[#6692A7] font-bold text-[16px]" th:text="${freelancerIndustry}"
+                  ></span>
               </div>
               <div class="flex items-center space-x-2">
                 <img
@@ -115,8 +116,8 @@
                   alt="Industry Icon"
                   class="w-6 h-6"
                 />
-                <span class="text-[#716D6D] font-bold text-[16px]"
-                  >hiba@gmail.com</span
+                <span class="text-[#716D6D] font-bold text-[16px]" th:text="${freelancerEmail}"
+                  ></span
                 >
               </div>
               <div class="flex items-center space-x-2">
@@ -125,8 +126,8 @@
                   alt="Location Icon"
                   class="w-6 h-6"
                 />
-                <span class="text-[#716D6D] font-bold text-[16px]"
-                  >Addis Ababa, Ethiopia</span
+                <span class="text-[#716D6D] font-bold text-[16px]" th:text="${freelancerLocation}"
+                  ></span
                 >
               </div>
             </div>
@@ -138,14 +139,9 @@
               About
             </h2>
             <p
-              class="text-[#4b4b4b] text-[16px] font-light w-[500px] mt-2 hidden lg:block"
+              class="text-[#4b4b4b] text-[16px] font-light w-[500px] mt-2 hidden lg:block"  th:text="${freelancerDescription}"
             >
-              Hello! I'm a passionate UI/UX designer and graphic design
-              freelancer based in Addis Ababa, Ethiopia, dedicated to creating
-              user-centered digital experiences and compelling visual content.
-              With a keen eye for detail and a love for innovation, I specialize
-              in designing intuitive interfaces and crafting unique graphics
-              that bring ideas to life.
+              Tell us about yourself! Update your profile to add an about section
             </p>
           </div>
         </div>
