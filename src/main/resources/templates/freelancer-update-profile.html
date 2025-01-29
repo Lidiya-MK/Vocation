@@ -17,6 +17,7 @@
     <script src="/scripts/toast.js"></script>
     <script src="/scripts/tokens.js"></script>
     <script src="/scripts/logout.js"></script>
+    <script src="/scripts/freelancer.js"></script>
 
     <title>Freelancer Profile</title>
   </head>
@@ -68,9 +69,10 @@
           <div class="flex flex-col space-y-4">
             <!-- Circular Image and Freelancer Name -->
             <div class="flex items-center space-x-4">
-              <img th:src="${profilePicture}"
-              alt="Profile Picture"
-              class="w-[140px] h-[140px] rounded-full object-cover" />
+              <img src="/assets/placeholderuser.png"
+     alt="Profile Picture"
+     class="w-[140px] h-[140px] rounded-full object-cover" />
+
               <!-- Freelancer Name -->
               <div>
                 <h2 class="text-black font-bold text-[40px] leading-none" th:text="${name}">
@@ -140,7 +142,7 @@
         </div>
       </section>
 
-     <!-- Modal Content -->
+    <!-- Modal Content -->
 <div
 id="modal"
 class="fixed inset-0 bg-gray-500 bg-opacity-50 flex justify-center items-center z-50 hidden"
@@ -156,28 +158,116 @@ class="fixed inset-0 bg-gray-500 bg-opacity-50 flex justify-center items-center 
   </div>
 
   <!-- Form -->
-  <form id="updateProfileForm" >
-    <!-- Name -->
-    <div class="mb-2">
-      <label for="name" class="block text-black font-bold text-[10px] mb-1">Name</label>
-      <input type="text" id="name" placeholder="Enter name" class="w-full border border-gray-300 rounded-lg px-2 py-1 text-[10px]" />
-    </div>
+  <form
+  id="profileForm"
+  class="bg-white rounded-lg shadow-lg "
+>
 
-    <!-- Industry -->
-    <div class="mb-2">
-      <label for="industry" class="block text-black font-bold text-[10px] mb-1">Industry</label>
-      <select id="industry" class="w-full border border-gray-300 rounded-lg px-2 py-1 text-[10px]">
-        <option value="Design">Design</option>
-        <option value="Software Engineering">Software Engineering</option>
-        <option value="Marketing">Marketing</option>
-        <option value="Healthcare">Healthcare</option>
-        <option value="Finance">Finance</option>
-        <option value="Education">Education</option>
-        <option value="Construction">Construction</option>
-      </select>
-    </div>
 
-    <!-- Skills -->
+  <!-- Name -->
+  <div class="mb-4">
+    <label for="name" class="block text-sm font-bold mb-1">Name</label>
+    <input
+      type="text"
+      id="name"
+      placeholder="Enter your full name"
+      class="w-full border rounded-lg px-3 py-2 text-sm"
+      th:value="${name}"
+      required
+    />
+  </div>
+
+  <!-- Industry -->
+  <div class="mb-4">
+    <label for="industry" class="block text-sm font-bold mb-1"
+      >Industry</label
+    >
+    <select
+      id="industry"
+      class="w-full border rounded-lg px-3 py-2 text-sm"
+      required
+    >
+      <option
+        value="Software Development"
+        th:selected="${industry == 'Software Development'}"
+      >
+        Software Development
+      </option>
+      <option value="Design" th:selected="${industry == 'Design'}">
+        Design
+      </option>
+      <option value="Marketing" th:selected="${industry == 'Marketing'}">
+        Marketing
+      </option>
+      <option value="Finance" th:selected="${industry == 'Finance'}">
+        Finance
+      </option>
+      <option
+        value="Healthcare"
+        th:selected="${industry == 'Healthcare'}"
+      >
+        Healthcare
+      </option>
+      <option value="Education" th:selected="${industry == 'Education'}">
+        Education
+      </option>
+      <option
+        value="Construction"
+        th:selected="${industry == 'Construction'}"
+      >
+        Construction
+      </option>
+      <option
+        value="E-Commerce"
+        th:selected="${industry == 'E-Commerce'}"
+      >
+        E-Commerce
+      </option>
+    </select>
+  </div>
+
+  <!-- Description -->
+  <div class="mb-4">
+    <label for="description" class="block text-sm font-bold mb-1"
+      >Description</label
+    >
+    <textarea
+      id="description"
+      placeholder="Describe yourself"
+      class="w-full border rounded-lg px-3 py-2 text-sm"
+      rows="4"
+      th:text="${description}"
+    ></textarea>
+  </div>
+
+  <!-- Email -->
+  <div class="mb-4">
+    <label for="email" class="block text-sm font-bold mb-1">Email</label>
+    <input
+      type="text"
+      id="email"
+      placeholder="Enter your email"
+      class="w-full border rounded-lg px-3 py-2 text-sm"
+      required
+      th:value="${email}"
+    />
+  </div>
+
+  <!-- Location -->
+  <div class="mb-4">
+    <label for="location" class="block text-sm font-bold mb-1"
+      >Location</label
+    >
+    <input
+      type="text"
+      id="location"
+      placeholder="City, Country"
+      class="w-full border rounded-lg px-3 py-2 text-sm"
+      th:value="${location}"
+    />
+  </div>
+
+  
 <div class="mb-2">
   <div class="relative">
     <div
@@ -224,54 +314,68 @@ class="fixed inset-0 bg-gray-500 bg-opacity-50 flex justify-center items-center 
 </div>
 
 
-    <!-- Resume Link -->
-    <div class="mb-2">
-      <label for="resumeLink" class="block text-black font-bold text-[10px] mb-1">Resume Link</label>
-      <input type="text" id="resumeLink" placeholder="Enter resume link" class="w-full border border-gray-300 rounded-lg px-2 py-1 text-[10px]" />
-    </div>
+  <!-- Phone -->
+  <div class="mb-4">
+    <label for="phoneNumber" class="block text-sm font-bold mb-1"
+      >Phone Number</label
+    >
+    <input
+      type="tel"
+      id="phoneNumber"
+      placeholder="Enter phone number"
+      class="w-full border rounded-lg px-3 py-2 text-sm"
+      th:value="${phoneNumber}"
+    />
+  </div>
 
-    <!-- Years of Experience -->
-    <div class="mb-2">
-      <label for="yearsOfExperience" class="block text-black font-bold text-[10px] mb-1">Experience (In years)</label>
-      <input type="number" id="yearsOfExperience" placeholder="Enter years of experience" class="w-full border border-gray-300 rounded-lg px-2 py-1 text-[10px]" />
-    </div>
+  <!-- Password and Confirm Password -->
+  <div class="mb-4">
+    <label for="password" class="block text-sm font-bold mb-1"
+      >Password</label
+    >
+    <input
+      type="password"
+      id="password"
+      placeholder="Enter password"
+      class="w-full border rounded-lg px-3 py-2 text-sm"
+      required
+    />
+  </div>
 
-    <!-- Location -->
-    <div class="mb-2">
-      <label
-        for="location"
-        class="block text-black font-bold text-[10px] mb-1"
-        >Location</label
-      >
-      <div class="flex space-x-2">
-        <input
-          type="text"
-          id="city"
-          placeholder="Enter city"
-          class="w-full border border-gray-300 rounded-lg px-2 py-1 text-[10px]"
-        />
-        <input
-          type="text"
-          id="country"
-          placeholder="Enter country"
-          class="w-full border border-gray-300 rounded-lg px-2 py-1 text-[10px]"
-        />
-      </div>
-    </div>
+  <div class="mb-4">
+    <label for="confirmPassword" class="block text-sm font-bold mb-1"
+      >Confirm Password</label
+    >
+    <input
+      type="password"
+      id="confirmPassword"
+      placeholder="Confirm password"
+      class="w-full border rounded-lg px-3 py-2 text-sm"
+      required
+    />
+  </div>
 
-     <!-- profile picture -->
-     <div class="mb-2">
-      <label for="profilePicture" class="block text-black font-bold text-[10px] mb-1">Profile Picture Link</label>
-      <input type="text" id="profilePicture" placeholder="Enter resume link" class="w-full border border-gray-300 rounded-lg px-2 py-1 text-[10px]" />
-    </div>
+  <!-- Links -->
+  <div class="mb-4">
+    <label for="links" class="block text-sm font-bold mb-1"
+      >Links (comma-separated)</label
+    >
+    <input
+      type="text"
+      id="links"
+      placeholder="https://linkedin.com, https://github.com"
+      class="w-full border rounded-lg px-3 py-2 text-sm"
+      th:value="${#strings.arrayJoin(links, ', ')}"
+    />
+  </div>
 
-    <!-- Submit Button -->
-    <div class="text-center">
-      <button type="submit" class="w-[120px] bg-[#57DD70] text-white font-bold text-[12px] py-2 rounded-full hover:bg-[#57DD70]/90 transition">
-        Submit
-      </button>
-    </div>
-  </form>
+  <button
+    type="submit"
+    class="w-full bg-[#57DD70] text-white font-bold py-2 rounded-lg hover:bg-[#57DD70]/90 transition"
+  >
+    Submit
+  </button>
+</form>
 </div>
 </div>
 
@@ -595,61 +699,44 @@ function removeSkill(skill) {
   skillsInput.value = selectedSkills.join(', ');
 }
 
+document.addEventListener("DOMContentLoaded", () => {
+        const form = document.getElementById("profileForm");
 
-document.getElementById('updateProfileForm').addEventListener('submit', async function(event) {
-  event.preventDefault();
+        form.addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const name = document.getElementById("name").value;
+          const industry = document.getElementById("industry").value;
+          const description = document.getElementById("description").value;
+          const email = document.getElementById("email").value;
+          const location = document.getElementById("location").value;
+          const phoneNumber = document.getElementById("phoneNumber").value;
+          const password = document.getElementById("password").value;
+          const confirmPassword =
+            document.getElementById("confirmPassword").value;
+          const links = document.getElementById("links").value.split(",");
 
- 
-  const skillsInput = document.getElementById('skills');
-  skillsInput.value = selectedSkills.join(', '); 
+          if (password !== confirmPassword) {
+            showToast("Passwords do not match", "error");
+            return;
+          }
 
-  const name = document.getElementById('name').value;
-  const industry = document.getElementById('industry').value;
-  const skills = skillsInput.value;
-  const resumeLink = document.getElementById('resumeLink').value;
-  const yearsOfExperience = document.getElementById('yearsOfExperience').value;
-  const city = document.getElementById('city').value;
-  const country = document.getElementById('country').value;
-  const profileImage = document.getElementById('profilePicture').value;
+          const payload = {
+            name,
+            email,
+            password,
+            industry,
+            description: description,
+            location,
+            phoneNumber,
+            links: links.map((link) => link.trim()),
+          };
 
-  const formData = new FormData();
-
-  formData.append('name', name);
-  formData.append('industry', industry);
-  formData.append('skills', skills);
-  formData.append('resumeLink', resumeLink);
-  formData.append('yearsOfExperience', yearsOfExperience);
-  formData.append('location', `${city}, ${country}`);
-  if (profileImage) {
-    formData.append('profilePicture', profileImage);
-  }
-
-  try {
-    const token = getToken();
-
-    const response = await fetch('/freelancers/update', {
-  method: 'PUT',
-  headers: {
-    Authorization: "Bearer " + token,
-  },
-  body: formData,
-});
-
-    if (!response.ok) {
-      throw new Error('Failed to update profile');
-    }
-
-    const updatedProfile = await response.json();
-    alert('Profile updated successfully!');
-    console.log(updatedProfile);
-
-    closeModal();
-  } catch (error) {
-    alert('An error occurred while updating your profile.');
-    console.error(error);
-  }
-});
-
+          await sendProfileUpdateRequest(
+            "/freelancers/update",
+            payload
+          );
+        });
+      });
     </script>
   </body>
 </html>
