@@ -132,8 +132,7 @@
                   id="skillsList"
                   class="absolute left-0 w-full mt-1 bg-white border border-gray-300 rounded-lg shadow-lg hidden z-10 max-h-32 overflow-y-auto"
                 >
-                  <!-- Add skills here as .skill-item -->
-                  <!-- Example: -->
+                  
                   <div class="skill-item p-1 cursor-pointer hover:bg-[#6692A7] hover:text-white">HTML</div>
                   <div class="skill-item p-1 cursor-pointer hover:bg-[#6692A7] hover:text-white">CSS</div>
                   <div class="skill-item p-1 cursor-pointer hover:bg-[#6692A7] hover:text-white">JavaScript</div>
@@ -182,7 +181,7 @@
                 >
                   Book Keeping
                 </div>
-                  <!-- More skills -->
+              
                 </div>
               </div>
               <div id="selectedSkillsContainer" class="mt-2 flex flex-wrap gap-1"></div>
@@ -599,7 +598,7 @@ signupForm.addEventListener("submit", async (event) => {
   };
 
   try {
-    // Send the data to the backend API
+  
     const response = await fetch("/auth/freelancers/signup", {
       method: "POST",
       headers: {

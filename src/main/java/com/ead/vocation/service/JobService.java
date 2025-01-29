@@ -27,4 +27,9 @@ public class JobService {
                 })
                 .collect(Collectors.toList());
     }
+
+    public Job getJobById(Integer jobID) {
+        return jobRepository.findById(jobID)
+                .orElseThrow(() -> new IllegalArgumentException("Job not found"));
+    }
 }

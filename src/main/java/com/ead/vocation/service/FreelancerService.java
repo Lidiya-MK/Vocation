@@ -63,11 +63,7 @@ public class FreelancerService {
     
 
 
-    // public List<Job> getAllJobs() {
-    //     List<Job> jobs = jobRepository.findAll();
-    //     return jobs != null ? jobs : Collections.emptyList();
-    // }
-    
+   
 
     public Application createApplication(ApplicationRequest applicationRequest, Integer freelancerID) {
       

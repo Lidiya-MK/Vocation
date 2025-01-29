@@ -334,6 +334,7 @@
             <!-- Job Card (Remote) -->
             <div
               th:if="${job.type.name() == 'REMOTE'}"
+              th:attr="data-job-id=${job.id}"
               class="max-w-[360px] w-full h-auto job-card-remote border-[1px] border-[#6F6C6C]/[0.13] rounded-lg shadow-md hover:shadow-lg hover:translate-y-[-4px] transition-all duration-300 relative p-3 mx-auto"
             >
               <button
@@ -357,15 +358,18 @@
               <p class="text-[12px] text-center mt-2" th:text="${job.description}"></p>
               <div class="flex flex-col items-center mt-4">
                 <div class="w-[160px] h-[1px] bg-[#57DD70]"></div>
-                <button class="mt-2 text-[16px] font-medium text-black">
+                <span
+                  class="mt-2 text-sm font-medium text-black job-details-link-button cursor-pointer"
+                >
                   VIEW JOB
-                </button>
+                </span>
               </div>
             </div>
       
             <!-- Job Card (Onsite) -->
             <div
               th:if="${job.type.name() == 'ON_SITE'}"
+              th:attr="data-job-id=${job.id}"
               class="max-w-[360px] w-full h-auto job-card-onsite border-[1px] border-[#6F6C6C]/[0.13] rounded-lg shadow-md hover:shadow-lg hover:translate-y-[-4px] transition-all duration-300 relative p-3 mx-auto"
             >
               <button
@@ -389,15 +393,18 @@
               <p class="text-[12px] text-center mt-2" th:text="${job.description}"></p>
               <div class="flex flex-col items-center mt-4">
                 <div class="w-[160px] h-[1px] bg-[#F0823E]"></div>
-                <button class="mt-2 text-[16px] font-medium text-black">
+                <span
+                  class="mt-2 text-sm font-medium text-black job-details-link-button cursor-pointer"
+                >
                   VIEW JOB
-                </button>
+                </span>
               </div>
             </div>
       
             <!-- Job Card (Hybrid) -->
             <div
               th:if="${job.type.name() == 'HYBRID'}"
+              th:attr="data-job-id=${job.id}"
               class="max-w-[360px] w-full h-auto job-card-hybrid border-[1px] border-[#6F6C6C]/[0.13] rounded-lg shadow-md hover:shadow-lg hover:translate-y-[-4px] transition-all duration-300 relative p-3 mx-auto"
             >
               <button
@@ -421,9 +428,11 @@
               <p class="text-[12px] text-center mt-2" th:text="${job.description}"></p>
               <div class="flex flex-col items-center mt-4">
                 <div class="w-[160px] h-[1px] bg-[#6936B7]"></div>
-                <button class="mt-2 text-[16px] font-medium text-black">
-                  VIEW JOB
-                </button>
+                <span
+                  class="mt-2 text-sm font-medium text-black job-details-link-button cursor-pointer"
+                >
+                  VIEW DETAILS
+                </span>
               </div>
             </div>
             
@@ -634,5 +643,28 @@
         © 2025 Vocation. All Rights Reserved.
       </p>
     </div>
+
+
+
+    <script>
+document.addEventListener("DOMContentLoaded", () => {
+  const jobDetailsLinks = document.querySelectorAll(".job-details-link-button");
+
+  jobDetailsLinks.forEach((link) => {
+    link.addEventListener("click", (event) => {
+      const jobCard = event.target.closest(".job-card-remote, .job-card-onsite, .job-card-hybrid");
+      const jobId = jobCard.getAttribute("data-job-id");
+
+      if (jobId) {
+        window.location.href = `/freelancers/job-details/${jobId}`;
+      } else {
+        showToast("Job ID not found", "error");
+      }
+    });
+  });
+});
+
+      
+    </script>
   </body>
 </html>

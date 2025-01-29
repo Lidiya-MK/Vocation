@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Mansalva&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles/style.css" />
+
+    <title>Freelancer Job Details</title>
+  </head>
+  <body class="bg-white">
+    <!-- Top Navigation Bar -->
+    <header>
+      <nav class="bg-white py-2 px-4 flex items-center justify-between">
+        <!-- Company Name -->
+        <div class="text-[#6692A7] flex items-center company-name">
+          <span class="text-60px font-bold">V</span>
+          <span class="text-30px font-medium">ocation</span>
+        </div>
+
+        <div class="flex space-x-8">
+          <!-- Home -->
+          <a href="/freelancers/dashboard" class="flex flex-col items-center">
+            <img src="/assets/homeIcon.png" alt="Home" class="h-6 w-6" />
+            <span class="text-sm text-black mt-1">Home</span>
+          </a>
+          <!-- Profile -->
+          <a href="/freelancers/profile" class="flex flex-col items-center">
+            <img src="/assets/userIcon.png" alt="Profile" class="h-6 w-6" />
+            <span class="text-sm text-gray-500 mt-1">Profile</span>
+          </a>
+          <!-- Logout -->
+          <a class="flex flex-col items-center" id="logout-button">
+            <img src="/assets/logoutIcon.png" alt="Logout" class="h-6 w-6" />
+            <span class="text-sm text-gray-500 mt-1">Logout</span>
+          </a>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <div class="mx-auto">
+        <img
+          src="/assets/companyLogo.png"
+          alt="Company Logo"
+          class="w-[160px] h-[160px] rounded-full mx-auto mt-3 mb-4"
+        />
+      </div>
+
+      <section
+      class="bg-white pt-1 py-8 mx-auto max-w-[950px] text-center px-4"
+    >
+      <!-- Job Title -->
+      <div class="mb-6">
+        <h2 class="text-[80px] font-bold" th:text="${jobTitle}"></h2>
+      </div>
+
+      <!-- Job Details -->
+      <div class="text-left">
+        <!-- Date and Onsite -->
+        <div class="flex justify-start space-x-4 mb-4">
+          <p
+            class="text-[#6692A7]  text-[16px] font-bold"
+            th:text="'Date: ' + ${startDate}"
+          ></p>
+          <p
+            class="text-[#6692A7]  text-[16px] font-bold"
+            th:text="${jobType.name()}"
+          ></p>
+        </div>
+
+        <!-- Job Description -->
+        <p
+          class="text-[16px] text-black font-light mb-4"
+          th:text="${jobDescription}"
+        ></p>
+      </div>
+      <!-- Pay, Skills -->
+      <div class="flex flex-col justify-start mb-4">
+        <p
+          class="text-[#6692A7]  text-[16px] font-bold"
+          th:text="'Pay: ' + ${budget} + ' Birr/hr'"
+        ></p>
+        <p
+          class="text-[#6692A7]  text-[16px] font-bold"
+          th:text="'Skills: ' + ${skills}"
+        ></p>
+
+        <!-- Deadline -->
+        <p
+          class="text-[#F0443E] text-[16px] font-bold"
+          th:text="'Deadline: ' + ${deadline}"
+        ></p>
+      </div>
+    </section>
+
+
+
+      <section>
+        <div class="mt-10 flex flex-col items-center py-4">
+          <div class="flex items-center gap-2">
+            <p class="text-[40px] font-light text-black">Application</p>
+          </div>
+        </div>
+
+        <div class="mb-3 flex justify-center">
+          <textarea
+            placeholder="Tell the employer why you are interested"
+            class="w-full lg:w-[80%] border border-gray-300 rounded-lg px-4 py-4 text-sm h-72 mx-4 my-6"
+          ></textarea>
+        </div>
+
+        <div class="flex justify-center mt-6 mb-12">
+          <button
+            class="bg-[#57DD70] text-white font-bold text-lg py-2 px-8 rounded-full hover:bg-[#4CAF50] transition-all"
+          >
+            Apply
+          </button>
+        </div>
+      </section>
+    </main>
+
+    <footer class="bg-black py-8">
+      <div
+        class="grid grid-cols-5 gap-6 text-center text-[16px] font-bold text-white"
+      >
+        <!-- First Column -->
+        <div class="flex flex-col gap-4">
+          <a
+            href="#"
+            class="hover:text-[#6EB0B6] text-white text-sm sm:text-base"
+            >Home</a
+          >
+          <a
+            href="#"
+            class="hover:text-[#6692A7]  text-white text-sm sm:text-base"
+            >About Us</a
+          >
+          <a
+            href="#"
+            class="hover:text-[#6EB0B6] text-white text-sm sm:text-base"
+            >Contact Us</a
+          >
+          <a
+            href="#"
+            class="hover:text-[#F0823E] text-white text-sm sm:text-base"
+            >Privacy Policy</a
+          >
+          <a
+            href="#"
+            class="hover:text-[#6EB0B6] text-white text-sm sm:text-base"
+            >Terms & Conditions</a
+          >
+          <a
+            href="#"
+            class="hover:text-[#F0823E] text-white text-sm sm:text-base"
+            >FAQs</a
+          >
+          <a
+            href="#"
+            class="hover:text-[#6EB0B6] text-white text-sm sm:text-base"
+            >Blog</a
+          >
+          <a
+            href="#"
+            class="hover:text-[#F0823E] text-white text-sm sm:text-base"
+            >Careers</a
+          >
+          <a
+            href="#"
+            class="hover:text-[#6EB0B6] text-white text-sm sm:text-base"
+            >Support Center</a
+          >
+        </div>
+
+        <!-- Second Column -->
+        <div class="flex flex-col gap-4">
+          <a
+            href="#"
+            class="hover:text-[#F0823E] text-white text-sm sm:text-base"
+            >Create a Profile</a
+          >
+          <a
+            href="#"
+            class="hover:text-[#6EB0B6] text-white text-sm sm:text-base"
+            >Browse Jobs</a
+          >
+          <a
+            href="#"
+            class="hover:text-[#F0823E] text-white text-sm sm:text-base"
+            >Apply for Jobs</a
+          >
+          <a
+            href="#"
+            class="hover:text-[#6EB0B6] text-white text-sm sm:text-base"
+            >Update Availability</a
+          >
+          <a
+            href="#"
+            class="hover:text-[#F0823E] text-white text-sm sm:text-base"
+            >View Job Offers</a
+          >
+          <a
+            href="#"
+            class="hover:text-[#6EB0B6] text-white text-sm sm:text-base"
+            >Search by Skills</a
+          >
+          <a
+            href="#"
+            class="hover:text-[#F0823E] text-white text-sm sm:text-base"
+            >Job Seeker Dashboard</a
+          >
+          <a
+            href="#"
+            class="hover:text-[#6EB0B6] text-white text-sm sm:text-base"
+            >How It Works</a
+          >
+        </div>
+
+        <!-- Third Column -->
+        <div class="flex flex-col gap-4">
+          <a
+            href="#"
+            class="hover:text-[#6EB0B6] text-white text-sm sm:text-base"
+            >Our Mission</a
+          >
+          <a
+            href="#"
+            class="hover:text-[#F0823E] text-white text-sm sm:text-base"
+            >Our Vision</a
+          >
+          <a
+            href="#"
+            class="hover:text-[#6EB0B6] text-white text-sm sm:text-base"
+            >Team</a
+          >
+          <a
+            href="#"
+            class="hover:text-[#F0823E] text-white text-sm sm:text-base"
+            >Partners</a
+          >
+          <a
+            href="#"
+            class="hover:text-[#6EB0B6] text-white text-sm sm:text-base"
+            >Media Kit</a
+          >
+          <a
+            href="#"
+            class="hover:text-[#F0823E] text-white text-sm sm:text-base"
+            >Press Releases</a
+          >
+          <a
+            href="#"
+            class="hover:text-[#6EB0B6] text-white text-sm sm:text-base"
+            >Investor Relations</a
+          >
+        </div>
+
+        <!-- Fourth Column -->
+        <div class="flex flex-col gap-4">
+          <a
+            href="#"
+            class="hover:text-[#F0823E] text-white text-sm sm:text-base"
+            >Facebook</a
+          >
+          <a
+            href="#"
+            class="hover:text-[#6EB0B6] text-white text-sm sm:text-base"
+            >Twitter</a
+          >
+          <a
+            href="#"
+            class="hover:text-[#F0823E] text-white text-sm sm:text-base"
+            >LinkedIn</a
+          >
+          <a
+            href="#"
+            class="hover:text-[#6EB0B6] text-white text-sm sm:text-base"
+            >Instagram</a
+          >
+          <a
+            href="#"
+            class="hover:text-[#F0823E] text-white text-sm sm:text-base"
+            >YouTube</a
+          >
+        </div>
+
+        <!-- Fifth Column -->
+        <div class="flex flex-col gap-4">
+          <a
+            href="#"
+            class="hover:text-[#6EB0B6] text-white text-sm sm:text-base"
+            >Contact Support</a
+          >
+          <a
+            href="#"
+            class="hover:text-[#F0823E] text-white text-sm sm:text-base"
+            >Troubleshooting Guides</a
+          >
+          <a
+            href="#"
+            class="hover:text-[#6EB0B6] text-white text-sm sm:text-base"
+            >Live Chat</a
+          >
+          <a
+            href="#"
+            class="hover:text-[#F0823E] text-white text-sm sm:text-base"
+            >Community Forum</a
+          >
+          <a
+            href="#"
+            class="hover:text-[#6EB0B6] text-white text-sm sm:text-base"
+            >Knowledge Base</a
+          >
+        </div>
+      </div>
+    </footer>
+    <!-- Copyright Section -->
+    <div class="mt-6 text-center pb-3 bg-white">
+      <p class="text-black text-[16px] font-bold sm:text-sm">
+        © 2025 Vocation. All Rights Reserved.
+      </p>
+    </div>
+  </body>
+</html>
