@@ -106,21 +106,21 @@ public class FreelancerController {
 
     @GetMapping("/job-details/{jobId}")
     public String getJobDetails(@PathVariable Integer jobId, HttpServletRequest request, Model model) {
-        // Get the job details by jobId without checking the posterId
+    
         Job job = jobService.getJobById(jobId);
     
-        // Build the skills string by joining all required skills with a comma
+        
         StringBuilder skills = new StringBuilder();
         for (String skill : job.getSkillsRequired()) {
             skills.append(skill).append(", ");
         }
     
-        // Remove the trailing comma and space
+      
         if (skills.length() > 0) {
             skills.setLength(skills.length() - 2);
         }
     
-        // Add attributes to the model to display in the view
+
         model.addAttribute("skillsRequired", skills.toString());
         model.addAttribute("jobTitle", job.getTitle());
         model.addAttribute("startDate", job.getStartDate());
@@ -130,7 +130,7 @@ public class FreelancerController {
         model.addAttribute("deadline", job.getApplicationDeadline());
         model.addAttribute("skills", skills.toString());
     
-        // Return the view name to display the job details
+
         return "freelancer-job-details";
     }
     

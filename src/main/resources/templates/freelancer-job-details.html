@@ -14,7 +14,9 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="/styles/style.css" />
-
+    <script src="/scripts/toast.js"></script>
+    <script src="/scripts/tokens.js"></script>
+    <script src="/scripts/logout.js"></script>
     <title>Freelancer Job Details</title>
   </head>
   <body class="bg-white">
@@ -330,5 +332,55 @@
         © 2025 Vocation. All Rights Reserved.
       </p>
     </div>
+
+
+
+
+    <script>
+
+document.querySelector("button").addEventListener("click", async () => {
+  const token = getToken();
+  
+   
+    const urlParts = window.location.pathname.split("/");
+    const jobId = urlParts[urlParts.length - 1];
+
+    if (!jobId || isNaN(jobId)) {
+        alert("Invalid job ID.");
+        return;
+    }
+
+    const requestBody = {
+        jobId: parseInt(jobId),
+        status: "PENDING",
+        // freelancerId:1
+    };
+
+    try {
+        const response = await fetch("/freelancers/apply", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: "Bearer " + token,
+            },
+            body: JSON.stringify(requestBody)
+        });
+
+        if (response.ok) {
+            const responseData = await response.json();
+            console.log("Application successful:", responseData);
+            alert("Application submitted successfully!");
+        } else {
+            const errorText = await response.text();
+            console.error("Application failed:", errorText);
+            alert("Application failed: " + errorText);
+        }
+    } catch (error) {
+        console.error("Error applying for job:", error);
+        alert("An error occurred while applying. Please try again.");
+    }
+});
+
+    </script>
   </body>
 </html>

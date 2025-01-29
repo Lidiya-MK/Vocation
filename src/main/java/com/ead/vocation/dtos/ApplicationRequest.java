@@ -20,8 +20,6 @@ public class ApplicationRequest {
     @NotNull(message = "Job ID is mandatory")
     private Integer jobId;
 
-    @NotNull(message = "Freelancer ID is mandatory")
-    private Integer freelancerId;
 
     @NotNull(message = "Application status is mandatory")
     private ApplicationStatus status;
