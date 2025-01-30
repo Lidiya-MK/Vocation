@@ -181,45 +181,6 @@ public ResponseEntity<?> applyForJob(@Valid @RequestBody ApplicationRequest appl
 
 
 
-// @GetMapping("/applications")
-// public ResponseEntity<?> getAllApplicationsByFreelancer(@RequestHeader("Authorization") String token) {
-//     try {
-   
-//         Integer freelancerId = jwtServices.extractIdFromHeader(token);
-        
-   
-//         List<Application> applications = freelancerService.getAllApplicationsByFreelancerId(freelancerId);
-        
-        
-//         List<ApplicationResponse> applicationResponses = applications.stream()
-//                 .map(application -> {
-                
-//                     JobResponse jobResponse = new JobResponse();
-//                     jobResponse.setFields(application.getJob());
-
-//                     Freelancer freelancer = application.getFreelancer();
-//                     User user = freelancer.getUser();
-
-//                     FreelancerResponse freelancerResponse = new FreelancerResponse();
-//                     freelancerResponse.setFields(freelancer, user);
-                    
-
-//                     ApplicationResponse applicationResponse = new ApplicationResponse();
-//                     applicationResponse.setFields(application, jobResponse, freelancerResponse);
-                    
-//                     return applicationResponse;
-//                 })
-//                 .collect(Collectors.toList());
-        
-      
-//         return ResponseEntity.ok(applicationResponses);
-        
-//     } catch (IllegalArgumentException e) {
-       
-//         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid request: " + e.getMessage());
-//     }
-// }
-
 
 
 @GetMapping("/applications")
