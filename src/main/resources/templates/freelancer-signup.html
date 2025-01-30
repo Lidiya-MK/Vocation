@@ -637,6 +637,7 @@ signupForm.addEventListener("submit", async (event) => {
     const responseText = await response.text(); 
 
     if (response.ok) {
+      showToast("Signup successful!","success");
       window.location.href = "/auth/freelancers/login";
     } else {
       showToast(responseText || "Signup failed. Please try again.", "error");
