@@ -444,7 +444,7 @@
               alt="Empty Icon"
               class="w-64 h-64 mx-auto mb-4 opacity-65"
             />
-            <p class="text-lg text-gray-700">No applications available</p>
+            <p class="text-lg text-gray-700">You haven't posted any jobs yet</p>
           </div>
 
           <div th:each="job : ${jobs}" class="job-item">
@@ -477,9 +477,10 @@
 
               <!-- Job Description -->
               <p
-                class="text-sm text-center mt-2 text-gray-600"
-                th:text="${job.description}"
-              ></p>
+  class="text-sm text-center mt-2 text-gray-600"
+  th:text="${#strings.length(job.description) > 50 ? #strings.substring(job.description, 0, 50) + '...' : job.description}"
+></p>
+
 
               <!-- Pay, Applicants, Date, and Deadline -->
               <div class="text-left mt-4">
@@ -537,9 +538,10 @@
 
               <!-- Job Description -->
               <p
-                class="text-sm text-center mt-2 text-gray-600"
-                th:text="${job.description}"
-              ></p>
+  class="text-sm text-center mt-2 text-gray-600"
+  th:text="${#strings.length(job.description) > 50 ? #strings.substring(job.description, 0, 50) + '...' : job.description}"
+></p>
+
 
               <!-- Pay, Applicants, Date, and Deadline -->
               <div class="text-left mt-4">
@@ -599,9 +601,10 @@
 
               <!-- Job Description -->
               <p
-                class="text-sm text-center mt-2 text-gray-600"
-                th:text="${job.description}"
-              ></p>
+  class="text-sm text-center mt-2 text-gray-600"
+  th:text="${#strings.length(job.description) > 50 ? #strings.substring(job.description, 0, 50) + '...' : job.description}"
+></p>
+
 
               <!-- Pay, Applicants, Date, and Deadline -->
               <div class="text-left mt-4">

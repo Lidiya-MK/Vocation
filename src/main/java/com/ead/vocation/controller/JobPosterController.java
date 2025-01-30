@@ -46,6 +46,7 @@ public class JobPosterController {
     @Autowired
     private JobPosterService jobPosterService;
     
+    
     @Autowired
     private ApplicationService applicationService;
 

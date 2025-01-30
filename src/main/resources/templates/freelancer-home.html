@@ -277,7 +277,10 @@
                 <span class="text-[#716D6D] text-[18px]" th:text="${job.jobPoster.name}"></span>
               </div>
               <h2 class="text-black text-[32px] text-center mt-2" th:text="${job.title}"></h2>
-              <p class="text-[12px] text-center mt-2" th:text="${job.description}"></p>
+             <p
+  class="text-sm text-center mt-2 text-gray-600"
+  th:text="${#strings.length(job.description) > 50 ? #strings.substring(job.description, 0, 50) + '...' : job.description}"
+></p>
               <div class="flex flex-col items-center mt-4">
                 <div class="w-[160px] h-[1px] bg-[#57DD70]"></div>
                 <span
@@ -312,7 +315,10 @@
                 <span class="text-[#716D6D] text-[18px]" th:text="${job.jobPoster.name}"></span>
               </div>
               <h2 class="text-black text-[32px] text-center mt-2" th:text="${job.title}"></h2>
-              <p class="text-[12px] text-center mt-2" th:text="${job.description}"></p>
+             <p
+  class="text-sm text-center mt-2 text-gray-600"
+  th:text="${#strings.length(job.description) > 50 ? #strings.substring(job.description, 0, 50) + '...' : job.description}"
+></p>
               <div class="flex flex-col items-center mt-4">
                 <div class="w-[160px] h-[1px] bg-[#F0823E]"></div>
                 <span
@@ -347,7 +353,10 @@
                 <span class="text-[#716D6D] text-[18px]" th:text="${job.jobPoster.name}"></span>
               </div>
               <h2 class="text-black text-[32px] text-center mt-2" th:text="${job.title}"></h2>
-              <p class="text-[12px] text-center mt-2" th:text="${job.description}"></p>
+             <p
+  class="text-sm text-center mt-2 text-gray-600"
+  th:text="${#strings.length(job.description) > 50 ? #strings.substring(job.description, 0, 50) + '...' : job.description}"
+></p>
               <div class="flex flex-col items-center mt-4">
                 <div class="w-[160px] h-[1px] bg-[#6936B7]"></div>
                 <span
