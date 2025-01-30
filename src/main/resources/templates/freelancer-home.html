@@ -241,117 +241,136 @@
       <section class="container mx-auto p-4">
         <!-- Job Cards Grid -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          <div th:each="job : ${availableJobs}">
-            
+            <div th:each="job : ${availableJobs}" 
+                 th:if="${job.jobPoster.industry == freelancerIndustry}"> 
+    
+                <!-- Job Card (Remote) -->
+                <div th:if="${job.type.name() == 'REMOTE'}"
+                     th:attr="data-job-id=${job.id}"
+                     class="max-w-[360px] w-full h-auto job-card-remote border-[1px] border-[#6F6C6C]/[0.13] rounded-lg shadow-md hover:shadow-lg hover:translate-y-[-4px] transition-all duration-300 relative p-3 mx-auto">
+                    <button class="absolute top-4 left-4 bg-[#57DD70] text-white font-bold text-sm py-1 px-4 rounded-full">Remote</button>
+                    <span class="absolute top-4 right-4 text-[#398A48] font-medium text-lg"
+                          th:text="${job.budget + ' Birr/hr'}"></span>
+                    <div class="flex items-center justify-center mt-10">
+                        <img src="../assets/remote-employer.png" alt="Icon" class="w-7 h-7 mr-2"/>
+                        <span class="text-[#716D6D] text-[18px]" th:text="${job.jobPoster.name}"></span>
+                    </div>
+                    <h2 class="text-black text-[32px] text-center mt-2" th:text="${job.title}"></h2>
+                    <p class="text-[12px] text-center mt-2" th:text="${job.description}"></p>
+                    <div class="flex flex-col items-center mt-4">
+                        <div class="w-[160px] h-[1px] bg-[#57DD70]"></div>
+                        <span class="mt-2 text-sm font-medium text-black job-details-link-button cursor-pointer">VIEW JOB</span>
+                    </div>
+                </div>
+    
+                <!-- Job Card (Onsite) -->
+                <div th:if="${job.type.name() == 'ON_SITE'}"
+                     th:attr="data-job-id=${job.id}"
+                     class="max-w-[360px] w-full h-auto job-card-onsite border-[1px] border-[#6F6C6C]/[0.13] rounded-lg shadow-md hover:shadow-lg hover:translate-y-[-4px] transition-all duration-300 relative p-3 mx-auto">
+                    <button class="absolute top-4 left-4 bg-[#F0823E] text-white font-bold text-sm py-1 px-4 rounded-full">Onsite</button>
+                    <span class="absolute top-4 right-4 text-[#D66016] font-medium text-lg"
+                          th:text="${job.budget + ' Birr/hr'}"></span>
+                    <div class="flex items-center justify-center mt-10">
+                        <img src="../assets/onsite-employer.png" alt="Icon" class="w-7 h-7 mr-2"/>
+                        <span class="text-[#716D6D] text-[18px]" th:text="${job.jobPoster.name}"></span>
+                    </div>
+                    <h2 class="text-black text-[32px] text-center mt-2" th:text="${job.title}"></h2>
+                    <p class="text-[12px] text-center mt-2" th:text="${job.description}"></p>
+                    <div class="flex flex-col items-center mt-4">
+                        <div class="w-[160px] h-[1px] bg-[#F0823E]"></div>
+                        <span class="mt-2 text-sm font-medium text-black job-details-link-button cursor-pointer">VIEW JOB</span>
+                    </div>
+                </div>
+    
+                <!-- Job Card (Hybrid) -->
+                <div th:if="${job.type.name() == 'HYBRID'}"
+                     th:attr="data-job-id=${job.id}"
+                     class="max-w-[360px] w-full h-auto job-card-hybrid border-[1px] border-[#6F6C6C]/[0.13] rounded-lg shadow-md hover:shadow-lg hover:translate-y-[-4px] transition-all duration-300 relative p-3 mx-auto">
+                    <button class="absolute top-4 left-4 bg-[#6936B7] text-white font-bold text-sm py-1 px-4 rounded-full">Hybrid</button>
+                    <span class="absolute top-4 right-4 text-[#45227A] font-medium text-lg"
+                          th:text="${job.budget + ' Birr/hr'}"></span>
+                    <div class="flex items-center justify-center mt-10">
+                        <img src="../assets/hybrid-employer.png" alt="Icon" class="w-7 h-7 mr-2"/>
+                        <span class="text-[#716D6D] text-[18px]" th:text="${job.jobPoster.name}"></span>
+                    </div>
+                    <h2 class="text-black text-[32px] text-center mt-2" th:text="${job.title}"></h2>
+                    <p class="text-[12px] text-center mt-2" th:text="${job.description}"></p>
+                    <div class="flex flex-col items-center mt-4">
+                        <div class="w-[160px] h-[1px] bg-[#6936B7]"></div>
+                        <span class="mt-2 text-sm font-medium text-black job-details-link-button cursor-pointer">VIEW DETAILS</span>
+                    </div>
+                </div>
+    
+            </div><section class="container mx-auto p-4">
+    <!-- Job Cards Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div th:each="job : ${availableJobs}" 
+             th:if="${job.jobPoster.industry == freelancerIndustry}"> 
+
             <!-- Job Card (Remote) -->
-            <div
-              th:if="${job.type.name() == 'REMOTE'}"
-              th:attr="data-job-id=${job.id}"
-              class="max-w-[360px] w-full h-auto job-card-remote border-[1px] border-[#6F6C6C]/[0.13] rounded-lg shadow-md hover:shadow-lg hover:translate-y-[-4px] transition-all duration-300 relative p-3 mx-auto"
-            >
-              <button
-                class="absolute top-4 left-4 bg-[#57DD70] text-white font-bold text-sm py-1 px-4 rounded-full"
-              >
-                Remote
-              </button>
-              <span
-                class="absolute top-4 right-4 text-[#398A48] font-medium text-lg"
-                th:text="${job.budget + ' Birr/hr'}"
-              ></span>
-              <div class="flex items-center justify-center mt-10">
-                <img
-                  src="../assets/remote-employer.png"
-                  alt="Icon"
-                  class="w-7 h-7 mr-2"
-                />
-                <span class="text-[#716D6D] text-[18px]" th:text="${job.jobPoster.name}"></span>
-              </div>
-              <h2 class="text-black text-[32px] text-center mt-2" th:text="${job.title}"></h2>
-              <p class="text-[12px] text-center mt-2" th:text="${job.description}"></p>
-              <div class="flex flex-col items-center mt-4">
-                <div class="w-[160px] h-[1px] bg-[#57DD70]"></div>
-                <span
-                  class="mt-2 text-sm font-medium text-black job-details-link-button cursor-pointer"
-                >
-                  VIEW JOB
-                </span>
-              </div>
+            <div th:if="${job.type.name() == 'REMOTE'}"
+                 th:attr="data-job-id=${job.id}"
+                 class="max-w-[360px] w-full h-auto job-card-remote border-[1px] border-[#6F6C6C]/[0.13] rounded-lg shadow-md hover:shadow-lg hover:translate-y-[-4px] transition-all duration-300 relative p-3 mx-auto">
+                <button class="absolute top-4 left-4 bg-[#57DD70] text-white font-bold text-sm py-1 px-4 rounded-full">Remote</button>
+                <span class="absolute top-4 right-4 text-[#398A48] font-medium text-lg"
+                      th:text="${job.budget + ' Birr/hr'}"></span>
+                <div class="flex items-center justify-center mt-10">
+                    <img src="../assets/remote-employer.png" alt="Icon" class="w-7 h-7 mr-2"/>
+                    <span class="text-[#716D6D] text-[18px]" th:text="${job.jobPoster.name}"></span>
+                </div>
+                <h2 class="text-black text-[32px] text-center mt-2" th:text="${job.title}"></h2>
+                <p class="text-[12px] text-center mt-2" th:text="${job.description}"></p>
+                <div class="flex flex-col items-center mt-4">
+                    <div class="w-[160px] h-[1px] bg-[#57DD70]"></div>
+                    <span class="mt-2 text-sm font-medium text-black job-details-link-button cursor-pointer">VIEW JOB</span>
+                </div>
             </div>
-      
+
             <!-- Job Card (Onsite) -->
-            <div
-              th:if="${job.type.name() == 'ON_SITE'}"
-              th:attr="data-job-id=${job.id}"
-              class="max-w-[360px] w-full h-auto job-card-onsite border-[1px] border-[#6F6C6C]/[0.13] rounded-lg shadow-md hover:shadow-lg hover:translate-y-[-4px] transition-all duration-300 relative p-3 mx-auto"
-            >
-              <button
-                class="absolute top-4 left-4 bg-[#F0823E] text-white font-bold text-sm py-1 px-4 rounded-full"
-              >
-                Onsite
-              </button>
-              <span
-                class="absolute top-4 right-4 text-[#D66016] font-medium text-lg"
-                th:text="${job.budget + ' Birr/hr'}"
-              ></span>
-              <div class="flex items-center justify-center mt-10">
-                <img
-                   src="../assets/onsite-employer.png"
-                  alt="Icon"
-                  class="w-7 h-7 mr-2"
-                />
-                <span class="text-[#716D6D] text-[18px]" th:text="${job.jobPoster.name}"></span>
-              </div>
-              <h2 class="text-black text-[32px] text-center mt-2" th:text="${job.title}"></h2>
-              <p class="text-[12px] text-center mt-2" th:text="${job.description}"></p>
-              <div class="flex flex-col items-center mt-4">
-                <div class="w-[160px] h-[1px] bg-[#F0823E]"></div>
-                <span
-                  class="mt-2 text-sm font-medium text-black job-details-link-button cursor-pointer"
-                >
-                  VIEW JOB
-                </span>
-              </div>
+            <div th:if="${job.type.name() == 'ON_SITE'}"
+                 th:attr="data-job-id=${job.id}"
+                 class="max-w-[360px] w-full h-auto job-card-onsite border-[1px] border-[#6F6C6C]/[0.13] rounded-lg shadow-md hover:shadow-lg hover:translate-y-[-4px] transition-all duration-300 relative p-3 mx-auto">
+                <button class="absolute top-4 left-4 bg-[#F0823E] text-white font-bold text-sm py-1 px-4 rounded-full">Onsite</button>
+                <span class="absolute top-4 right-4 text-[#D66016] font-medium text-lg"
+                      th:text="${job.budget + ' Birr/hr'}"></span>
+                <div class="flex items-center justify-center mt-10">
+                    <img src="../assets/onsite-employer.png" alt="Icon" class="w-7 h-7 mr-2"/>
+                    <span class="text-[#716D6D] text-[18px]" th:text="${job.jobPoster.name}"></span>
+                </div>
+                <h2 class="text-black text-[32px] text-center mt-2" th:text="${job.title}"></h2>
+                <p class="text-[12px] text-center mt-2" th:text="${job.description}"></p>
+                <div class="flex flex-col items-center mt-4">
+                    <div class="w-[160px] h-[1px] bg-[#F0823E]"></div>
+                    <span class="mt-2 text-sm font-medium text-black job-details-link-button cursor-pointer">VIEW JOB</span>
+                </div>
             </div>
-      
+
             <!-- Job Card (Hybrid) -->
-            <div
-              th:if="${job.type.name() == 'HYBRID'}"
-              th:attr="data-job-id=${job.id}"
-              class="max-w-[360px] w-full h-auto job-card-hybrid border-[1px] border-[#6F6C6C]/[0.13] rounded-lg shadow-md hover:shadow-lg hover:translate-y-[-4px] transition-all duration-300 relative p-3 mx-auto"
-            >
-              <button
-                class="absolute top-4 left-4 bg-[#6936B7] text-white font-bold text-sm py-1 px-4 rounded-full"
-              >
-                Hybrid
-              </button>
-              <span
-                class="absolute top-4 right-4 text-[#45227A] font-medium text-lg"
-                th:text="${job.budget + ' Birr/hr'}"
-              ></span>
-              <div class="flex items-center justify-center mt-10">
-                <img
-                   src="../assets/hybrid-employer.png"
-                  alt="Icon"
-                  class="w-7 h-7 mr-2"
-                />
-                <span class="text-[#716D6D] text-[18px]" th:text="${job.jobPoster.name}"></span>
-              </div>
-              <h2 class="text-black text-[32px] text-center mt-2" th:text="${job.title}"></h2>
-              <p class="text-[12px] text-center mt-2" th:text="${job.description}"></p>
-              <div class="flex flex-col items-center mt-4">
-                <div class="w-[160px] h-[1px] bg-[#6936B7]"></div>
-                <span
-                  class="mt-2 text-sm font-medium text-black job-details-link-button cursor-pointer"
-                >
-                  VIEW DETAILS
-                </span>
-              </div>
+            <div th:if="${job.type.name() == 'HYBRID'}"
+                 th:attr="data-job-id=${job.id}"
+                 class="max-w-[360px] w-full h-auto job-card-hybrid border-[1px] border-[#6F6C6C]/[0.13] rounded-lg shadow-md hover:shadow-lg hover:translate-y-[-4px] transition-all duration-300 relative p-3 mx-auto">
+                <button class="absolute top-4 left-4 bg-[#6936B7] text-white font-bold text-sm py-1 px-4 rounded-full">Hybrid</button>
+                <span class="absolute top-4 right-4 text-[#45227A] font-medium text-lg"
+                      th:text="${job.budget + ' Birr/hr'}"></span>
+                <div class="flex items-center justify-center mt-10">
+                    <img src="../assets/hybrid-employer.png" alt="Icon" class="w-7 h-7 mr-2"/>
+                    <span class="text-[#716D6D] text-[18px]" th:text="${job.jobPoster.name}"></span>
+                </div>
+                <h2 class="text-black text-[32px] text-center mt-2" th:text="${job.title}"></h2>
+                <p class="text-[12px] text-center mt-2" th:text="${job.description}"></p>
+                <div class="flex flex-col items-center mt-4">
+                    <div class="w-[160px] h-[1px] bg-[#6936B7]"></div>
+                    <span class="mt-2 text-sm font-medium text-black job-details-link-button cursor-pointer">VIEW DETAILS</span>
+                </div>
             </div>
-            
-          </div>
+
         </div>
-      </section>
-      
+    </div>
+</section>
+
+        </div>
+    </section>
+    
     </main>
 
     <footer class="bg-black py-8">

@@ -83,20 +83,6 @@ public class FreelancerService {
 
     
 
-//  public List<Application> getAllApplicationsByFreelancerId(Integer freelancerID) {
-//         User user = userRepository.findById(freelancerID)
-//                 .orElseThrow(() -> new IllegalArgumentException("Freelancer not found"));
-
-//        Freelancer freelancer = freelancerRepository.findByUser(user)
-//                 .orElseThrow(() -> new IllegalArgumentException("Freelancer not found"));
-//         if (freelancer == null) {
-//             throw new IllegalArgumentException("Freelancer not found");
-//         }
-
-//         List<Application> applications = applicationRepository.findByFreelancer(freelancer);
-//         return applications != null ? applications : Collections.emptyList();
-//     }
-
 
 
 
