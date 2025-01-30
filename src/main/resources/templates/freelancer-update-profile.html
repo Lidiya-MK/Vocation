@@ -147,7 +147,7 @@
 id="modal"
 class="fixed inset-0 bg-gray-500 bg-opacity-50 flex justify-center items-center z-50 hidden"
 >
-<div class="bg-white w-[70%] md:w-[280px] p-2 rounded-lg shadow-lg">
+<div class="bg-white w-[90%] p-6 rounded-lg shadow-lg space-y-6 relative md:w-[50%] max-w-[600px] px-6 py-4">
   <button onclick="closeModal()" class="absolute top-2 right-2 text-gray-500 hover:text-gray-800 transition">
     X
   </button>
@@ -268,51 +268,53 @@ class="fixed inset-0 bg-gray-500 bg-opacity-50 flex justify-center items-center 
   </div>
 
   
-<div class="mb-2">
-  <div class="relative">
-    <div
-      class="border border-gray-300 rounded-lg w-full p-2 mb-3 bg-white text-gray-700 text-sm flex justify-between items-center"
-      id="skillsDropdown"
-    >
-      <span>Select Skills</span>
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        class="h-3 w-3 text-gray-500"
-        viewBox="0 0 20 20"
-        fill="currentColor"
+  <div class="mb-2">
+    <div class="relative">
+      <div
+        class="border border-gray-300 rounded-lg w-full p-2 mb-3 bg-white text-gray-700 text-sm flex justify-between items-center"
+        id="skillsDropdown"
       >
-        <path
-          fill-rule="evenodd"
-          d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-          clip-rule="evenodd"
-        />
-      </svg>
+        <span>Select Skills</span>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-3 w-3 text-gray-500"
+          viewBox="0 0 20 20"
+          fill="currentColor"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+            clip-rule="evenodd"
+          />
+        </svg>
+      </div>
+  
+      <div
+        id="skillsList"
+        class="absolute left-0 w-full mt-1 bg-white border border-gray-300 rounded-lg shadow-lg hidden z-10 max-h-32 overflow-y-auto"
+      >
+        <div class="skill-item p-1 cursor-pointer hover:bg-[#6692A7] hover:text-white">HTML</div>
+        <div class="skill-item p-1 cursor-pointer hover:bg-[#6692A7] hover:text-white">CSS</div>
+        <div class="skill-item p-1 cursor-pointer hover:bg-[#6692A7] hover:text-white">JavaScript</div>
+        <div class="skill-item p-1 cursor-pointer hover:bg-[#6692A7] hover:text-white">Python</div>
+        <div class="skill-item p-1 cursor-pointer hover:bg-[#6692A7] hover:text-white">Figma</div>
+        <div class="skill-item p-1 cursor-pointer hover:bg-[#6692A7] hover:text-white">Blender</div>
+        <div class="skill-item p-1 cursor-pointer hover:bg-[#6692A7] hover:text-white">React</div>
+        <div class="skill-item p-1 cursor-pointer hover:bg-[#6692A7] hover:text-white">Prototyping</div>
+        <div class="skill-item p-1 cursor-pointer hover:bg-[#6692A7] hover:text-white">Graphics Design</div>
+        <div class="skill-item p-1 cursor-pointer hover:bg-[#6692A7] hover:text-white">UX/UI design</div>
+        <div class="skill-item p-1 cursor-pointer hover:bg-[#6692A7] hover:text-white">Accounting</div>
+        <div class="skill-item p-1 cursor-pointer hover:bg-[#6692A7] hover:text-white">Book Keeping</div>
+      </div>
     </div>
-    <div
-      id="skillsList"
-      class="absolute left-0 w-full mt-1 bg-white border border-gray-300 rounded-lg shadow-lg hidden z-10 max-h-32 overflow-y-auto"
-    >
-      <div class="skill-item p-1 cursor-pointer hover:bg-[#6692A7] hover:text-white">HTML</div>
-      <div class="skill-item p-1 cursor-pointer hover:bg-[#6692A7] hover:text-white">CSS</div>
-      <div class="skill-item p-1 cursor-pointer hover:bg-[#6692A7] hover:text-white">JavaScript</div>
-      <div class="skill-item p-1 cursor-pointer hover:bg-[#6692A7] hover:text-white">Python</div>
-      <div class="skill-item p-1 cursor-pointer hover:bg-[#6692A7] hover:text-white">Figma</div>
-      <div class="skill-item p-1 cursor-pointer hover:bg-[#6692A7] hover:text-white">Blender</div>
-      <div class="skill-item p-1 cursor-pointer hover:bg-[#6692A7] hover:text-white">React</div>
-      <div class="skill-item p-1 cursor-pointer hover:bg-[#6692A7] hover:text-white">Prototyping</div>
-      <div class="skill-item p-1 cursor-pointer hover:bg-[#6692A7] hover:text-white">Graphics Design</div>
-      <div class="skill-item p-1 cursor-pointer hover:bg-[#6692A7] hover:text-white">UX/UI design</div>
-      <div class="skill-item p-1 cursor-pointer hover:bg-[#6692A7] hover:text-white">Accounting</div>
-      <div class="skill-item p-1 cursor-pointer hover:bg-[#6692A7] hover:text-white">Book Keeping</div>
-    </div>
+  
+    <!-- Hidden input to store selected skills -->
+    <input id="skills" name="skills" type="hidden" th:value="${skills}" />
+  
+    <!-- Selected Skills Container -->
+    <div id="selectedSkillsContainer" class="mt-2 flex flex-wrap gap-2"></div>
   </div>
-
-  <!-- Hidden input to store the selected skills -->
-  <input type="hidden" id="skills" name="skills" />
-
-  <div id="selectedSkillsContainer" class="mt-2 flex flex-wrap gap-1"></div>
-</div>
-
+  
 
   <!-- Phone -->
   <div class="mb-4">
@@ -327,6 +329,23 @@ class="fixed inset-0 bg-gray-500 bg-opacity-50 flex justify-center items-center 
       th:value="${phoneNumber}"
     />
   </div>
+
+
+  <!--  -->
+  <div class="mb-4">
+    <label for="experience" class="block text-sm font-bold mb-1"
+      >Experience</label
+    >
+    <input
+      type="text"
+      id="yearsOfExperience"
+      placeholder="Experience in years"
+      class="w-full border rounded-lg px-3 py-2 text-sm"
+      th:value="${yearsOfExperience}"
+    />
+  </div>
+
+
 
   <!-- Password and Confirm Password -->
   <div class="mb-4">
@@ -355,6 +374,22 @@ class="fixed inset-0 bg-gray-500 bg-opacity-50 flex justify-center items-center 
     />
   </div>
 
+  
+  <!-- Resume -->
+  <div class="mb-4">
+    <label for="resume" class="block text-sm font-bold mb-1"
+      >Updated Resume</label
+    >
+    <input
+      type="text"
+      id="resumeLink"
+      placeholder="Enter resume link"
+      class="w-full border rounded-lg px-3 py-2 text-sm"
+      th:value="${resumeLink}"
+    />
+  </div>
+
+   
   <!-- Links -->
   <div class="mb-4">
     <label for="links" class="block text-sm font-bold mb-1"
@@ -637,106 +672,171 @@ class="fixed inset-0 bg-gray-500 bg-opacity-50 flex justify-center items-center 
         document.getElementById("modal").classList.add("hidden");
       }
 
-      function isSkillSelected(skill) {
-        const selectedSkills = selectedSkillsContainer.querySelectorAll("div");
-        return Array.from(selectedSkills).some((item) =>
-          item.textContent.includes(skill)
-        );
-      }
-
-      function removeSkill(skill) {
-        const skillItem = Array.from(selectedSkillsContainer.children).find(
-          (item) => item.textContent.includes(skill)
-        );
-        if (skillItem) {
-          selectedSkillsContainer.removeChild(skillItem);
-        }
-      }
+      document.addEventListener("DOMContentLoaded", function () {
+    const skillsDropdown = document.getElementById("skillsDropdown");
+    const skillsList = document.getElementById("skillsList");
+    const selectedSkillsContainer = document.getElementById("selectedSkillsContainer");
+    const skillsInput = document.getElementById("skills");
 
 
+    let skillsString = skillsInput.value.trim();
+if (skillsString.startsWith("[") && skillsString.endsWith("]")) {
+    skillsString = skillsString.slice(1, -1); 
+}
+let selectedSkills = skillsString ? skillsString.split(",") : [];
 
-
-      const skillsDropdown = document.getElementById("skillsDropdown");
-const skillsList = document.getElementById("skillsList");
-const selectedSkillsContainer = document.getElementById("selectedSkillsContainer");
-const skillsInput = document.getElementById('skills'); 
-
-let selectedSkills = [];
-
-skillsDropdown.addEventListener("click", () => {
-  skillsList.classList.toggle("hidden");
-});
-
-const skillItems = skillsList.querySelectorAll(".skill-item");
-skillItems.forEach((item) => {
-  item.addEventListener("click", () => {
-    const skill = item.textContent;
-
-    if (!selectedSkills.includes(skill)) {
-      selectedSkills.push(skill);
-      const skillItem = document.createElement("div");
-      skillItem.className = "bg-[#6692A7] text-white rounded-lg px-3 py-1 text-sm flex items-center";
-      skillItem.innerHTML = `${skill} <button onclick="removeSkill('${skill}')" class="ml-2 text-white">&times;</button>`;
-      selectedSkillsContainer.appendChild(skillItem);
-      skillsList.classList.add("hidden");
 
    
-      skillsInput.value = selectedSkills.join(', ');
+    function isSkillSelected(skill) {
+        return selectedSkills.includes(skill);
     }
-  });
-});
 
-function removeSkill(skill) {
-  selectedSkills = selectedSkills.filter(s => s !== skill);
-  const skillItem = Array.from(selectedSkillsContainer.children).find(
-    (item) => item.textContent.includes(skill)
-  );
-  if (skillItem) {
-    selectedSkillsContainer.removeChild(skillItem);
-  }
+    function renderSelectedSkills() {
+        selectedSkillsContainer.innerHTML = ""; 
+        selectedSkills.forEach((skill) => {
+            const skillTag = document.createElement("div");
+            skillTag.classList.add("bg-[#6692A7]", "text-white", "px-2", "py-1", "rounded", "flex", "items-center", "gap-1");
+            
+            
+            const skillText = document.createElement("span");
+            skillText.textContent = skill;
+            
+         
+            const removeButton = document.createElement("span");
+            removeButton.textContent = "✕";
+            removeButton.classList.add("cursor-pointer", "text-sm", "font-bold", "ml-2");
+            
+          
+            removeButton.addEventListener("click", function () {
+                removeSkill(skill);
+            });
+
+         
+            skillTag.appendChild(skillText);
+            skillTag.appendChild(removeButton);
+            selectedSkillsContainer.appendChild(skillTag);
+        });
+
+     
+        skillsInput.value = selectedSkills.join(",");
+    }
+
+    
+    function toggleSkill(skill) {
+        if (isSkillSelected(skill)) {
+            selectedSkills = selectedSkills.filter((s) => s !== skill);
+        } else {
+            selectedSkills.push(skill);
+        }
+        renderSelectedSkills();
+    }
+
+   
+    function removeSkill(skill) {
+        selectedSkills = selectedSkills.filter((s) => s !== skill);
+        renderSelectedSkills();
+    }
 
  
-  skillsInput.value = selectedSkills.join(', ');
-}
+    skillsList.querySelectorAll(".skill-item").forEach((item) => {
+        item.addEventListener("click", function () {
+            toggleSkill(item.textContent.trim());
+        });
+    });
+
+
+    skillsDropdown.addEventListener("click", function () {
+        skillsList.classList.toggle("hidden");
+    });
+
+    
+    document.addEventListener("click", function (event) {
+        if (!skillsDropdown.contains(event.target) && !skillsList.contains(event.target)) {
+            skillsList.classList.add("hidden");
+        }
+    });
+
+
+    renderSelectedSkills();
+});
+
 
 document.addEventListener("DOMContentLoaded", () => {
-        const form = document.getElementById("profileForm");
+    const form = document.getElementById("profileForm");
 
-        form.addEventListener("submit", async (e) => {
-          e.preventDefault();
-          const name = document.getElementById("name").value;
-          const industry = document.getElementById("industry").value;
-          const description = document.getElementById("description").value;
-          const email = document.getElementById("email").value;
-          const location = document.getElementById("location").value;
-          const phoneNumber = document.getElementById("phoneNumber").value;
-          const password = document.getElementById("password").value;
-          const confirmPassword =
-            document.getElementById("confirmPassword").value;
-          const links = document.getElementById("links").value.split(",");
+    form.addEventListener("submit", async (e) => {
+        e.preventDefault();
 
-          if (password !== confirmPassword) {
+        const name = document.getElementById("name").value.trim();
+        const industry = document.getElementById("industry").value.trim();
+        const description = document.getElementById("description").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const location = document.getElementById("location").value.trim();
+        const phoneNumber = document.getElementById("phoneNumber").value.trim();
+        const password = document.getElementById("password").value;
+        const confirmPassword = document.getElementById("confirmPassword").value;
+        const resumeLink = document.getElementById("resumeLink").value.trim();
+        const yearsOfExperience = document.getElementById("yearsOfExperience").value.trim();
+        const skills = document.getElementById("skills").value.split(",").map(skill => skill.trim()).filter(skill => skill);
+        const links = document.getElementById("links").value.split(",").map(link => link.trim()).filter(link => link);
+
+     
+        const requiredFields = { name, email, industry, location, phoneNumber, resumeLink };
+        for (const [key, value] of Object.entries(requiredFields)) {
+            if (!value) {
+                showToast(`You have not provided your ${key.replace(/([A-Z])/g, ' $1').toLowerCase()}`, "error");
+                return;
+            }
+        }
+
+
+        if (skills.length === 0) {
+            showToast("You have not provided your skills", "error");
+            return;
+        }
+
+    
+        if (isNaN(yearsOfExperience) || yearsOfExperience < 0) {
+            showToast("Years of experience must be a valid non-negative number", "error");
+            return;
+        }
+
+      
+        if (password.length < 6) {
+            showToast("Password must be at least 6 characters long", "error");
+            return;
+        }
+
+        if (password !== confirmPassword) {
             showToast("Passwords do not match", "error");
             return;
-          }
+        }
 
-          const payload = {
+
+        const payload = {
             name,
             email,
             password,
             industry,
-            description: description,
+            description,
             location,
+            resumeLink,
+            yearsOfExperience: parseInt(yearsOfExperience, 10),
             phoneNumber,
-            links: links.map((link) => link.trim()),
-          };
+            links,
+            skills,
+        };
 
-          await sendProfileUpdateRequest(
-            "/freelancers/update",
-            payload
-          );
-        });
-      });
+        try {
+            await sendProfileUpdateRequest("/freelancers/update", payload);
+            showToast("Profile updated successfully!", "success");
+        } catch (error) {
+            console.error("Error updating profile:", error);
+            showToast("An error occurred. Please try again later.", "error");
+        }
+    });
+});
+
     </script>
   </body>
 </html>
