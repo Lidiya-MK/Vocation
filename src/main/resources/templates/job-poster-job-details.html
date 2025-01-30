@@ -137,7 +137,7 @@
               <div class="flex items-center gap-4">
                 <!-- Circular Image -->
                 <img
-                  src="/assets/applicant.png"
+                  src="/assets/applicantjp.png"
                   alt="Profile"
                   class="w-[100px] h-[100px] rounded-full hidden lg:block"
                 />
@@ -235,7 +235,7 @@
 
             <!-- Cover Letter -->
             <div class="w-full">
-              <h3 class="text-[20px] font-bold text-[#6F6C6C]">Description</h3>
+              <h3 class="text-[20px] font-bold text-[#6F6C6C]">About the applicant</h3>
               <p
                 class="text-[16px] text-black font-light mt-2"
                 th:text="${applicationItem.freelancer.description}"
@@ -244,7 +244,7 @@
 
             <!-- Resume Link -->
             <div class="w-full">
-              <h3 class="text-[20px] font-bold text-[#6F6C6C]">Applicant Profile</h3>
+             
               <a
               th:href="@{/job-posters/view-freelancer/{applicationId}(applicationId=${applicationItem.id})}"
               class="text-[16px] text-[#F0823E] font-bold hover:underline"

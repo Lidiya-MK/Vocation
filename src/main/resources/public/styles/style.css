@@ -337,6 +337,9 @@ button,
 select {
   text-transform: none;
 }
+.custom-blur {
+  filter: blur(10px); 
+}
 
 /*
 1. Correct the inability to style clickable types in iOS and Safari.
