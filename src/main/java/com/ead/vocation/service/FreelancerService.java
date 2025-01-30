@@ -1,8 +1,10 @@
 package com.ead.vocation.service;
 
 import com.ead.vocation.dtos.ApplicationRequest;
+import com.ead.vocation.dtos.ApplicationResponse;
 import com.ead.vocation.dtos.FreelancerResponse;
 import com.ead.vocation.dtos.FreelancerUpdateRequest;
+import com.ead.vocation.dtos.JobResponse;
 import com.ead.vocation.model.Application;
 import com.ead.vocation.model.Freelancer;
 import com.ead.vocation.model.Job;
@@ -14,6 +16,7 @@ import com.ead.vocation.repository.UserRepository;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -71,19 +74,65 @@ public class FreelancerService {
         return applicationRepository.save(applicationEntity);
     }
 
-    public List<Application> getAllApplicationsByFreelancerId(Integer freelancerID) {
-        User user = userRepository.findById(freelancerID)
-                .orElseThrow(() -> new IllegalArgumentException("Freelancer not found"));
 
-        Freelancer freelancer = freelancerRepository.findByUser(user)
-                .orElseThrow(() -> new IllegalArgumentException("Freelancer not found"));
-        if (freelancer == null) {
-            throw new IllegalArgumentException("Freelancer not found");
-        }
+    
 
-        List<Application> applications = applicationRepository.findByFreelancer(freelancer);
-        return applications != null ? applications : Collections.emptyList();
+//  public List<Application> getAllApplicationsByFreelancerId(Integer freelancerID) {
+//         User user = userRepository.findById(freelancerID)
+//                 .orElseThrow(() -> new IllegalArgumentException("Freelancer not found"));
+
+//        Freelancer freelancer = freelancerRepository.findByUser(user)
+//                 .orElseThrow(() -> new IllegalArgumentException("Freelancer not found"));
+//         if (freelancer == null) {
+//             throw new IllegalArgumentException("Freelancer not found");
+//         }
+
+//         List<Application> applications = applicationRepository.findByFreelancer(freelancer);
+//         return applications != null ? applications : Collections.emptyList();
+//     }
+
+
+
+
+public List<ApplicationResponse> getAllApplicationsByFreelancerId(Integer freelancerID) {
+    
+    User user = userRepository.findById(freelancerID)
+            .orElseThrow(() -> new IllegalArgumentException("Freelancer not found"));
+
+    Freelancer freelancer = freelancerRepository.findByUser(user)
+            .orElseThrow(() -> new IllegalArgumentException("Freelancer not found"));
+
+    if (freelancer == null) {
+        throw new IllegalArgumentException("Freelancer not found");
     }
+
+
+    List<Application> applications = applicationRepository.findByFreelancer(freelancer);
+
+
+    List<ApplicationResponse> applicationResponses = applications.stream()
+            .map(application -> {
+                JobResponse jobResponse = new JobResponse();
+                jobResponse.setFields(application.getJob());
+
+                Freelancer freelancerData = application.getFreelancer();
+                User userData = freelancerData.getUser();
+
+                FreelancerResponse freelancerResponse = new FreelancerResponse();
+                freelancerResponse.setFields(freelancerData, userData);
+
+                ApplicationResponse applicationResponse = new ApplicationResponse();
+                applicationResponse.setFields(application, jobResponse, freelancerResponse);
+
+                return applicationResponse;
+            })
+            .collect(Collectors.toList());
+
+    return applicationResponses;
+}
+
+
+
 
     public void deleteApplicationByIdAndFreelancerId(Integer applicationID, Integer freelancerID) {
 
