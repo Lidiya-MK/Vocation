@@ -82,8 +82,8 @@ public class FreelancerController {
         return "freelancer-home";
     }
 
-
-     @GetMapping("/profile")
+    
+    @GetMapping("/profile")
     public String getFreelancerProfile(HttpServletRequest request, Model model) {
         String token = (String) request.getAttribute("Authorization");
         Integer id = jwtServices.extractIdFromHeader(token); 
@@ -102,6 +102,7 @@ public class FreelancerController {
         model.addAttribute("experience", freelancerResponse.getYearsOfExperience());
         return "freelancer-update-profile";
     }
+
 
     @GetMapping("/job-details/{jobId}")
     public String getJobDetails(@PathVariable Integer jobId, HttpServletRequest request, Model model) {
@@ -272,6 +273,10 @@ public ResponseEntity<?> deleteApplicationById(
         HttpStatus status = e.getMessage().contains("not found") ? HttpStatus.NOT_FOUND : HttpStatus.BAD_REQUEST;
         return ResponseEntity.status(status).body(new ErrorResponse(e.getMessage()));
     }
+
+
+   
+
 
 
 }

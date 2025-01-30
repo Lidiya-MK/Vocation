@@ -244,13 +244,13 @@
 
             <!-- Resume Link -->
             <div class="w-full">
-              <h3 class="text-[20px] font-bold text-[#6F6C6C]">Resume</h3>
+              <h3 class="text-[20px] font-bold text-[#6F6C6C]">Applicant Profile</h3>
               <a
-                href="#"
-                th:href="@{${applicationItem.freelancer.resumeLink}}"
-                class="text-[16px] text-[#F0823E] font-bold hover:underline"
-                >View Resume</a
-              >
+              th:href="@{/job-posters/view-freelancer/{applicationId}(applicationId=${applicationItem.id})}"
+              class="text-[16px] text-[#F0823E] font-bold hover:underline"
+          >
+              View Profile
+          </a>
             </div>
           </div>
         </div>

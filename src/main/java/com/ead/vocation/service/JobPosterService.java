@@ -8,8 +8,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.ead.vocation.dtos.FreelancerResponse;
 import com.ead.vocation.dtos.JobRequest;
 import com.ead.vocation.dtos.UpdateJobPosterRequest;
+import com.ead.vocation.model.Application;
+import com.ead.vocation.model.Freelancer;
 import com.ead.vocation.model.Job;
 import com.ead.vocation.model.JobPoster;
 import com.ead.vocation.model.User;
@@ -172,4 +175,26 @@ public class JobPosterService {
 		jobPoster.setLinks(newJobPosterRequest.getLinks());
 		return jobPosterRepository.save(jobPoster);
 	}
+
+
+	  public FreelancerResponse getFreelancerByApplicationId(Integer applicationID) {
+
+        Application application = applicationRepository.findById(applicationID)
+                .orElseThrow(() -> new IllegalArgumentException("Application not found"));
+    
+        Freelancer freelancer = application.getFreelancer();
+    
+        if (freelancer == null) {
+            throw new IllegalArgumentException("Freelancer not associated with this application");
+        }
+    
+        User user = freelancer.getUser();
+    
+        FreelancerResponse response = new FreelancerResponse();
+        response.setFields(freelancer, user);
+    
+        return response;
+    }
+    
+
 }

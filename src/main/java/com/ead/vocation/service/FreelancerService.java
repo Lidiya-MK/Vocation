@@ -78,10 +78,6 @@ public class FreelancerService {
     
         return applicationRepository.save(applicationEntity);
     }
-    
-
-
-    
 
 
 
@@ -208,6 +204,6 @@ public List<ApplicationResponse> getAllApplicationsByFreelancerId(Integer freela
         FreelancerResponse response = new FreelancerResponse();
         response.setFields(freelancer, user);
         return response;
-    }
+    }    
 
 }

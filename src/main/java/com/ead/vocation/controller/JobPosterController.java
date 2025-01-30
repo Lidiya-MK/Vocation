@@ -45,6 +45,7 @@ public class JobPosterController {
 
     @Autowired
     private JobPosterService jobPosterService;
+    
 
     @Autowired
     private ApplicationService applicationService;
@@ -62,6 +63,34 @@ public class JobPosterController {
         model.addAttribute("companyDescription", jobPoster.getDescription());
         model.addAttribute("jobs", jobs);
         return "job-poster-home";
+    }
+
+    @GetMapping("/view-freelancer/{applicationId}")
+    public String getFreelancerProfileFromApplication(@PathVariable Integer applicationId, Model model) {
+        try {
+         
+            FreelancerResponse freelancerResponse = jobPosterService.getFreelancerByApplicationId(applicationId);
+
+          
+            model.addAttribute("name", freelancerResponse.getName());
+            model.addAttribute("industry", freelancerResponse.getIndustry());
+            model.addAttribute("description", freelancerResponse.getDescription());
+            model.addAttribute("email", freelancerResponse.getEmail());
+            model.addAttribute("location", freelancerResponse.getLocation());
+            model.addAttribute("phoneNumber", freelancerResponse.getPhoneNumber());
+            model.addAttribute("links", freelancerResponse.getLinks());
+            model.addAttribute("resume", freelancerResponse.getResumeLink());
+            model.addAttribute("profilePicture", freelancerResponse.getProfilePicture());
+            model.addAttribute("skills", freelancerResponse.getSkills());
+            model.addAttribute("experience", freelancerResponse.getYearsOfExperience());
+
+     
+            return "freelancer-profile-view";
+        } catch (IllegalArgumentException e) {
+           
+            model.addAttribute("error", "Freelancer profile not found for this application");
+            return "error-page";  
+        }
     }
 
     @GetMapping("/job-details/{jobId}")
@@ -239,4 +268,19 @@ public class JobPosterController {
         HttpStatus status = e.getMessage().contains("not found") ? HttpStatus.NOT_FOUND : HttpStatus.BAD_REQUEST;
         return ResponseEntity.status(status).body(new ErrorResponse(e.getMessage()));
     }
+
+
+
+    @GetMapping("/application/{applicationId}")
+    public ResponseEntity<?> getFreelancerByApplicationId(@PathVariable Integer applicationId) {
+        try {
+            FreelancerResponse freelancerResponse = jobPosterService.getFreelancerByApplicationId(applicationId);
+            return ResponseEntity.ok(freelancerResponse);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An error occurred: " + e.getMessage());
+        }
+    }
+    
 }
