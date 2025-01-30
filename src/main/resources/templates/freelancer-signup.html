@@ -14,7 +14,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="/styles/style.css" />
-
+    <script src="/scripts/toast.js"></script>
     <title>Freelancer Signup</title>
   </head>
   <body class="bg-white">
@@ -229,8 +229,9 @@
     
             <!-- Cover Letter -->
             <textarea
-              id="coverLetter"
-              placeholder="Cover Letter"
+              type="text"
+              id="description"
+              placeholder="Tell us about youself"
               class="w-full p-2 mb-3 bg-white rounded-lg placeholder-gray-500 text-sm"
             ></textarea>
     
@@ -560,45 +561,71 @@ function removeSkill(skill) {
 
 
 const signupForm = document.getElementById("signup-form");
+
 signupForm.addEventListener("submit", async (event) => {
   event.preventDefault();
 
-  const name = document.getElementById("name").value;
-  const email = document.getElementById("email").value;
+  const name = document.getElementById("name").value.trim();
+  const email = document.getElementById("email").value.trim();
   const password = document.getElementById("password").value;
   const confirmPassword = document.getElementById("confirm-password").value;
-  const industry = document.getElementById("industry").value;
-  const location = document.getElementById("location").value;
-  const phoneNumber = document.getElementById("phoneNumber").value;
-  const resumeLink = document.getElementById("resumeLink").value;
-  const coverLetter = document.getElementById("coverLetter").value;
-  const profilePicture = document.getElementById("profilePicture").value;
+  const industry = document.getElementById("industry").value.trim();
+  const location = document.getElementById("location").value.trim();
+  const phoneNumber = document.getElementById("phoneNumber").value.trim();
+  const resumeLink = document.getElementById("resumeLink").value.trim();
+  const description = document.getElementById("description").value.trim();
+  const profilePicture = document.getElementById("profilePicture").value.trim();
 
 
-  if (password !== confirmPassword) {
-    alert("Passwords do not match");
+  const requiredFields = { name, email, industry, location, phoneNumber, resumeLink, password };
+  for (const [key, value] of Object.entries(requiredFields)) {
+    if (!value) {
+      showToast(`You have not provided your ${key.replace(/([A-Z])/g, ' $1').toLowerCase()}`, "error");
+      return;
+    }
+  }
+
+  if (!selectedSkills || selectedSkills.length === 0) {
+    showToast("You have not provided your skills", "error");
     return;
   }
 
+  if (password.length < 6) {
+    showToast("Password must be at least 6 characters long", "error");
+    return;
+  }
 
-  const signupData = {
-    name,
-    email,
-    password,
-    skills: selectedSkills, 
-    industry,
-    yearsOfExperience: 0,
-    resumeLink,
-    coverLetter,
-    links: [], 
-    description: "",
-    location,
-    phoneNumber,
-    profilePicture,
-  };
+  if (password !== confirmPassword) {
+    showToast("Passwords do not match", "error");
+    return;
+  }
 
   try {
-  
+    
+    const emailCheckResponse = await fetch(`/auth/check-email?email=${encodeURIComponent(email)}`);
+    
+    if (!emailCheckResponse.ok) {
+      const errorText = await emailCheckResponse.text(); 
+      showToast(errorText || "Email already in use", "error");
+      return;
+    }
+
+    const signupData = {
+      name,
+      email,
+      password,
+      skills: selectedSkills,
+      industry,
+      yearsOfExperience: 0,
+      resumeLink,
+      description,
+      links: [],
+      location,
+      phoneNumber,
+      profilePicture,
+    };
+
+   
     const response = await fetch("/auth/freelancers/signup", {
       method: "POST",
       headers: {
@@ -607,16 +634,20 @@ signupForm.addEventListener("submit", async (event) => {
       body: JSON.stringify(signupData),
     });
 
+    const responseText = await response.text(); 
+
     if (response.ok) {
-      window.location.href = "/auth/freelancers/login";  
+      window.location.href = "/auth/freelancers/login";
     } else {
-      alert("Signup failed. Please try again.");
+      showToast(responseText || "Signup failed. Please try again.", "error");
     }
   } catch (error) {
     console.error("Error during signup:", error);
-    alert("An error occurred. Please try again later.");
+    showToast("An error occurred. Please try again later.", "error");
   }
 });
+
+
 
     </script>
   </body>

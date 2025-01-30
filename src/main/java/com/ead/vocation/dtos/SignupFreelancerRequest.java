@@ -40,8 +40,8 @@ public class SignupFreelancerRequest {
     @Pattern(regexp = "^(https?://).+", message = "Resume link must be a valid URL starting with http:// or https://")
     private String resumeLink;
 
-    @Size(max = 500, message = "Cover letter should not exceed 500 characters")
-    private String coverLetter;
+    // @Size(max = 500, message = "Cover letter should not exceed 500 characters")
+    // private String coverLetter;
 
     private List<@Pattern(regexp = "^(https?://).+", message = "Each link must be a valid URL starting with http:// or https://") String> links;
 

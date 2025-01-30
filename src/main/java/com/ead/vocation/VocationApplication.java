@@ -9,3 +9,4 @@ public class VocationApplication {
 		SpringApplication.run(VocationApplication.class, args);
 	}
 }
+

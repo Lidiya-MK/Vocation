@@ -77,7 +77,7 @@ public class AuthController {
             freelancer.setSkills(freelancerRequest.getSkills());
             freelancer.setIndustry(freelancerRequest.getIndustry());
             freelancer.setResumeLink(freelancerRequest.getResumeLink());
-            freelancer.setCoverLetter(freelancerRequest.getCoverLetter());
+            // freelancer.setCoverLetter(freelancerRequest.getCoverLetter());
             freelancer.setLinks(freelancerRequest.getLinks());
             freelancer.setDescription(freelancerRequest.getDescription());
             freelancer.setLocation(freelancerRequest.getLocation());
