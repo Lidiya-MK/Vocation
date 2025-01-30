@@ -5,7 +5,7 @@ import com.ead.vocation.model.Freelancer;
 import com.ead.vocation.model.Job;
 import com.ead.vocation.shared.enums.ApplicationStatus;
 
-import jakarta.validation.constraints.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,7 +21,6 @@ public class ApplicationRequest {
     private Integer jobId;
 
     @NotNull(message = "Application status is mandatory")
-    @Pattern(regexp = "PENDING|REJECTED|ACCEPTED", message = "Invalid status")
     private ApplicationStatus status;
 
     public Application toApplicationEntity(Job job, Freelancer freelancer) {
