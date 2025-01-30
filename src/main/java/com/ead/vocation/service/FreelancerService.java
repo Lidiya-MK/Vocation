@@ -57,22 +57,28 @@ public class FreelancerService {
 
         return response;
     }
-
     public Application createApplication(ApplicationRequest applicationRequest, Integer freelancerID) {
 
         User user = userRepository.findById(freelancerID)
                 .orElseThrow(() -> new IllegalArgumentException("User not found"));
-
+    
         Freelancer freelancer = freelancerRepository.findByUser(user)
                 .orElseThrow(() -> new IllegalArgumentException("Freelancer not found"));
-
+    
         Job job = jobRepository.findById(applicationRequest.getJobId())
                 .orElseThrow(() -> new IllegalArgumentException("Job not found"));
+    
 
+        boolean alreadyApplied = applicationRepository.existsByJobAndFreelancer(job, freelancer);
+        if (alreadyApplied) {
+            throw new RuntimeException("You have already applied for this job.");
+        }
+    
         Application applicationEntity = applicationRequest.toApplicationEntity(job, freelancer);
-
+    
         return applicationRepository.save(applicationEntity);
     }
+    
 
 
     

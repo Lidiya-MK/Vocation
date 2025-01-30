@@ -17,6 +17,8 @@ public interface ApplicationRepository extends JpaRepository<Application, Intege
     List<Application> findByJobId(Integer jobId);
 
     Optional<Application> findByIdAndFreelancer(Integer id, Freelancer freelancer);
+    boolean existsByJobAndFreelancer(Job job, Freelancer freelancer);
+
 
     void deleteByJob(Job job);
 }

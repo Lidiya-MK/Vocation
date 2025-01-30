@@ -110,16 +110,11 @@
       <section>
         <div class="mt-10 flex flex-col items-center py-4">
           <div class="flex items-center gap-2">
-            <p class="text-[40px] font-light text-black">Application</p>
+            <p class="text-[40px] font-light text-black">Application Now!</p>
           </div>
         </div>
 
-        <div class="mb-3 flex justify-center">
-          <textarea
-            placeholder="Tell the employer why you are interested"
-            class="w-full lg:w-[80%] border border-gray-300 rounded-lg px-4 py-4 text-sm h-72 mx-4 my-6"
-          ></textarea>
-        </div>
+      
 
         <div class="flex justify-center mt-6 mb-12">
           <button
@@ -367,17 +362,18 @@ document.querySelector("button").addEventListener("click", async () => {
         });
 
         if (response.ok) {
-            const responseData = await response.json();
-            console.log("Application successful:", responseData);
-            alert("Application submitted successfully!");
+      showToast("Application submissted successfully!", "success");
+      return;
+    
         } else {
             const errorText = await response.text();
             console.error("Application failed:", errorText);
-            alert("Application failed: " + errorText);
+            showToast("You can only apply once", "error");
         }
     } catch (error) {
         console.error("Error applying for job:", error);
-        alert("An error occurred while applying. Please try again.");
+        showToast("You can only apply once", "error");
+        return;
     }
 });
 
