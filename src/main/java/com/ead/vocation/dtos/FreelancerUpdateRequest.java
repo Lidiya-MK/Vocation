@@ -17,5 +17,4 @@ public class FreelancerUpdateRequest {
     private String description;
     private String location;
     private String phoneNumber;
-    private String profilePicture;
 }

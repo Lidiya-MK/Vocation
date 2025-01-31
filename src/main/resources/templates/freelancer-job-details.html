@@ -17,6 +17,7 @@
     <script src="/scripts/toast.js"></script>
     <script src="/scripts/tokens.js"></script>
     <script src="/scripts/logout.js"></script>
+    <script src="/scripts/confirm-box.js"></script>
     <title>Freelancer Job Details</title>
   </head>
   <body class="bg-white">
@@ -334,6 +335,15 @@
     <script>
 
 document.querySelector("button").addEventListener("click", async () => {
+
+  const confirmed = await showConfirmBox(
+              "Are you sure you want to apply for this job?",
+              "success"
+            );
+
+            if (!confirmed) {
+              return;
+            }
   const token = getToken();
   
    
@@ -341,14 +351,16 @@ document.querySelector("button").addEventListener("click", async () => {
     const jobId = urlParts[urlParts.length - 1];
 
     if (!jobId || isNaN(jobId)) {
-        alert("Invalid job ID.");
+        showToast("Invalid job ID.","error");
         return;
     }
+
+
 
     const requestBody = {
         jobId: parseInt(jobId),
         status: "PENDING",
-        // freelancerId:1
+      
     };
 
     try {

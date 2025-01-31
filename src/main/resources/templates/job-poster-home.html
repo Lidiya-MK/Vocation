@@ -478,7 +478,7 @@
               <!-- Job Description -->
               <p
   class="text-sm text-center mt-2 text-gray-600"
-  th:text="${#strings.length(job.description) > 50 ? #strings.substring(job.description, 0, 50) + '...' : job.description}"
+  th:text="${#strings.length(job.description) > 40 ? #strings.substring(job.description, 0, 40) + '...' : job.description}"
 ></p>
 
 
@@ -539,7 +539,7 @@
               <!-- Job Description -->
               <p
   class="text-sm text-center mt-2 text-gray-600"
-  th:text="${#strings.length(job.description) > 50 ? #strings.substring(job.description, 0, 50) + '...' : job.description}"
+  th:text="${#strings.length(job.description) > 40 ? #strings.substring(job.description, 0, 40) + '...' : job.description}"
 ></p>
 
 
@@ -602,7 +602,7 @@
               <!-- Job Description -->
               <p
   class="text-sm text-center mt-2 text-gray-600"
-  th:text="${#strings.length(job.description) > 50 ? #strings.substring(job.description, 0, 50) + '...' : job.description}"
+  th:text="${#strings.length(job.description) > 40 ? #strings.substring(job.description, 0, 40) + '...' : job.description}"
 ></p>
 
 

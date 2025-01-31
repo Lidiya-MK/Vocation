@@ -195,10 +195,7 @@ public List<ApplicationResponse> getAllApplicationsByFreelancerId(Integer freela
         if (freelancerUpdateRequest.getPhoneNumber() != null) {
             freelancer.setPhoneNumber(freelancerUpdateRequest.getPhoneNumber());
         }
-        if (freelancerUpdateRequest.getProfilePicture() != null) {
-            freelancer.setProfilePicture(freelancerUpdateRequest.getProfilePicture());
-        }
-
+     
         freelancerRepository.save(freelancer);
 
         FreelancerResponse response = new FreelancerResponse();
