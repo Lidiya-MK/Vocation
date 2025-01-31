@@ -235,7 +235,9 @@
 
             <!-- Cover Letter -->
             <div class="w-full">
-              <h3 class="text-[20px] font-bold text-[#6F6C6C]">About the applicant</h3>
+              <h3 class="text-[20px] font-bold text-[#6F6C6C]">
+                About the applicant
+              </h3>
               <p
                 class="text-[16px] text-black font-light mt-2"
                 th:text="${applicationItem.freelancer.description}"
@@ -244,13 +246,12 @@
 
             <!-- Resume Link -->
             <div class="w-full">
-             
               <a
-              th:href="@{/job-posters/view-freelancer/{applicationId}(applicationId=${applicationItem.id})}"
-              class="text-[16px] text-[#F0823E] font-bold hover:underline"
-          >
-              View Profile
-          </a>
+                th:href="@{/job-posters/view-freelancer/{applicationId}(applicationId=${applicationItem.id})}"
+                class="text-[16px] text-[#F0823E] font-bold hover:underline"
+              >
+                View Profile
+              </a>
             </div>
           </div>
         </div>

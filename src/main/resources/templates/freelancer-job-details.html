@@ -60,53 +60,51 @@
       </div>
 
       <section
-      class="bg-white pt-1 py-8 mx-auto max-w-[950px] text-center px-4"
-    >
-      <!-- Job Title -->
-      <div class="mb-6">
-        <h2 class="text-[80px] font-bold" th:text="${jobTitle}"></h2>
-      </div>
-
-      <!-- Job Details -->
-      <div class="text-left">
-        <!-- Date and Onsite -->
-        <div class="flex justify-start space-x-4 mb-4">
-          <p
-            class="text-[#6692A7]  text-[16px] font-bold"
-            th:text="'Date: ' + ${startDate}"
-          ></p>
-          <p
-            class="text-[#6692A7]  text-[16px] font-bold"
-            th:text="${jobType.name()}"
-          ></p>
+        class="bg-white pt-1 py-8 mx-auto max-w-[950px] text-center px-4"
+      >
+        <!-- Job Title -->
+        <div class="mb-6">
+          <h2 class="text-[80px] font-bold" th:text="${jobTitle}"></h2>
         </div>
 
-        <!-- Job Description -->
-        <p
-          class="text-[16px] text-black font-light mb-4"
-          th:text="${jobDescription}"
-        ></p>
-      </div>
-      <!-- Pay, Skills -->
-      <div class="flex flex-col justify-start mb-4">
-        <p
-          class="text-[#6692A7]  text-[16px] font-bold"
-          th:text="'Pay: ' + ${budget} + ' Birr/hr'"
-        ></p>
-        <p
-          class="text-[#6692A7]  text-[16px] font-bold"
-          th:text="'Skills: ' + ${skills}"
-        ></p>
+        <!-- Job Details -->
+        <div class="text-left">
+          <!-- Date and Onsite -->
+          <div class="flex justify-start space-x-4 mb-4">
+            <p
+              class="text-[#6692A7] text-[16px] font-bold"
+              th:text="'Date: ' + ${startDate}"
+            ></p>
+            <p
+              class="text-[#6692A7] text-[16px] font-bold"
+              th:text="${jobType.name()}"
+            ></p>
+          </div>
 
-        <!-- Deadline -->
-        <p
-          class="text-[#F0443E] text-[16px] font-bold"
-          th:text="'Deadline: ' + ${deadline}"
-        ></p>
-      </div>
-    </section>
+          <!-- Job Description -->
+          <p
+            class="text-[16px] text-black font-light mb-4"
+            th:text="${jobDescription}"
+          ></p>
+        </div>
+        <!-- Pay, Skills -->
+        <div class="flex flex-col justify-start mb-4">
+          <p
+            class="text-[#6692A7] text-[16px] font-bold"
+            th:text="'Pay: ' + ${budget} + ' Birr/hr'"
+          ></p>
+          <p
+            class="text-[#6692A7] text-[16px] font-bold"
+            th:text="'Skills: ' + ${skills}"
+          ></p>
 
-
+          <!-- Deadline -->
+          <p
+            class="text-[#F0443E] text-[16px] font-bold"
+            th:text="'Deadline: ' + ${deadline}"
+          ></p>
+        </div>
+      </section>
 
       <section>
         <div class="mt-10 flex flex-col items-center py-4">
@@ -114,8 +112,6 @@
             <p class="text-[40px] font-light text-black">Apply Now!</p>
           </div>
         </div>
-
-      
 
         <div class="flex justify-center mt-6 mb-12">
           <button
@@ -140,7 +136,7 @@
           >
           <a
             href="#"
-            class="hover:text-[#6692A7]  text-white text-sm sm:text-base"
+            class="hover:text-[#6692A7] text-white text-sm sm:text-base"
             >About Us</a
           >
           <a
@@ -329,66 +325,55 @@
       </p>
     </div>
 
-
-
-
     <script>
+      document.querySelector("button").addEventListener("click", async () => {
+        const confirmed = await showConfirmBox(
+          "Are you sure you want to apply for this job?",
+          "success"
+        );
 
-document.querySelector("button").addEventListener("click", async () => {
+        if (!confirmed) {
+          return;
+        }
+        const token = getToken();
 
-  const confirmed = await showConfirmBox(
-              "Are you sure you want to apply for this job?",
-              "success"
-            );
+        const urlParts = window.location.pathname.split("/");
+        const jobId = urlParts[urlParts.length - 1];
 
-            if (!confirmed) {
-              return;
-            }
-  const token = getToken();
-  
-   
-    const urlParts = window.location.pathname.split("/");
-    const jobId = urlParts[urlParts.length - 1];
+        if (!jobId || isNaN(jobId)) {
+          showToast("Invalid job ID.", "error");
+          return;
+        }
 
-    if (!jobId || isNaN(jobId)) {
-        showToast("Invalid job ID.","error");
-        return;
-    }
+        const requestBody = {
+          jobId: parseInt(jobId),
+          status: "PENDING",
+        };
 
-
-
-    const requestBody = {
-        jobId: parseInt(jobId),
-        status: "PENDING",
-      
-    };
-
-    try {
-        const response = await fetch("/freelancers/apply", {
+        try {
+          const response = await fetch("/freelancers/apply", {
             method: "POST",
             headers: {
-                "Content-Type": "application/json",
-                Authorization: "Bearer " + token,
+              "Content-Type": "application/json",
+              Authorization: "Bearer " + token,
             },
-            body: JSON.stringify(requestBody)
-        });
+            body: JSON.stringify(requestBody),
+          });
 
-        if (response.ok) {
-      showToast("Application submissted successfully!", "success");
-      return;
-    
-        } else {
+          if (response.ok) {
+            showToast("Application submissted successfully!", "success");
+            return;
+          } else {
             const errorText = await response.text();
             console.error("Application failed:", errorText);
             showToast("You can only apply once", "error");
+          }
+        } catch (error) {
+          console.error("Error applying for job:", error);
+          showToast("You can only apply once", "error");
+          return;
         }
-    } catch (error) {
-        console.error("Error applying for job:", error);
-        showToast("You can only apply once", "error");
-        return;
-    }
-});
-
+      });
     </script>
   </body>
 </html>

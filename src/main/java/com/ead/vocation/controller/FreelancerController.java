@@ -1,10 +1,8 @@
 package com.ead.vocation.controller;
 
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 
-
 import com.ead.vocation.dtos.ApplicationRequest;
 import com.ead.vocation.dtos.ApplicationResponse;
 import com.ead.vocation.dtos.FreelancerResponse;
@@ -28,7 +25,6 @@ import com.ead.vocation.dtos.JobResponse;
 import com.ead.vocation.model.Application;
 import com.ead.vocation.model.Freelancer;
 import com.ead.vocation.model.Job;
-import com.ead.vocation.model.JobPoster;
 import com.ead.vocation.model.User;
 import com.ead.vocation.service.FreelancerService;
 import com.ead.vocation.service.JobService;
@@ -43,30 +39,23 @@ import com.ead.vocation.shared.util.JwtServices;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 
-
 @Controller
 @RequestMapping("/freelancers")
 public class FreelancerController {
 
-
     @Autowired
     private JwtServices jwtServices;
 
-    
     @Autowired
     private FreelancerService freelancerService;
 
-   @Autowired
+    @Autowired
     private JobService jobService;
-
-
-
-   
 
     @GetMapping("/dashboard")
     public String getFreelancerDashboard(HttpServletRequest request, Model model) {
         String token = (String) request.getAttribute("Authorization");
-        Integer id = jwtServices.extractIdFromHeader(token); 
+        Integer id = jwtServices.extractIdFromHeader(token);
         FreelancerResponse freelancerResponse = freelancerService.getFreelancerProfile(id);
         List<ApplicationResponse> applications = freelancerService.getAllApplicationsByFreelancerId(id);
         List<JobResponse> jobResponses = jobService.getAllJobs();
@@ -82,11 +71,10 @@ public class FreelancerController {
         return "freelancer-home";
     }
 
-    
     @GetMapping("/profile")
     public String getFreelancerProfile(HttpServletRequest request, Model model) {
         String token = (String) request.getAttribute("Authorization");
-        Integer id = jwtServices.extractIdFromHeader(token); 
+        Integer id = jwtServices.extractIdFromHeader(token);
         FreelancerResponse freelancerResponse = freelancerService.getFreelancerProfile(id);
         model.addAttribute("name", freelancerResponse.getName());
         model.addAttribute("industry", freelancerResponse.getIndustry());
@@ -103,23 +91,19 @@ public class FreelancerController {
         return "freelancer-update-profile";
     }
 
-
     @GetMapping("/job-details/{jobId}")
     public String getJobDetails(@PathVariable Integer jobId, HttpServletRequest request, Model model) {
-    
+
         Job job = jobService.getJobById(jobId);
-    
-        
+
         StringBuilder skills = new StringBuilder();
         for (String skill : job.getSkillsRequired()) {
             skills.append(skill).append(", ");
         }
-    
-      
+
         if (skills.length() > 0) {
             skills.setLength(skills.length() - 2);
         }
-    
 
         model.addAttribute("skillsRequired", skills.toString());
         model.addAttribute("jobTitle", job.getTitle());
@@ -129,18 +113,9 @@ public class FreelancerController {
         model.addAttribute("budget", job.getBudget());
         model.addAttribute("deadline", job.getApplicationDeadline());
         model.addAttribute("skills", skills.toString());
-    
 
         return "freelancer-job-details";
     }
-    
-    
-
-
-
-
-
-
 
     @GetMapping("/jobs")
     public ResponseEntity<List<JobResponse>> getAllJobs() {
@@ -148,135 +123,115 @@ public class FreelancerController {
         return new ResponseEntity<>(jobResponses, HttpStatus.OK);
     }
 
-
     @PostMapping("/apply")
-public ResponseEntity<?> applyForJob(@Valid @RequestBody ApplicationRequest applicationRequest,
-                                     @RequestHeader("Authorization") String token) {
-    try {
+    public ResponseEntity<?> applyForJob(@Valid @RequestBody ApplicationRequest applicationRequest,
+            @RequestHeader("Authorization") String token) {
+        try {
 
-        Integer freelancerId = jwtServices.extractIdFromHeader(token);
-        
-     
-        Application application = freelancerService.createApplication(applicationRequest, freelancerId);
+            Integer freelancerId = jwtServices.extractIdFromHeader(token);
 
-        JobResponse jobResponse = new JobResponse();
-        jobResponse.setFields(application.getJob());
+            Application application = freelancerService.createApplication(applicationRequest, freelancerId);
 
-        Freelancer freelancer = application.getFreelancer();
-        User user = freelancer.getUser(); 
+            JobResponse jobResponse = new JobResponse();
+            jobResponse.setFields(application.getJob());
 
-        FreelancerResponse freelancerResponse = new FreelancerResponse();
-        freelancerResponse.setFields(freelancer, user);
+            Freelancer freelancer = application.getFreelancer();
+            User user = freelancer.getUser();
 
-        ApplicationResponse applicationResponse = new ApplicationResponse();
-        applicationResponse.setFields(application, jobResponse, freelancerResponse);
-        
-      
-        return ResponseEntity.status(HttpStatus.CREATED).body(applicationResponse);
-    } catch (IllegalArgumentException e) {
-   
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+            FreelancerResponse freelancerResponse = new FreelancerResponse();
+            freelancerResponse.setFields(freelancer, user);
+
+            ApplicationResponse applicationResponse = new ApplicationResponse();
+            applicationResponse.setFields(application, jobResponse, freelancerResponse);
+
+            return ResponseEntity.status(HttpStatus.CREATED).body(applicationResponse);
+        } catch (IllegalArgumentException e) {
+
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
+
     }
 
-}
+    @GetMapping("/applications")
+    public ResponseEntity<?> getAllApplicationsByFreelancer(@RequestHeader("Authorization") String token) {
+        try {
 
+            Integer freelancerId = jwtServices.extractIdFromHeader(token);
 
+            List<ApplicationResponse> applicationResponses = freelancerService
+                    .getAllApplicationsByFreelancerId(freelancerId);
 
+            return ResponseEntity.ok(applicationResponses);
 
+        } catch (IllegalArgumentException e) {
 
-@GetMapping("/applications")
-public ResponseEntity<?> getAllApplicationsByFreelancer(@RequestHeader("Authorization") String token) {
-    try {
-      
-        Integer freelancerId = jwtServices.extractIdFromHeader(token);
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid request: " + e.getMessage());
+        } catch (Exception e) {
 
-       
-        List<ApplicationResponse> applicationResponses = freelancerService.getAllApplicationsByFreelancerId(freelancerId);
-
-       
-        return ResponseEntity.ok(applicationResponses);
-
-    } catch (IllegalArgumentException e) {
- 
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid request: " + e.getMessage());
-    } catch (Exception e) {
-    
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An error occurred: " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An error occurred: " + e.getMessage());
+        }
     }
-}
 
+    @GetMapping("/info")
+    public ResponseEntity<?> getFreelancerProfile(@RequestHeader("Authorization") String token) {
+        try {
 
-@GetMapping("/info")
-public ResponseEntity<?> getFreelancerProfile(@RequestHeader("Authorization") String token) {
-    try {
-       
-        Integer userId = jwtServices.extractIdFromHeader(token);
+            Integer userId = jwtServices.extractIdFromHeader(token);
 
-  
-        FreelancerResponse freelancerResponse = freelancerService.getFreelancerProfile(userId);
+            FreelancerResponse freelancerResponse = freelancerService.getFreelancerProfile(userId);
 
-        return ResponseEntity.ok(freelancerResponse);
-    } catch (IllegalArgumentException e) {
-    
-        return ResponseEntity.status(400).body("Invalid token or user not found");
-    } catch (Exception e) {
-        
-        return ResponseEntity.status(500).body("An error occurred while fetching the profile");
+            return ResponseEntity.ok(freelancerResponse);
+        } catch (IllegalArgumentException e) {
+
+            return ResponseEntity.status(400).body("Invalid token or user not found");
+        } catch (Exception e) {
+
+            return ResponseEntity.status(500).body("An error occurred while fetching the profile");
+        }
     }
-}
 
+    @PutMapping("/update")
+    public ResponseEntity<?> updateFreelancerProfile(
+            @RequestBody FreelancerUpdateRequest freelancerUpdateRequest,
+            @RequestHeader("Authorization") String token) {
+        try {
 
+            Integer userId = jwtServices.extractIdFromHeader(token);
 
+            FreelancerResponse updatedFreelancerResponse = freelancerService.updateFreelancerProfile(userId,
+                    freelancerUpdateRequest);
 
-@PutMapping("/update")
-public ResponseEntity<?> updateFreelancerProfile(
-        @RequestBody FreelancerUpdateRequest freelancerUpdateRequest,
-        @RequestHeader("Authorization") String token) {
-    try {
-   
-        Integer userId = jwtServices.extractIdFromHeader(token);
+            return ResponseEntity.ok(updatedFreelancerResponse);
+        } catch (IllegalArgumentException e) {
 
-    
-        FreelancerResponse updatedFreelancerResponse = freelancerService.updateFreelancerProfile(userId, freelancerUpdateRequest);
+            return ResponseEntity.status(400).body("Invalid token or user not found");
+        } catch (Exception e) {
 
-     
-        return ResponseEntity.ok(updatedFreelancerResponse);
-    } catch (IllegalArgumentException e) {
-       
-        return ResponseEntity.status(400).body("Invalid token or user not found");
-    } catch (Exception e) {
-      
-        return ResponseEntity.status(500).body("An error occurred while updating the profile");
+            return ResponseEntity.status(500).body("An error occurred while updating the profile");
+        }
     }
-}
 
-@DeleteMapping("/applications/withdraw/{applicationId}")
-public ResponseEntity<?> deleteApplicationById(
-        @PathVariable Integer applicationId,
-        @RequestHeader("Authorization") String token) {
-    try {
-        Integer freelancerId = jwtServices.extractIdFromHeader(token);
-        freelancerService.deleteApplicationByIdAndFreelancerId(applicationId, freelancerId);
-        
-      
-        Map<String, String> response = new HashMap<>();
-        response.put("message", "Application withdrawn successfully");
-        response.put("applicationId", String.valueOf(applicationId));
+    @DeleteMapping("/applications/withdraw/{applicationId}")
+    public ResponseEntity<?> deleteApplicationById(
+            @PathVariable Integer applicationId,
+            @RequestHeader("Authorization") String token) {
+        try {
+            Integer freelancerId = jwtServices.extractIdFromHeader(token);
+            freelancerService.deleteApplicationByIdAndFreelancerId(applicationId, freelancerId);
 
-        return ResponseEntity.ok(response);
-    } catch (IllegalArgumentException e) {
-        return handleException(e);
+            Map<String, String> response = new HashMap<>();
+            response.put("message", "Application withdrawn successfully");
+            response.put("applicationId", String.valueOf(applicationId));
+
+            return ResponseEntity.ok(response);
+        } catch (IllegalArgumentException e) {
+            return handleException(e);
+        }
     }
-}
 
     private ResponseEntity<?> handleException(IllegalArgumentException e) {
         HttpStatus status = e.getMessage().contains("not found") ? HttpStatus.NOT_FOUND : HttpStatus.BAD_REQUEST;
         return ResponseEntity.status(status).body(new ErrorResponse(e.getMessage()));
     }
-
-
-   
-
-
 
 }

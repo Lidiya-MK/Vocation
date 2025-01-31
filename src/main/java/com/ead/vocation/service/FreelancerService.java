@@ -14,7 +14,6 @@ import com.ead.vocation.repository.FreelancerRepository;
 import com.ead.vocation.repository.JobRepository;
 import com.ead.vocation.repository.UserRepository;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -57,70 +56,62 @@ public class FreelancerService {
 
         return response;
     }
+
     public Application createApplication(ApplicationRequest applicationRequest, Integer freelancerID) {
 
         User user = userRepository.findById(freelancerID)
                 .orElseThrow(() -> new IllegalArgumentException("User not found"));
-    
+
         Freelancer freelancer = freelancerRepository.findByUser(user)
                 .orElseThrow(() -> new IllegalArgumentException("Freelancer not found"));
-    
+
         Job job = jobRepository.findById(applicationRequest.getJobId())
                 .orElseThrow(() -> new IllegalArgumentException("Job not found"));
-    
 
         boolean alreadyApplied = applicationRepository.existsByJobAndFreelancer(job, freelancer);
         if (alreadyApplied) {
             throw new RuntimeException("You have already applied for this job.");
         }
-    
+
         Application applicationEntity = applicationRequest.toApplicationEntity(job, freelancer);
-    
+
         return applicationRepository.save(applicationEntity);
     }
 
+    public List<ApplicationResponse> getAllApplicationsByFreelancerId(Integer freelancerID) {
 
+        User user = userRepository.findById(freelancerID)
+                .orElseThrow(() -> new IllegalArgumentException("Freelancer not found"));
 
+        Freelancer freelancer = freelancerRepository.findByUser(user)
+                .orElseThrow(() -> new IllegalArgumentException("Freelancer not found"));
 
-public List<ApplicationResponse> getAllApplicationsByFreelancerId(Integer freelancerID) {
-    
-    User user = userRepository.findById(freelancerID)
-            .orElseThrow(() -> new IllegalArgumentException("Freelancer not found"));
+        if (freelancer == null) {
+            throw new IllegalArgumentException("Freelancer not found");
+        }
 
-    Freelancer freelancer = freelancerRepository.findByUser(user)
-            .orElseThrow(() -> new IllegalArgumentException("Freelancer not found"));
+        List<Application> applications = applicationRepository.findByFreelancer(freelancer);
 
-    if (freelancer == null) {
-        throw new IllegalArgumentException("Freelancer not found");
+        List<ApplicationResponse> applicationResponses = applications.stream()
+                .map(application -> {
+                    JobResponse jobResponse = new JobResponse();
+                    jobResponse.setFields(application.getJob());
+
+                    Freelancer freelancerData = application.getFreelancer();
+                    User userData = freelancerData.getUser();
+
+                    FreelancerResponse freelancerResponse = new FreelancerResponse();
+                    freelancerResponse.setFields(freelancerData, userData);
+
+                    ApplicationResponse applicationResponse = new ApplicationResponse();
+                    applicationResponse.setFields(application, jobResponse, freelancerResponse);
+
+                    return applicationResponse;
+                })
+                .collect(Collectors.toList());
+
+        return applicationResponses;
     }
-
-
-    List<Application> applications = applicationRepository.findByFreelancer(freelancer);
-
-
-    List<ApplicationResponse> applicationResponses = applications.stream()
-            .map(application -> {
-                JobResponse jobResponse = new JobResponse();
-                jobResponse.setFields(application.getJob());
-
-                Freelancer freelancerData = application.getFreelancer();
-                User userData = freelancerData.getUser();
-
-                FreelancerResponse freelancerResponse = new FreelancerResponse();
-                freelancerResponse.setFields(freelancerData, userData);
-
-                ApplicationResponse applicationResponse = new ApplicationResponse();
-                applicationResponse.setFields(application, jobResponse, freelancerResponse);
-
-                return applicationResponse;
-            })
-            .collect(Collectors.toList());
-
-    return applicationResponses;
-}
-
-
-
 
     public void deleteApplicationByIdAndFreelancerId(Integer applicationID, Integer freelancerID) {
 
@@ -195,12 +186,12 @@ public List<ApplicationResponse> getAllApplicationsByFreelancerId(Integer freela
         if (freelancerUpdateRequest.getPhoneNumber() != null) {
             freelancer.setPhoneNumber(freelancerUpdateRequest.getPhoneNumber());
         }
-     
+
         freelancerRepository.save(freelancer);
 
         FreelancerResponse response = new FreelancerResponse();
         response.setFields(freelancer, user);
         return response;
-    }    
+    }
 
 }

@@ -175,10 +175,10 @@
       <!-- Modal Content -->
       <div
         id="modal"
-        class="fixed inset-0 bg-gray-500 bg-opacity-50 flex justify-center items-center z-50 hidden"
+        class="fixed inset-0 bg-gray-500 bg-opacity-50 flex justify-center items-center z-50 hidden py-10"
       >
         <div
-          class="bg-white w-[90%] p-6 rounded-lg shadow-lg space-y-6 relative md:w-[50%] max-w-[600px] px-6 py-4"
+          class="bg-white w-[90%] p-6 rounded-lg shadow-lg space-y-6 relative md:w-[50%] max-w-[600px] px-6 py-4 max-h-full overflow-y-auto"
         >
           <!-- Close Button -->
           <button
@@ -337,7 +337,6 @@
                   Prototyping
                 </div>
 
-
                 <div
                   class="skill-item p-2 cursor-pointer hover:bg-[#F0823E] hover:text-white"
                   onclick="selectSkill('UX/UI Design')"
@@ -477,10 +476,9 @@
 
               <!-- Job Description -->
               <p
-  class="text-sm text-center mt-2 text-gray-600"
-  th:text="${#strings.length(job.description) > 40 ? #strings.substring(job.description, 0, 40) + '...' : job.description}"
-></p>
-
+                class="text-sm text-center mt-2 text-gray-600"
+                th:text="${#strings.length(job.description) > 40 ? #strings.substring(job.description, 0, 40) + '...' : job.description}"
+              ></p>
 
               <!-- Pay, Applicants, Date, and Deadline -->
               <div class="text-left mt-4">
@@ -538,10 +536,9 @@
 
               <!-- Job Description -->
               <p
-  class="text-sm text-center mt-2 text-gray-600"
-  th:text="${#strings.length(job.description) > 40 ? #strings.substring(job.description, 0, 40) + '...' : job.description}"
-></p>
-
+                class="text-sm text-center mt-2 text-gray-600"
+                th:text="${#strings.length(job.description) > 40 ? #strings.substring(job.description, 0, 40) + '...' : job.description}"
+              ></p>
 
               <!-- Pay, Applicants, Date, and Deadline -->
               <div class="text-left mt-4">
@@ -601,10 +598,9 @@
 
               <!-- Job Description -->
               <p
-  class="text-sm text-center mt-2 text-gray-600"
-  th:text="${#strings.length(job.description) > 40 ? #strings.substring(job.description, 0, 40) + '...' : job.description}"
-></p>
-
+                class="text-sm text-center mt-2 text-gray-600"
+                th:text="${#strings.length(job.description) > 40 ? #strings.substring(job.description, 0, 40) + '...' : job.description}"
+              ></p>
 
               <!-- Pay, Applicants, Date, and Deadline -->
               <div class="text-left mt-4">

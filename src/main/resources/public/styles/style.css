@@ -337,9 +337,6 @@ button,
 select {
   text-transform: none;
 }
-.custom-blur {
-  filter: blur(10px); 
-}
 
 /*
 1. Correct the inability to style clickable types in iOS and Safari.
@@ -669,6 +666,16 @@ video {
   margin-right: auto;
 }
 
+.my-10 {
+  margin-top: 2.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.my-24 {
+  margin-top: 6rem;
+  margin-bottom: 6rem;
+}
+
 .my-6 {
   margin-top: 1.5rem;
   margin-bottom: 1.5rem;
@@ -679,13 +686,17 @@ video {
   margin-bottom: 2rem;
 }
 
-.my-10 {
-  margin-top: 2.5rem;
-  margin-bottom: 2.5rem;
+.my-16 {
+  margin-top: 4rem;
+  margin-bottom: 4rem;
 }
 
 .mb-1 {
   margin-bottom: 0.25rem;
+}
+
+.mb-10 {
+  margin-bottom: 2.5rem;
 }
 
 .mb-12 {
@@ -796,6 +807,10 @@ video {
   height: 1.5rem;
 }
 
+.h-64 {
+  height: 16rem;
+}
+
 .h-7 {
   height: 1.75rem;
 }
@@ -840,24 +855,16 @@ video {
   height: 100%;
 }
 
-.h-12 {
-  height: 3rem;
-}
-
-.h-48 {
-  height: 12rem;
-}
-
-.h-64 {
-  height: 16rem;
-}
-
 .max-h-32 {
   max-height: 8rem;
 }
 
 .max-h-40 {
   max-height: 10rem;
+}
+
+.max-h-full {
+  max-height: 100%;
 }
 
 .min-h-screen {
@@ -888,6 +895,10 @@ video {
   width: 1.5rem;
 }
 
+.w-64 {
+  width: 16rem;
+}
+
 .w-7 {
   width: 1.75rem;
 }
@@ -902,10 +913,6 @@ video {
 
 .w-\[100px\] {
   width: 100px;
-}
-
-.w-\[120px\] {
-  width: 120px;
 }
 
 .w-\[140px\] {
@@ -924,32 +931,12 @@ video {
   width: 500px;
 }
 
-.w-\[70\%\] {
-  width: 70%;
-}
-
 .w-\[90\%\] {
   width: 90%;
 }
 
 .w-full {
   width: 100%;
-}
-
-.w-12 {
-  width: 3rem;
-}
-
-.w-24 {
-  width: 6rem;
-}
-
-.w-48 {
-  width: 12rem;
-}
-
-.w-64 {
-  width: 16rem;
 }
 
 .max-w-\[360px\] {
@@ -1040,6 +1027,10 @@ video {
   gap: 0.25rem;
 }
 
+.gap-10 {
+  gap: 2.5rem;
+}
+
 .gap-12 {
   gap: 3rem;
 }
@@ -1108,6 +1099,10 @@ video {
 
 .whitespace-nowrap {
   white-space: nowrap;
+}
+
+.rounded {
+  border-radius: 0.25rem;
 }
 
 .rounded-2xl {
@@ -1455,6 +1450,10 @@ video {
   padding-top: 1rem;
 }
 
+.pt-72 {
+  padding-top: 18rem;
+}
+
 .text-left {
   text-align: left;
 }
@@ -1476,10 +1475,6 @@ video {
 .text-4xl {
   font-size: 2.25rem;
   line-height: 2.5rem;
-}
-
-.text-\[10px\] {
-  font-size: 10px;
 }
 
 .text-\[12px\] {
@@ -1717,10 +1712,6 @@ video {
   color: rgb(107 114 128 / var(--tw-placeholder-opacity, 1));
 }
 
-.opacity-80 {
-  opacity: 0.8;
-}
-
 .opacity-65 {
   opacity: 0.65;
 }
@@ -1842,11 +1833,6 @@ Body {
 .hover\:bg-\[\#6692A7\]:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(102 146 167 / var(--tw-bg-opacity, 1));
-}
-
-.hover\:bg-\[\#6699A7\]:hover {
-  --tw-bg-opacity: 1;
-  background-color: rgb(102 153 167 / var(--tw-bg-opacity, 1));
 }
 
 .hover\:bg-\[\#6699A7\]\/10:hover {
@@ -2027,10 +2013,6 @@ Body {
     width: 33.333333%;
   }
 
-  .md\:w-\[280px\] {
-    width: 280px;
-  }
-
   .md\:w-\[50\%\] {
     width: 50%;
   }
@@ -2109,6 +2091,10 @@ Body {
 }
 
 @media (min-width: 1024px) {
+  .lg\:mr-48 {
+    margin-right: 12rem;
+  }
+
   .lg\:block {
     display: block;
   }
@@ -2147,5 +2133,11 @@ Body {
 
   .lg\:text-\[27px\] {
     font-size: 27px;
+  }
+}
+
+@media (min-width: 1536px) {
+  .\32xl\:pt-0 {
+    padding-top: 0px;
   }
 }

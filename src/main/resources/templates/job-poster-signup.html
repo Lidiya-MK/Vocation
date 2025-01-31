@@ -17,7 +17,7 @@
     <script src="/scripts/toast.js"></script>
     <title>Signup Job Poster</title>
   </head>
-  <body class="bg-white">
+  <body class="bg-white min-h-screen flex flex-col justify-between">
     <!-- Top Navigation Bar -->
     <header class="px-6 py-4">
       <!-- Company Name and Menu Button -->
@@ -70,8 +70,10 @@
       </div>
     </header>
 
-    <main class="flex justify-center items-center min-h-screen">
-      <div class="flex justify-center items-center w-full max-w-screen-md px-4 py-6">
+    <main class="flex justify-center items-center">
+      <div
+        class="flex justify-center items-center gap-10 w-full max-w-screen-md px-4 py-6"
+      >
         <!-- Left Side Image -->
         <div class="hidden sm:block w-1/2 h-full">
           <img
@@ -80,12 +82,16 @@
             class="object-cover w-full h-full rounded-l-2xl"
           />
         </div>
-    
+
         <!-- Right Side Card -->
-        <div class="w-full sm:w-[50%] bg-[#F0823E]/[15%] rounded-2xl p-6 shadow-md">
+        <div
+          class="w-full sm:w-[50%] bg-[#F0823E]/[15%] rounded-2xl p-6 shadow-md"
+        >
           <!-- Sign Up Title -->
-          <h2 class="text-center text-2xl font-light mb-4">Job Poster Sign Up</h2>
-    
+          <h2 class="text-center text-2xl font-light mb-4">
+            Job Poster Sign Up
+          </h2>
+
           <!-- Form -->
           <form id="signup-form">
             <!-- Company Name -->
@@ -98,7 +104,7 @@
               required
               maxlength="50"
             />
-    
+
             <!-- Email -->
             <input
               type="email"
@@ -108,7 +114,7 @@
               class="w-full p-2 mb-3 bg-white rounded-lg placeholder-gray-500 text-sm"
               required
             />
-    
+
             <!-- Password -->
             <input
               type="password"
@@ -120,7 +126,7 @@
               minlength="6"
               maxlength="20"
             />
-    
+
             <!-- Confirm Password -->
             <input
               type="password"
@@ -131,7 +137,7 @@
               minlength="6"
               maxlength="20"
             />
-    
+
             <!-- Industry Dropdown -->
             <select
               id="industry"
@@ -149,7 +155,7 @@
               <option value="Construction">Construction</option>
               <option value="E-Commerce">E-Commerce</option>
             </select>
-    
+
             <!-- Description -->
             <textarea
               id="description"
@@ -158,7 +164,7 @@
               class="w-full p-2 mb-3 bg-white rounded-lg placeholder-gray-500 text-sm"
               maxlength="1000"
             ></textarea>
-    
+
             <!-- Location -->
             <input
               type="text"
@@ -168,7 +174,7 @@
               class="w-full p-2 mb-3 bg-white rounded-lg placeholder-gray-500 text-sm"
               required
             />
-    
+
             <!-- Phone Number -->
             <input
               type="text"
@@ -178,8 +184,7 @@
               class="w-full p-2 mb-3 bg-white rounded-lg placeholder-gray-500 text-sm"
               pattern="^\+?[0-9]*$"
             />
-    
-           
+
             <!-- Links -->
             <textarea
               id="links"
@@ -188,29 +193,25 @@
               class="w-full p-2 mb-3 bg-white rounded-lg placeholder-gray-500 text-sm"
             ></textarea>
 
+            <!-- Employer / Freelancer Toggle -->
+            <div class="flex space-x-3 mb-4">
+              <button
+                type="button"
+                id="employer-btn"
+                class="w-1/2 border-2 border-[#F0823E] text-[#F0823E] py-2 text-sm rounded-[50px] hover:bg-[#F0823E]/10 transition"
+              >
+                Job Poster
+              </button>
+              <button
+                type="button"
+                id="freelancer-btn"
+                class="w-1/2 border-2 border-[#6699A7] text-[#6699A7] py-2 text-sm rounded-[50px] hover:bg-[#6699A7]/10 transition"
+                onclick="window.location.href='/auth/freelancers/signup'"
+              >
+                Freelancer
+              </button>
+            </div>
 
-
-              <!-- Employer / Freelancer Toggle -->
-              <div class="flex space-x-3 mb-4">
-                <button
-                  type="button"
-                  id="employer-btn"
-                  class="w-1/2 border-2 border-[#F0823E] text-[#F0823E] py-2 text-sm rounded-[50px] hover:bg-[#F0823E]/10 transition"
-                >
-                  Job Poster
-                </button>
-                <button
-                  type="button"
-                  id="freelancer-btn"
-                  class="w-1/2 border-2 border-[#6699A7] text-[#6699A7] py-2 text-sm rounded-[50px] hover:bg-[#6699A7]/10 transition"
-                  onclick="window.location.href='/auth/freelancers/signup'"
-                >
-                  Freelancer
-                </button>
-              </div>
-  
-              
-    
             <!-- Sign Up Button -->
             <button
               type="submit"
@@ -218,17 +219,18 @@
             >
               Sign Up
             </button>
-    
+
             <!-- Admin Link -->
             <div class="text-center mt-3">
-              <a href="#" class="text-black text-xs hover:underline">Admin? Click here</a>
+              <a href="#" class="text-black text-xs hover:underline"
+                >Admin? Click here</a
+              >
             </div>
           </form>
         </div>
       </div>
     </main>
-    
-   
+
     <!-- Copyright Section -->
     <div class="mt-6 text-center pb-3 bg-white">
       <p class="text-black text-[16px] font-bold sm:text-sm">
@@ -237,7 +239,6 @@
     </div>
 
     <script>
-    
       const menuToggle = document.getElementById("menu-toggle");
       const navbar = document.getElementById("navbar");
 
@@ -245,86 +246,94 @@
         navbar.classList.toggle("hidden");
       });
 
+      document
+        .getElementById("signup-form")
+        .addEventListener("submit", async function (event) {
+          event.preventDefault();
 
-      document.getElementById("signup-form").addEventListener("submit", async function (event) {
-    event.preventDefault(); 
-  
-    const companyName = document.getElementById("company-name").value.trim();
-    const email = document.getElementById("email").value.trim();
-    const industry = document.getElementById("industry").value;
-    const password = document.getElementById("password").value.trim();
-    const confirmPassword = document.getElementById("confirm-password").value.trim();
-    const location = document.getElementById("location").value.trim();
-    const description = document.getElementById("description").value.trim();
-    const phoneNumber = document.getElementById("phone-number").value.trim();
- 
-    const linksInput = document.getElementById("links").value.trim();
-  
-  
-    const links = linksInput ? linksInput.split(",").map(link => link.trim()) : [];
-  
-  
-    if (!companyName || !email || !industry || !password || !confirmPassword || !location) {
-      showToast("Please fill out all required fields.","error");
-      return;
-    }
-  
-    if (password !== confirmPassword) {
-      showToast("Passwords do not match.","error");
-      return;
-    }
-  
-    if (links.some(link => !/^https?:\/\//.test(link))) {
-      showToast("All links must be valid URLs starting with http:// or https://","error");
-      return;
-    }
-  
-    
-  
-  
-    const requestBody = {
-      name: companyName,
-      email: email,
-      password: password,
-      industry: industry,
-      location: location,
-      description: description,
-      phoneNumber: phoneNumber,
-      links: links,
-   
-    };
-  
-    try {
-   
-      const response = await fetch("/auth/job-posters/signup", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(requestBody),
-      });
-  
-      if (response.ok) {
-        const responseData = await response.json();
-        showToast("Signup successful!","success");
-        console.log(responseData);
-   
-        window.location.href = "/auth/job-posters/login";
-      } else {
-        const errorData = await response.text();
-        showToast(` ${errorData}`,"error");
-        console.error(errorData);
-      }
-    } catch (error) {
-      console.error("An error occurred during signup:", error);
+          const companyName = document
+            .getElementById("company-name")
+            .value.trim();
+          const email = document.getElementById("email").value.trim();
+          const industry = document.getElementById("industry").value;
+          const password = document.getElementById("password").value.trim();
+          const confirmPassword = document
+            .getElementById("confirm-password")
+            .value.trim();
+          const location = document.getElementById("location").value.trim();
+          const description = document
+            .getElementById("description")
+            .value.trim();
+          const phoneNumber = document
+            .getElementById("phone-number")
+            .value.trim();
 
-    }
-  });
- 
-      
+          const linksInput = document.getElementById("links").value.trim();
+
+          const links = linksInput
+            ? linksInput.split(",").map((link) => link.trim())
+            : [];
+
+          if (
+            !companyName ||
+            !email ||
+            !industry ||
+            !password ||
+            !confirmPassword ||
+            !location
+          ) {
+            showToast("Please fill out all required fields.", "error");
+            return;
+          }
+
+          if (password !== confirmPassword) {
+            showToast("Passwords do not match.", "error");
+            return;
+          }
+
+          if (links.some((link) => !/^https?:\/\//.test(link))) {
+            showToast(
+              "All links must be valid URLs starting with http:// or https://",
+              "error"
+            );
+            return;
+          }
+
+          const requestBody = {
+            name: companyName,
+            email: email,
+            password: password,
+            industry: industry,
+            location: location,
+            description: description,
+            phoneNumber: phoneNumber,
+            links: links,
+          };
+
+          try {
+            const response = await fetch("/auth/job-posters/signup", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(requestBody),
+            });
+
+            if (response.ok) {
+              const responseData = await response.json();
+              showToast("Signup successful!", "success");
+              console.log(responseData);
+
+              window.location.href = "/auth/job-posters/login";
+            } else {
+              const errorData = await response.text();
+              showToast(` ${errorData}`, "error");
+              console.error(errorData);
+            }
+          } catch (error) {
+            console.error("An error occurred during signup:", error);
+          }
+        });
     </script>
-
-
-
   </body>
 </html>

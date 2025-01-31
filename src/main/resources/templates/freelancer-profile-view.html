@@ -52,10 +52,10 @@
     <main>
       <section class="relative w-full h-[250px]">
         <img
-        src="/assets/FreelancerBannerjp.png"
-        alt="Cover Image"
-        class="w-full h-full object-cover custom-blur"
-      />
+          src="/assets/FreelancerBannerjp.png"
+          alt="Cover Image"
+          class="w-full h-full object-cover custom-blur"
+        />
         <div
           class="absolute inset-0 flex justify-between items-center px-10 py-8"
         >
@@ -63,15 +63,18 @@
           <div class="flex flex-col space-y-4">
             <!-- Circular Image and Freelancer Name -->
             <div class="flex items-center space-x-4">
-              <img src="/assets/applicantjp.png"
-     alt="Profile Picture"
-     class="w-[140px] h-[140px] rounded-full object-cover" />
+              <img
+                src="/assets/applicantjp.png"
+                alt="Profile Picture"
+                class="w-[140px] h-[140px] rounded-full object-cover"
+              />
 
               <!-- Freelancer Name -->
               <div>
-                <h2 class="text-black font-bold text-[40px] leading-none" th:text="${name}">
-                  
-                </h2>
+                <h2
+                  class="text-black font-bold text-[40px] leading-none"
+                  th:text="${name}"
+                ></h2>
               </div>
             </div>
 
@@ -83,9 +86,10 @@
                   alt="Industry Icon"
                   class="w-6 h-6"
                 />
-                <span class="text-[#F0823E] font-bold text-[16px]" th:text="${industry}"
-                  ></span>
-                
+                <span
+                  class="text-[#F0823E] font-bold text-[16px]"
+                  th:text="${industry}"
+                ></span>
               </div>
               <div class="flex items-center space-x-2">
                 <img
@@ -93,9 +97,10 @@
                   alt="Industry Icon"
                   class="w-6 h-6"
                 />
-                <span class="text-[#716D6D] font-bold text-[16px]" th:text="${email}"
-                ></span
-                >
+                <span
+                  class="text-[#716D6D] font-bold text-[16px]"
+                  th:text="${email}"
+                ></span>
               </div>
               <div class="flex items-center space-x-2">
                 <img
@@ -103,9 +108,10 @@
                   alt="Location Icon"
                   class="w-6 h-6"
                 />
-                <span class="text-[#716D6D] font-bold text-[16px]" th:text="${location}"
-                  ></span
-                >
+                <span
+                  class="text-[#716D6D] font-bold text-[16px]"
+                  th:text="${location}"
+                ></span>
               </div>
             </div>
           </div>
@@ -116,26 +122,27 @@
               About
             </h2>
             <p
-            class="text-[#4b4b4b] text-[16px] font-light w-[500px] mt-2 hidden lg:block"  th:text="${description}"
-          >
-            Tell us about yourself! Update your profile to add an about section
-          </p>
+              class="text-[#4b4b4b] text-[16px] font-light w-[500px] mt-2 hidden lg:block"
+              th:text="${description}"
+            >
+              Tell us about yourself! Update your profile to add an about
+              section
+            </p>
           </div>
         </div>
       </section>
 
       <h2 class="text-black font-light text-4xl mb-6 text-center">My Skills</h2>
 
-    
-
       <!-- Skills Section -->
       <div class="flex flex-wrap justify-center gap-4 px-10 pb-10">
-        <div th:each="skill : ${skills}"
-            class="skill-item border border-[#F0823E] px-4 py-2 text-black font-light text-[20px] text-center rounded-[50px]">
-            <span th:text="${skill}"></span>
+        <div
+          th:each="skill : ${skills}"
+          class="skill-item border border-[#F0823E] px-4 py-2 text-black font-light text-[20px] text-center rounded-[50px]"
+        >
+          <span th:text="${skill}"></span>
         </div>
-    </div>
-    
+      </div>
 
       <!-- Resume Sect -->
       <div class="text-left mb-8 px-10">
@@ -144,8 +151,9 @@
 
         <!-- Link -->
         <a
-        th:href="${resume}"
-          class="text-[#F0823E] font-semibold text-[16px]" target="_blank"
+          th:href="${resume}"
+          class="text-[#F0823E] font-semibold text-[16px]"
+          target="_blank"
         >
           Click here to View My Resume
         </a>
@@ -153,7 +161,9 @@
 
       <!--Experience -->
       <div class="text-left mb-8 px-10">
-        <h2 class="text-black font-light text-4xl mb-6">Experience - <span th:text="${experience}"></span> yrs</h2>
+        <h2 class="text-black font-light text-4xl mb-6">
+          Experience - <span th:text="${experience}"></span> yrs
+        </h2>
       </div>
 
       <!-- Project Links Section -->
@@ -163,22 +173,41 @@
 
         <div class="flex flex-wrap gap-6 px-10">
           <th:block th:if="${#lists.isEmpty(links)}">
-            <p style="color: grey; font-size: 16px; text-align: center; width: 100%;">
+            <p
+              style="
+                color: grey;
+                font-size: 16px;
+                text-align: center;
+                width: 100%;
+              "
+            >
               The applicant hasn't posted their past work yet
             </p>
           </th:block>
-        
-          <a th:each="link, iterStat : ${links}"
-             th:href="${link}"
-             target="_blank"
-             style="border: 2px solid #F0823E; color: #F0823E; font-weight: 300; font-size: 20px; padding: 8px; border-radius: 8px; text-align: center; width: 100%; transition: background-color 0.15s ease-in-out, color 0.15s ease-in-out;"
-             onmouseover="this.style.backgroundColor='#F0823E'; this.style.color='white';"
-             onmouseout="this.style.backgroundColor='transparent'; this.style.color='#F0823E';">
-             Project <span th:text="${iterStat.index + 1}"></span>
+
+          <a
+            th:each="link, iterStat : ${links}"
+            th:href="${link}"
+            target="_blank"
+            style="
+              border: 2px solid #f0823e;
+              color: #f0823e;
+              font-weight: 300;
+              font-size: 20px;
+              padding: 8px;
+              border-radius: 8px;
+              text-align: center;
+              width: 100%;
+              transition: background-color 0.15s ease-in-out,
+                color 0.15s ease-in-out;
+            "
+            onmouseover="this.style.backgroundColor='#F0823E'; this.style.color='white';"
+            onmouseout="this.style.backgroundColor='transparent'; this.style.color='#F0823E';"
+          >
+            Project <span th:text="${iterStat.index + 1}"></span>
           </a>
         </div>
-        
-      
+      </div>
     </main>
 
     <footer class="bg-black py-8">
@@ -382,7 +411,5 @@
         © 2025 Vocation. All Rights Reserved.
       </p>
     </div>
-
-  
   </body>
 </html>
