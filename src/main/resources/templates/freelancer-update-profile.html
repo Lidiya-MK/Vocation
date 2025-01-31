@@ -447,16 +447,22 @@ class="fixed inset-0 bg-gray-500 bg-opacity-50 flex justify-center items-center 
         <!-- Title - Past Work -->
         <h2 class="text-black font-light text-4xl mb-6">Past Work</h2>
 
-
         <div class="flex flex-wrap gap-6 px-10">
-    
+          <th:block th:if="${#lists.isEmpty(links)}">
+            <p style="color: grey; font-size: 16px; text-align: center; width: 100%;">
+               Links to your past projects will appear here
+            </p>
+          </th:block>
+        
           <a th:each="link, iterStat : ${links}"
              th:href="${link}"
              target="_blank"
-             class="group border-2 border-[#6699A7] text-[#6699A7] font-light text-[20px] p-2 rounded-lg hover:bg-[#6699A7] hover:text-white transition duration-150 ease-in-out w-full sm:w-1/2 md:w-1/3 text-center">
+             style="border: 2px solid #6EB0B6; color: #6EB0B6; font-weight: 300; font-size: 20px; padding: 8px; border-radius: 8px; text-align: center; width: 100%; transition: background-color 0.15s ease-in-out, color 0.15s ease-in-out;"
+             onmouseover="this.style.backgroundColor='#6EB0B6'; this.style.color='white';"
+             onmouseout="this.style.backgroundColor='transparent'; this.style.color='#6EB0B6';">
              Project <span th:text="${iterStat.index + 1}"></span>
           </a>
-      </div>
+        </div>
       
     </main>
 
