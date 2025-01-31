@@ -54,6 +54,5 @@ public class SignupFreelancerRequest {
     @Pattern(regexp = "^[\\+]?[(]?[0-9]{3}[)]?[-\\s\\.]?[0-9]{3}[-\\s\\.]?[0-9]{4,6}$", message = "Phone number should only contain numbers and an optional leading '+'")
     private String phoneNumber;
 
-    @Pattern(regexp = "^(https?://).+", message = "Profile picture link must be a valid URL starting with http:// or https://")
-    private String profilePicture;
+   
 }

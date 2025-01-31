@@ -82,7 +82,6 @@ public class AuthController {
             freelancer.setDescription(freelancerRequest.getDescription());
             freelancer.setLocation(freelancerRequest.getLocation());
             freelancer.setPhoneNumber(freelancerRequest.getPhoneNumber());
-            freelancer.setProfilePicture(freelancerRequest.getProfilePicture());
             freelancer.setYearsOfExperience(freelancerRequest.getYearsOfExperience());
             registeredFreelancer = freelancerService.createFreelancer(freelancer, registeredUser.getId());
         } catch (IllegalArgumentException e) {
@@ -114,7 +113,7 @@ public class AuthController {
             jobPoster.setDescription(jobPosterRequest.getDescription());
             jobPoster.setLocation(jobPosterRequest.getLocation());
             jobPoster.setPhoneNumber(jobPosterRequest.getPhoneNumber());
-            jobPoster.setProfilePicture(jobPosterRequest.getProfilePicture());
+          
             registeredJobPoster = jobPosterService.createJobPoster(jobPoster, registeredUser.getId());
         } catch (IllegalArgumentException e) {
             return ResponseEntity.status(400).body("Error: " + e.getMessage());
